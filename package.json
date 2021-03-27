@@ -1,0 +1,63 @@
+{
+  "name": "shopportal-server",
+  "version": "1.0.0",
+  "description": "An open source eCommerce platform powered by the MERN sttack. It is designed to allow anyone to host their own online shop with ease.",
+  "main": "server.js",
+  "scripts": {
+    "format": "prettier {,*/**/}*.{js,jsx,ts,tsx,json,html} --write",
+    "lint:check": "eslint ./**/*.{js,jsx,ts.tsx,html} --quiet --resolve-plugins-relative-to .",
+    "lint:check:all": "concurrently \"npm run lint:check\" \"npm run lint:check:client\"",
+    "lint:check:client": "cd client && npm run lint",
+    "lint:fix": "eslint ./**/*.{js,jsx,ts.tsx,html} --fix --quiet --resolve-plugins-relative-to .",
+    "lint:fix:all": "concurrently \"npm run lint:fix\" \"npm run lint:client:fix\"",
+    "lint:client": "cd client && npm run lint",
+    "lint:client:fix": "cd client && npm run lint:fix",
+    "init:setup": "npm i && npm run init:client:setup && npm run start:dev:watch",
+    "init:client:setup": "cd client/ && npm i",
+    "start": "if-env NODE_ENV=production && npm run start:server || npm run start:dev:watch",
+    "start:server": "node server",
+    "start:client": "npm start --prefix client",
+    "start:dev:watch": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidsaulrodriguez/shopportal.git"
+  },
+  "author": "David Saul Rodriguez II <david@bsdadm.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/davidsaulrodriguez/shopportal/issues"
+  },
+  "homepage": "https://github.com/davidsaulrodriguez/shopportal#readme",
+  "dependencies": {
+    "@babel/core": "^7.13.13",
+    "axios": "^0.21.1",
+    "concurrently": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "if-env": "^1.0.4",
+    "jest": "26.6.0",
+    "mongoose": "^5.12.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.13.10",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/runtime": "^7.13.10",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}
