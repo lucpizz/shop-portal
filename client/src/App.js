@@ -1,48 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
-import Button from '@material-ui/core/Button';
-// import Menu from '@material-ui/core/Menu';
-// import MenuItem from '@material-ui/core/MenuItem';
+import './App.css'
+import React from 'react'
+import BasicButtonGroup from './components/BasicButtonGroup/BasicButtonGroup'
+import SimpleMenu from './components/SimpleMenu/SimpleMenu'
+import SignUp from './components/SignUp/SignUp'
+// import Box from '@material-ui/core/Box';
+// import SimpleContainer from './components/Container/Container';
 
 function App() {
   return (
     <div className='App'>
+      {/* <Box component="span" color="primary" m={3}> */}
+      {/* <SimpleContainer> */}
       <header className='App-header'>
-        <Button variant="contained" color="default">
-          Hi Mom!
-        </Button>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
+        <SignUp />
+        <SimpleMenu />
+        <BasicButtonGroup />
+        </header>
+      {/* </SimpleContainer> */}
+      {/* </Box> */}
     </div>
   );
 }
 
 export default App;
-
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import Button from '@material-ui/core/Button';
-
-// function App() {
-//   return (
-//     <Button variant="contained" color="primary">
-//       Hello World
-//     </Button>
-//   );
-// }
-
-// ReactDOM.render(<App />, document.querySelector('#app'));
-
-// export default App;
