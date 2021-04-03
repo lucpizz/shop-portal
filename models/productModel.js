@@ -6,6 +6,12 @@ const { Schema } = Mongoose;
 const ProductSchema = new Schema({
   sku: {
     type: String,
+    unique: true,
+  },
+  slug: {
+    type: String,
+    slug: 'name',
+    unique: true,
   },
   name: {
     type: String,
@@ -40,10 +46,12 @@ const ProductSchema = new Schema({
     ref: 'Brand',
     default: null,
   },
-  updated: Date,
   created: {
     type: Date,
     default: Date.now,
+  },
+  updated: {
+    type: Date,
   },
 });
 module.exports = Mongoose.model('Product', ProductSchema);
