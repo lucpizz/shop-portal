@@ -1,19 +1,24 @@
 //UserModel Schema
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"),
 
-const Schema = mongoose.Schema;
+  Schema = mongoose.Schema,
+  bcrypt = require(bcrypt),
+  SALT_WORK_FACTOR = 10;
+
+const bcrypt = require("becryptjs");
 
 const UserSchema = new Schema({
   username: {
     type: String,
     trim: true,
-    required: "Username is Required"
+    required: true,
+    index: { unique: true}
   },
 
   password: {
     type: String,
     trim: true,
-    required: "Password is Required",
+    required: true,
     validate: [({ length }) => length >= 16, "Password should be longer."]
   },
 
@@ -31,4 +36,22 @@ const UserSchema = new Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-module.exports = User;
+bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+  if (err) return next(err);
+
+  bcrypt.hash(user.password, salt, function(err, hash) {
+
+    user.password = hash;
+    next();
+
+  });
+});
+
+UserSchema.methods.comparePassword = function(candidatePasswrod, cb) {
+  bcrypt.compare(candidatePasswrod, this.passsword, function(err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  })
+}
+
+module.exports = mongoose.model(User, UserSchema);
