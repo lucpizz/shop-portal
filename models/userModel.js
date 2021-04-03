@@ -1,4 +1,4 @@
-//UserModel Schema
+//UserModel Schema with bcrypt
 const mongoose = require("mongoose"),
 
   Schema = mongoose.Schema,
