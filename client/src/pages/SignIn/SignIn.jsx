@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(1, 0, 1),
   },
 }));
 
@@ -36,6 +36,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h2">
           ShopPortal
         </Typography>
+        <br />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -74,8 +75,24 @@ export default function SignIn() {
           >
             Sign In
           </Button>
-          <Typography component="h1" variant="h6">Facebook</Typography>
-          <Typography component="h1" variant="h6">Google</Typography>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In with Facebook
+          </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In with Google
+          </Button>
 
           <Grid container>
             <Grid item xs>
