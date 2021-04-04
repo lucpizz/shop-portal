@@ -6,23 +6,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="#">
-        ShopPortal
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,6 +33,9 @@ export default function SignIn() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+        <Typography component="h1" variant="h2">
+          ShopPortal
+        </Typography>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -60,7 +49,6 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
-          // autoFocus
           />
           <TextField
             variant="outlined"
@@ -86,6 +74,8 @@ export default function SignIn() {
           >
             Sign In
           </Button>
+          <Typography component="h1" variant="h6">Facebook</Typography>
+          <Typography component="h1" variant="h6">Google</Typography>
 
           <Grid container>
             <Grid item xs>
@@ -101,9 +91,6 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
