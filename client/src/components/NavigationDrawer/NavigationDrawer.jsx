@@ -10,6 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
   SwipeableDrawer,
+  Typography,
 } from '@material-ui/core';
 import {
   GitHub as SourceCode,
@@ -19,7 +20,6 @@ import {
   LocalMall as ShoppingBagIcon,
   Menu as MenuIcon,
 } from '@material-ui/icons';
-import { Typography } from '@material-ui/core';
 import {
   useHistory,
   useLocation,
