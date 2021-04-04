@@ -1,3 +1,7 @@
+h1 {
+  color: black;
+}
+
 .App {
   text-align: center;
   background-color: white;
@@ -14,7 +18,7 @@
   color: #61dafb;
 }
 
-h1 {
+.MuiTypography-root {
   color: black;
 }
 
