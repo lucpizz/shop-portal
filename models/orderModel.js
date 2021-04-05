@@ -7,9 +7,9 @@ const OrderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Cart',
   },
-  order: {
+  user: {
     type: Schema.Types.ObjectId,
-    ref: 'Order',
+    ref: 'User',
   },
   total: {
     type: Number,
