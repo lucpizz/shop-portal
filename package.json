@@ -19,7 +19,8 @@
     "start:client": "npm start --prefix client",
     "start:dev:watch": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "seed": "node scripts/seedDB.js"
   },
   "repository": {
     "type": "git",
