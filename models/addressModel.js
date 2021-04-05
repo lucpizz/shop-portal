@@ -12,7 +12,7 @@ const AddressSchema = new Schema({
     trim: true,
   },
   billingAddress: {
-    type: boolean,
+    type: Boolean,
     trim: true,
     required: 'Street number and name required',
   },
@@ -37,7 +37,7 @@ const AddressSchema = new Schema({
     required: 'Country required',
   },
   mailingAddress: {
-    type: boolean,
+    type: Boolean,
     trim: true,
     required: 'Street number and name required',
   },
