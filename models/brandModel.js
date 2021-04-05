@@ -1,3 +1,6 @@
+const Mongoose = require('mongoose');
+const { Schema } = Mongoose;
+
 //Brand Schema
 const BrandSchema = new Schema({
   slug: {
