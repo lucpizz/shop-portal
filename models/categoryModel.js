@@ -1,11 +1,17 @@
-//Categories Schema
-const { Schema } = require('mongoose');
+const Mongoose = require('mongoose');
+const { Schema } = Mongoose;
+const slug = require('mongoose-slug-generator');
 
+const options = {
+  seperator: '-',
+  lang: 'en',
+  truncate: 120,
+};
+
+Mongoose.plugin(slug, options);
+
+//Category Schema
 const CategorySchema = new Schema({
-  type: {
-    type: Schema.ObjectId,
-    auto: true,
-  },
   name: {
     type: String,
     trim: true,
@@ -27,16 +33,18 @@ const CategorySchema = new Schema({
     type: Boolean,
     default: true,
   },
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Product',
+  product: [
+    {
+      type: Schema.Types.String,
+      ref: 'Product',
+    },
+  ],
+  updated: {
+    type: Date,
   },
   created: {
     type: Date,
     default: Date.now,
   },
-  updated: {
-    type: Date,
-  },
 });
-module.exports = Mongoose.model('Category', Schema);
+module.exports = Mongoose.model('Category', CategorySchema);
