@@ -55,6 +55,38 @@ const productSeed = [
     brand: 'Ikea',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
+  },
+  {
+    sku: 'jg-necklace-4567',
+    slug: 'jg-necklace',
+    name: 'Gold necklace with silver pendant for woman',
+    imageUrl: 'https://unsplash.com/photos/ZhmbakzCBtk',
+    imageKey: 'Gold necklace with pendant',
+    description:
+      '14K gold chain with sterling silver pendant. Main chain of 17 inches with Satellite chain of 14.5 inches. Pendant of 0.5 inches long.',
+    quantity: '5',
+    price: '64.99',
+    taxable: 'false',
+    isActive: 'true',
+    brand: 'Mevecco',
+    created: new Date(Date.now()),
+    updated: new Date(Date.now()),
+  },
+  {
+    sku: 'mp-red-sneaker-345',
+    slug: 'mp-red-sneaker',
+    name: 'Nike Mens Free Rn 2018 Running Shoe - Red',
+    imageUrl: 'https://unsplash.com/photos/164_6wVEHfI',
+    imageKey: 'Red nike sneaker',
+    description:
+      'Red/Vast Gray size 12 for men. Flywire cables work with the laces for more support as you tighten them. Rounded heel is made to roll with the ground as you stride. Textured toe and heel foam sole sections for traction.',
+    quantity: '10',
+    price: '145',
+    taxable: 'false',
+    isActive: 'true',
+    brand: 'Nike',
+    created: new Date(Date.now()),
+    updated: new Date(Date.now()),
   }
 ];
 
