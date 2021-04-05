@@ -23,6 +23,9 @@ const MerchantSchema = new Schema({
       'Please enter a valid email address',
     ],
   },
+  phoneNumber: {
+    type: 'string',
+  },
   description: {
     type: String,
     trim: true,
@@ -31,22 +34,17 @@ const MerchantSchema = new Schema({
     type: Boolean,
     default: true,
   },
-  brand: {
-    type: Schema.Types.ObjectId,
-    ref: 'Brand',
-    default: null,
-  },
   status: {
     type: String,
-    enum: ['Waiting Approval', 'Rejected', 'Approved'],
     default: 'Waiting Approval',
+    enum: ['Waiting Approval', 'Rejected', 'Approved'],
+  },
+  updated: {
+    type: Date,
   },
   created: {
     type: Date,
     default: Date.now,
-  },
-  updated: {
-    type: Date,
   },
 });
 module.exports = Mongoose.model('Merchant', MerchantSchema);
