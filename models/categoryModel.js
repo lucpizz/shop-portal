@@ -39,4 +39,4 @@ const CategorySchema = new Schema({
     type: Date,
   },
 });
-module.exports = Mongoose.model('Category', Schema);
+module.exports = Mongoose.model('Category', CategorySchema);
