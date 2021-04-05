@@ -7,19 +7,14 @@ const AddressSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  name: {
-    type: String,
-    trim: true,
-  },
-  billingAddress: {
-    type: Boolean,
-    trim: true,
-    required: 'Street number and name required',
-  },
-  street: {
+  streetAddress: {
     type: String,
     trim: true,
     required: 'Street number and name required',
+  },
+  streetAddress2: {
+    type: String,
+    trim: true,
   },
   city: {
     type: String,
@@ -36,49 +31,23 @@ const AddressSchema = new Schema({
     trim: true,
     required: 'Country required',
   },
-  mailingAddress: {
+  zipCode: {
+    type: String,
+  },
+  isDefault: {
     type: Boolean,
-    trim: true,
-    required: 'Street number and name required',
-  },
-  secondName: {
-    type: String,
-    trim: true,
-  },
-  secondStreet: {
-    type: String,
-    trim: true,
-    required: 'Street number and name required',
-  },
-  secondCity: {
-    type: String,
-    trim: true,
-    required: 'City required',
-  },
-  secondState: {
-    type: String,
-    trim: true,
-    required: 'State required',
-  },
-  secondCountry: {
-    type: String,
-    trim: true,
-    required: 'Country required',
+    default: false,
   },
   isActive: {
     type: Boolean,
     default: true,
   },
-  created: {
-    type: Date,
-    default: Date.now,
-  },
   updated: {
     type: Date,
   },
-  isDefault: {
-    type: Boolean,
-    default: false,
+  created: {
+    type: Date,
+    default: Date.now,
   },
 });
 module.exports = Mongoose.model('Address', AddressSchema);
