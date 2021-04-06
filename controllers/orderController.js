@@ -13,6 +13,11 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findByCart: function (req, res) {
+    db.findByCart(req.params.cart)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   create: function (req, res) {
     db.create(req.body)
       .then((dbModel) => res.json(dbModel))
