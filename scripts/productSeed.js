@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const db = require('../models');
 
 // This file empties the Product collection and inserts the products below
-
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal');
 
 const productSeed = [
@@ -87,7 +86,7 @@ const productSeed = [
     brand: 'Nike',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  }
+  },
 ];
 
 db.Product.remove({})

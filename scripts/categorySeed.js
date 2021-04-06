@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
 const mongoose = require('mongoose');
 const db = require('../models');
 
-// This file empties the User collection and inserts the users below
-
+// This file empties the Category collection and inserts the categories below
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal');
 
 const categorySeed = [
@@ -29,7 +27,8 @@ const categorySeed = [
     name: 'Beauty & Personal Care',
     slug: 'c-beauty',
     Buffer: 'uCFsbBNgd30ybGM=',
-    description: 'Enhance the appearance of the face or fragrance and texture of the body',
+    description:
+      'Enhance the appearance of the face or fragrance and texture of the body',
     isActive: false,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
@@ -51,7 +50,7 @@ const categorySeed = [
     isActive: true,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  }
+  },
 ];
 
 db.Category.remove({})

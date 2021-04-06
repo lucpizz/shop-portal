@@ -1,15 +1,13 @@
-/* eslint-disable no-console */
 const mongoose = require('mongoose');
 const db = require('../models');
 
-// This file empties the User collection and inserts the users below
-
+// This file empties the Brand collection and inserts the brands below
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal');
 
 const brandSeed = [
   {
     slug: 'b-culprit-apparel',
-    name: 'Culprit Apparel',    
+    name: 'Culprit Apparel',
     image: 'sL9pET=CYjUKPFcO',
     description: 'Trendy women clothing',
     isActive: true,
@@ -18,7 +16,7 @@ const brandSeed = [
   },
   {
     slug: 'b-juslink',
-    name: 'Juslink',    
+    name: 'Juslink',
     image: 'ByyCbWstOexPGODe',
     description: 'Kids clothing and accessories',
     isActive: true,
@@ -27,7 +25,7 @@ const brandSeed = [
   },
   {
     slug: 'b-ikeam',
-    name: 'Ikeam',    
+    name: 'Ikeam',
     image: 'Ft6jmy51BgeDWGCd',
     description: 'Scandinavian styled furniture',
     isActive: true,
@@ -36,7 +34,7 @@ const brandSeed = [
   },
   {
     slug: 'b-mevecco',
-    name: 'Mevecco',    
+    name: 'Mevecco',
     image: 'YJebbTIm2weiMfty',
     description: 'Designer high-quality handmade jewelry',
     isActive: true,
@@ -45,7 +43,7 @@ const brandSeed = [
   },
   {
     slug: 'b-nike',
-    name: 'Nike',    
+    name: 'Nike',
     image: 'N7cRikSofVii=uyo',
     description: 'Sports equipment brand',
     isActive: true,
@@ -54,13 +52,14 @@ const brandSeed = [
   },
   {
     slug: 'b-audi',
-    name: 'Audi',    
+    name: 'Audi',
     image: 'dTR9CH7M3rHERbFy',
-    description: 'German automobile manufacturer that designs, engineers, produces, markets and distributes luxury vehicles',
+    description:
+      'German automobile manufacturer that designs, engineers, produces, markets and distributes luxury vehicles',
     isActive: false,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  }  
+  },
 ];
 
 db.Brand.remove({})
