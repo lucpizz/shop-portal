@@ -11,7 +11,7 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
-  // Matches with "/email/:email"
+// Matches with "/email/:email"
 router
   .route('/email/:email')
   .get(usersController.findByEmail)
@@ -25,10 +25,17 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
-  // Matches with "lastname/:lastname"
+// Matches with "lastname/:lastname"
 router
   .route('/lastname/:lastname')
   .get(usersController.findByLastname)
+  .put(usersController.update)
+  .delete(usersController.remove);
+
+// Matches with "lastname/:lastname"
+router
+  .route('/phonenumber/:phonenumber')
+  .get(usersController.findByPhoneNumber)
   .put(usersController.update)
   .delete(usersController.remove);
 
