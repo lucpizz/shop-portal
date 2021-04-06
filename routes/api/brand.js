@@ -4,7 +4,7 @@ const brandController = require('../../controllers/brandController.js');
 // Matches with "/api/users"
 router.route('/').get(brandController.findAll).post(brandController.create);
 
-// Matches with "/api/users/:id"
+// Matches with "/api/brand/:id"
 router
   .route('/:id')
   .get(brandController.findById)

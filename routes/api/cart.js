@@ -4,7 +4,7 @@ const cartController = require('../../controllers/cartController.js');
 // Matches with "/api/users"
 router.route('/').get(cartController.findAll).post(cartController.create);
 
-// Matches with "/api/users/:id"
+// Matches with "/api/cart/:id"
 router
   .route('/:id')
   .get(cartController.findById)

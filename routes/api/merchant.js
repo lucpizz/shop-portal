@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const merchantController = require('../../controllers/merchantController.js');
 
-// Matches with "/api/users"
+// Matches with "/api/merchant"
 router
   .route('/')
   .get(merchantController.findAll)
   .post(merchantController.create);
 
-// Matches with "/api/users/:id"
+// Matches with "/api/merchant/:id"
 router
   .route('/:id')
   .get(merchantController.findById)

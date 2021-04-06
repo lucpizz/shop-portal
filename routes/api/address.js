@@ -4,7 +4,7 @@ const addressController = require('../../controllers/addressController.js');
 // Matches with "/api/users"
 router.route('/').get(addressController.findAll).post(addressController.create);
 
-// Matches with "/api/users/:id"
+// Matches with "/api/address/:id"
 router
   .route('/:id')
   .get(addressController.findById)
@@ -46,7 +46,7 @@ router
   .put(addressController.update)
   .delete(addressController.remove);
 
-// Matches with "zipcode/:zipCode"
+// Matches with "zipcode/:zipcode"
 router
   .route('/zipcode/:zipCode')
   .get(addressController.findByZipcode)
