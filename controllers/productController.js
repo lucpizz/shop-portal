@@ -1,4 +1,4 @@
-const db = require('../models/userModel');
+const db = require('../models/productModel');
 
 // Defining methods for the postsController
 module.exports = {
@@ -13,23 +13,13 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByEmail: function (req, res) {
-    db.findByEmail(req.params.email)
+  findBySku: function (req, res) {
+    db.findBySku(req.params.sku)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByUsername: function (req, res) {
-    db.findByUsername(req.params.username)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByLastname: function (req, res) {
-    db.findByLastname(req.params.lastName)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByPhoneNumber: function (req, res) {
-    db.findByPhoneNumber(req.params.phoneNumber)
+  findBySku: function (req, res) {
+    db.findByName(req.params.name)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

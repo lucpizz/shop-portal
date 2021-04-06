@@ -1,4 +1,4 @@
-const db = require('../models/userModel');
+const db = require('../models/addressModel');
 
 // Defining methods for the postsController
 module.exports = {
@@ -13,23 +13,33 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByEmail: function (req, res) {
-    db.findByEmail(req.params.email)
+  findByUser: function (req, res) {
+    db.findByUser(req.params.user)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByUsername: function (req, res) {
-    db.findByUsername(req.params.username)
+  findByStreetAddress: function (req, res) {
+    db.findByStreetAddress(req.params.streetAddress)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByLastname: function (req, res) {
-    db.findByLastname(req.params.lastName)
+  findByCity: function (req, res) {
+    db.findByCity(req.params.city)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByPhoneNumber: function (req, res) {
-    db.findByPhoneNumber(req.params.phoneNumber)
+  findByState: function (req, res) {
+    db.findByState(req.params.state)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByCountry: function (req, res) {
+    db.findByCountry(req.params.country)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByZipcode: function (req, res) {
+    db.findByZipcode(req.params.zipCode)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
