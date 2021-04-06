@@ -9,7 +9,6 @@ function App() {
     <>
       <CssBaseline />
       <Navigation />
-      <SignIn />
 
       <Switch>
         <Route exact from='/login' render={(props) => <SignIn {...props} />} />
