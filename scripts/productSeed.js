@@ -52,7 +52,7 @@ const productSeed = [
     price: '34.99',
     taxable: false,
     isActive: true,
-    brand: 'Ikea',
+    brand: 'Ikeam',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },

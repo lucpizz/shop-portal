@@ -9,7 +9,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal');
 const categorySeed = [
   {
     name: 'Home Furniture',
-    slug: 'h-furniture',
+    slug: 'c-home-furniture',
     image: 'aGVsbG8gd29ybGQ=',
     description: 'House movable articles',
     isActive: true,
@@ -18,7 +18,7 @@ const categorySeed = [
   },
   {
     name: 'Clothing',
-    slug: 'p-clothing',
+    slug: 'c-clothing',
     image: 'vwR53mFaMg7oxkOe',
     description: 'Men, women and kids clothing',
     isActive: true,
@@ -27,7 +27,7 @@ const categorySeed = [
   },
   {
     name: 'Beauty & Personal Care',
-    slug: 'p-beauty',
+    slug: 'c-beauty',
     Buffer: 'uCFsbBNgd30ybGM=',
     description: 'Enhance the appearance of the face or fragrance and texture of the body',
     isActive: false,
@@ -36,9 +36,18 @@ const categorySeed = [
   },
   {
     name: 'Grocery & Gourmet Food',
-    slug: 'f-grocery',
+    slug: 'c-grocery',
     Buffer: 'BJQX581ejK6wspRu',
     description: 'Fine food, drinks and household supplies',
+    isActive: true,
+    created: new Date(Date.now()),
+    updated: new Date(Date.now()),
+  },
+  {
+    name: 'Vehicles',
+    slug: 'c-vehicles',
+    Buffer: 'ETlEiNJh6j8OqRGn',
+    description: 'Wheeled motor vehicle used for transportation',
     isActive: true,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
