@@ -1,8 +1,8 @@
 * @davidsaulrodriguez
 
-client/ @pennyquirino @davidsaulrodriguez @jdavidrice @Mconway409
+/client/ @pennyquirino @davidsaulrodriguez @jdavidrice @Mconway409
 
-controller/ @davidsaulrodriguez @lucpizz @Delph-Sunny
-models/ @davidsaulrodriguez @lucpizz @Delph-Sunny
-routes/ @davidsaulrodriguez @lucpizz @Delph-Sunny
-server.js @davidsaulrodriguez @lucpizz @Delph-Sunny
+/controller/ @davidsaulrodriguez @lucpizz @Delph-Sunny
+/models/ @davidsaulrodriguez @lucpizz @Delph-Sunny
+/routes/ @davidsaulrodriguez @lucpizz @Delph-Sunny
+/server.js @davidsaulrodriguez @lucpizz @Delph-Sunny
