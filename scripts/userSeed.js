@@ -24,7 +24,7 @@ const userSeed = [
     username: 'MarcoPolo',
     firstName: 'Marco',
     lastName: 'Polo',
-    password: 'Password',
+    password: 'sale',
     email: 'marco.polo@merchant.com',
     provider: 'marco.polo@merchant.com',
     phoneNumber: '666-999-6969',
