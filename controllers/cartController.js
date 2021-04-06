@@ -13,6 +13,16 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findByProduct: function (req, res) {
+    db.findByProduct(req.params.product)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByStatus: function (req, res) {
+    db.findByStatus(req.params.status)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   create: function (req, res) {
     db.create(req.body)
       .then((dbModel) => res.json(dbModel))
