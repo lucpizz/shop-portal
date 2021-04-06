@@ -30,7 +30,7 @@ const userSeed = [
     phoneNumber: '666-999-6969',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  },  
+  },
   {
     role: 'User',
     username: 'BobTheMinion',
@@ -42,16 +42,14 @@ const userSeed = [
     phoneNumber: '401-323-5890',
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
-  }  
+  },
 ];
 
 db.User.remove({})
   .then(() => db.User.collection.insertMany(userSeed))
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
+  .then(() => {
     process.exit(0);
   })
-  .catch((err) => {
-    console.error(err);
+  .catch(() => {
     process.exit(1);
   });

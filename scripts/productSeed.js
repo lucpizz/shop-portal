@@ -92,11 +92,9 @@ const productSeed = [
 
 db.Product.remove({})
   .then(() => db.Product.collection.insertMany(productSeed))
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
+  .then(() => {
     process.exit(0);
   })
-  .catch((err) => {
-    console.error(err);
+  .catch(() => {
     process.exit(1);
   });
