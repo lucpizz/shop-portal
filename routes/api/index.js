@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const userRoutes = require('./user');
+const userRoutes = require('./users');
 const addressRoutes = require('./address');
 const productRoutes = require('./product');
 const categoryRoutes = require('./category');
@@ -7,7 +7,7 @@ const cartRoutes = require('./cart');
 const brandRoutes = require('./brand');
 const contactRoutes = require('./contact');
 const merchantRoutes = require('./merchant');
-const orderRoutes = require('./orderModel');
+const orderRoutes = require('./order');
 
 // Post Routes
 router.use('/user', userRoutes);
