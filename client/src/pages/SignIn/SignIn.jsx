@@ -74,7 +74,6 @@ const SignIn = () => {
           >
             Sign In with Google
           </Button>
-
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
