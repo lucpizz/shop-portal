@@ -13,7 +13,11 @@ function App() {
 
       <Switch>
         <Route exact from='/login' render={(props) => <SignIn {...props} />} />
-        <Route exact from='/contact' render={(props) => <ContactUs {...props} />} />
+        <Route
+          exact
+          from='/contact'
+          render={(props) => <ContactUs {...props} />}
+        />
       </Switch>
     </>
   );
