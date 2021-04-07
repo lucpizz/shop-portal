@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 const db = require('../models');
 
 // This file empties the Category collection and inserts the categories below
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+});
 
 const categorySeed = [
   {
@@ -53,8 +58,8 @@ const categorySeed = [
   },
 ];
 
-db.Category.remove({})
-  .then(() => db.Category.collection.insertMany(categorySeed))
+db.Category.deleteMany({})
+  .then(() => db.Category.insertMany(categorySeed))
   .then(() => {
     process.exit(0);
   })

@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 const db = require('../models');
 
 // This file empties the User collection and inserts the users below
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+});
 
 const userSeed = [
   {
@@ -43,8 +48,8 @@ const userSeed = [
   },
 ];
 
-db.User.remove({})
-  .then(() => db.User.collection.insertMany(userSeed))
+db.User.deleteMany({})
+  .then(() => db.User.insertMany(userSeed))
   .then(() => {
     process.exit(0);
   })
