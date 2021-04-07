@@ -18,7 +18,7 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findBySku: function (req, res) {
+  findByName: function (req, res) {
     db.findByName(req.params.name)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

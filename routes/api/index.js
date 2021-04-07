@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const userRoutes = require('./userModel');
-const addressRoutes = require('./addressModel');
-const productRoutes = require('./productModel');
-const categoryRoutes = require('./categoryModel');
-const cartRoutes = require('./cartModel');
-const brandRoutes = require('./brandModel');
-const contactRoutes = require('./contactModel');
-const merchantRoutes = require('./merchantModel');
+const userRoutes = require('./user');
+const addressRoutes = require('./address');
+const productRoutes = require('./product');
+const categoryRoutes = require('./category');
+const cartRoutes = require('./cart');
+const brandRoutes = require('./brand');
+const contactRoutes = require('./contact');
+const merchantRoutes = require('./merchant');
 const orderRoutes = require('./orderModel');
 
 // Post Routes
