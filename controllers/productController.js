@@ -14,12 +14,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findBySku: function (req, res) {
-    db.findBySku(req.params.sku)
+    db.findByOne( {sku: req.params.sku} )
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findByName(req.params.name)
+    db.findByOne( {name: req.params.name} )
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

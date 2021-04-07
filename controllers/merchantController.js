@@ -14,12 +14,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    db.findByEmail(req.params.email)
+    db.findByOne({ email: req.params.email })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByPhoneNumber: function (req, res) {
-    db.findByPhoneNumber(req.params.phoneNumber)
+    db.findByOne({ phoneNumber: req.params.phoneNumber })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

@@ -14,7 +14,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByCart: function (req, res) {
-    db.findByCart(req.params.cart)
+    db.findByOne({ cart: req.params.cart })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

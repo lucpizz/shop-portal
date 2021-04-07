@@ -14,32 +14,32 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByUser: function (req, res) {
-    db.findByUser(req.params.user)
+    db.findByOne({ user: req.params.user })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStreetAddress: function (req, res) {
-    db.findByStreetAddress(req.params.streetAddress)
+    db.findByOne({ streetAddress: req.params.streetAddress })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByCity: function (req, res) {
-    db.findByCity(req.params.city)
+    db.findByOne({ city: req.params.city })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByState: function (req, res) {
-    db.findByState(req.params.state)
+    db.findByOne({ state: req.params.state })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByCountry: function (req, res) {
-    db.findByCountry(req.params.country)
+    db.findByOne({ country: req.params.country })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByZipcode: function (req, res) {
-    db.findByZipcode(req.params.zipCode)
+    db.findByOne({ zipCode: req.params.zipCode })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
