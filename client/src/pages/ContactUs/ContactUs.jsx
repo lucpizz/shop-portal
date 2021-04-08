@@ -3,17 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-      height: '50ch',
-    },
-  },
-}));
+import useStyles from './styles';
 
 const ContactUs = () => {
   const classes = useStyles();
@@ -45,11 +35,13 @@ const ContactUs = () => {
             id='email'
           />
           <TextField
-            id='outlined-multiline-static'
-            label='Multiline'
+            id='message'
+            margin='normal'
+            label='Message'
             multiline
+            required
+            fullWidth
             rows={4}
-            defaultValue='Message'
             variant='outlined'
           />
           <Button
