@@ -8,6 +8,7 @@ router.route('/').get(contactController.findAll).post(contactController.create);
 router
   .route('/:id')
   .get(contactController.findById)
+  .post(contactController.create)
   .put(contactController.update)
   .delete(contactController.remove);
 
@@ -15,6 +16,7 @@ router
 router
   .route('/name/:name')
   .get(contactController.findByName)
+  .post(contactController.create)
   .put(contactController.update)
   .delete(contactController.remove);
 
@@ -22,6 +24,7 @@ router
 router
   .route('/email/:email')
   .get(contactController.findByEmail)
+  .post(contactController.create)
   .put(contactController.update)
   .delete(contactController.remove);
 
