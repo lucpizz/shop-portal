@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const contactController = require('../../controllers/contactController.js');
 
-// Matches with "/api/category"
+// Matches with "/api/contact"
 router.route('/').get(contactController.findAll).post(contactController.create);
 
-// Matches with "/api/category/:id"
+// Matches with "/api/contact/:id"
 router
   .route('/:id')
   .get(contactController.findById)
-  .post(contactController.create)
   .put(contactController.update)
   .delete(contactController.remove);
 
@@ -16,7 +15,6 @@ router
 router
   .route('/name/:name')
   .get(contactController.findByName)
-  .post(contactController.create)
   .put(contactController.update)
   .delete(contactController.remove);
 
@@ -24,7 +22,6 @@ router
 router
   .route('/email/:email')
   .get(contactController.findByEmail)
-  .post(contactController.create)
   .put(contactController.update)
   .delete(contactController.remove);
 
