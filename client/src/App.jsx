@@ -13,10 +13,9 @@ function App() {
 
       <Switch>
         <Route exact from='/login' render={(props) => <SignIn {...props} />} />
-      </Switch>
-      <Switch>
         <Route exact from='/signup' render={(props) => <SignUp {...props} />} />
       </Switch>
+      
     </>
   );
 }
