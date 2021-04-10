@@ -50,12 +50,10 @@ const UserSchema = new Schema({
     type: String,
   },
   googleId: {
-    type: String,
-    unique: true,
+    type: String,    
   },
   facebookId: {
-    type: String,
-    unique: true,
+    type: String,    
   },
   resetPasswordToken: { type: String },
   resetPasswordExpires: { type: Date },
