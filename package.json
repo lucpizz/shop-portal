@@ -4,7 +4,7 @@
   "description": "An open source eCommerce platform powered by the MERN sttack. It is designed to allow anyone to host their own online shop with ease.",
   "main": "server.js",
   "scripts": {
-    "format": "prettier {,*/**/}*.{js,jsx,ts,tsx,json,html} --write",
+    "format": "prettier --write \"{,*/**/,*}*.{js,jsx,ts,tsx,json,html}\"",
     "lint:check": "eslint ./**/*.{js,jsx,ts.tsx,html} --quiet --resolve-plugins-relative-to .",
     "lint:check:all": "concurrently \"npm run lint:check\" \"npm run lint:check:client\"",
     "lint:check:client": "cd client && npm run lint",
