@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%', 
     marginTop: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: 'left',
   },
   submit: {
     margin: theme.spacing(1, 0, 1),
