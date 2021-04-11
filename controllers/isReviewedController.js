@@ -25,9 +25,20 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    let query = { create: req.body };
+    let query = {
+      name: req.body.name,
+      imageUrl: req.body.imageUrl,
+      imageKey: req.body.imageKey,
+      description: req.body.description,
+      totalStars: req.body.totalStars,
+      reviewBody: req.body.reviewBody,
+      isActive: req.body.isActive,
+      isReveiwable: req.body.isReveiwable,
+      created: req.body.created,
+      updated: req.body.updated,
+    };
 
-    db.create(query.create)
+    db.create(query)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
