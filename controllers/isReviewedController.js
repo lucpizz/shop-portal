@@ -3,10 +3,9 @@ const db = require('../models/isReviewedModel');
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
+    let query = { user: req.query.user.toString() };
 
-  let query = { user: req.query.user.toString() };
-
-  db.collection("users") 
+    db.collection('users')
       .find(query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
@@ -28,7 +27,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    db.create(req.body.toString())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
