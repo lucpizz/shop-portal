@@ -42,12 +42,7 @@ const isReviewableSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  brand: {
-    type: Schema.Types.ObjectId,
-    ref: 'Brand',
-    default: null,
-  },
-  created: {
+   created: {
     type: Date,
     default: Date.now,
   },
