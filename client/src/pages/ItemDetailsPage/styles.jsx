@@ -4,13 +4,8 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1000,
-    alignItems: 'center',
-  },
-  paper: {
+    maxWidth: 345,
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
   },
   media: {
     height: 0,

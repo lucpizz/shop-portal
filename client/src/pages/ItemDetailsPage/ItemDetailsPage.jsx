@@ -7,7 +7,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -19,7 +18,7 @@ import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
 
 
-const RecipeReviewCard = () => {
+const ItemDetailsPage = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -28,11 +27,8 @@ const RecipeReviewCard = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
-      <CssBaseline />
-      <div className={classes.root}>
-      <Card className={classes.paper}>
-        
+    <Container component="main" maxWidth="xs">
+    <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -49,7 +45,7 @@ const RecipeReviewCard = () => {
       />
       <CardMedia
         className={classes.media}
-        image=""
+        image="/static/images/cards/paella.jpg"
         title="Paella dish"
       />
       <CardContent>
@@ -104,9 +100,8 @@ const RecipeReviewCard = () => {
         </CardContent>
       </Collapse>
       </Card>
-      </div>
       </Container>
   );
 }
 
-export default RecipeReviewCard; 
+export default ItemDetailsPage; 
