@@ -74,7 +74,6 @@ const SignIn = () => {
           >
             Sign In with Google
           </Button>
-
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
@@ -82,7 +81,7 @@ const SignIn = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
