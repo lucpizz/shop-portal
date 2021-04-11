@@ -27,7 +27,9 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body.toString())
+    let query = { create: req.body.toString() };
+
+    db.create(query)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
