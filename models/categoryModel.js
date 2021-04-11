@@ -35,7 +35,7 @@ const CategorySchema = new Schema({
   },
   isFeatured: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   product: [
     {
