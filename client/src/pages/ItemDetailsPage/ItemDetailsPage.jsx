@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -27,8 +28,11 @@ const RecipeReviewCard = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-    <Card className={classes.root}>
+    <Container component="main" maxWidth="sm">
+      <CssBaseline />
+      <div className={classes.root}>
+      <Card className={classes.paper}>
+        
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -100,6 +104,7 @@ const RecipeReviewCard = () => {
         </CardContent>
       </Collapse>
       </Card>
+      </div>
       </Container>
   );
 }
