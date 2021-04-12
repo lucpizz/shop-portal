@@ -33,7 +33,7 @@ module.exports = {
       totalStars: req.body.totalStars,
       reviewBody: req.body.reviewBody,
       isActive: req.body.isActive,
-      isReveiwable: req.body.isReveiwable,
+      isReviewable: req.body.isReviewable,
       created: req.body.created,
       updated: req.body.updated,
     };
