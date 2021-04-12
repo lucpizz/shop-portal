@@ -4,8 +4,16 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    marginTop: theme.spacing(8),
+    maxWidth: 1200,
+    // maxHeight: '80vh',
+    // maxHeight: 500,
+    // marginTop: theme.spacing(8),
+  },
+  card: {
+    // maxWidth: 1000,
+    // maxHeight: 300,
+    // height: '50vh',
+    marginTop: theme.spacing(2),
   },
   media: {
     height: 0,
