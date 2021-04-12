@@ -18,7 +18,7 @@ import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import SimpleRating from '../../components/Rating/Rating.jsx';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 
 
 const ItemDetailsPage = () => {
@@ -52,8 +52,8 @@ const ItemDetailsPage = () => {
         title="Orange backpack"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brothers keeper and the finder of lost children.
+          <Typography variant="body2" color="textSecondary" component="p">
+          Autem voluptas qui et nostrum iusto rerum tenetur. Voluptas earum vitae quas eos ea sint. Velit placeat rem necessitatibus qui quam. Quo et ut et rerum commodi. Culpa assumenda aspernatur quam magnam nemo. Tenetur omnis minus in placeat et.
         </Typography>
       </CardContent>
         <CardActions disableSpacing>
@@ -66,17 +66,20 @@ const ItemDetailsPage = () => {
         <IconButton aria-label="rating">
           <SimpleRating />
           </IconButton>
-        <Box component="fieldset" mb={0} borderColor="transparent">
-          <Typography component="legend">$79.99</Typography>
-        </Box>
-        <Button
+          
+        <Typography>$79.99</Typography>
+
+          <Button
             type="submit"
             variant="contained"
             color="primary"
             className={classes.submit}
           >
             Add to Cart
-        </Button>
+         </Button>
+        
+          <Typography>Reviews</Typography>
+          
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -84,17 +87,29 @@ const ItemDetailsPage = () => {
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-        >
+          >
           <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Product Info</Typography>
+           
+          </IconButton>
+          
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          
+          <CardContent>
+            <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Leave Your Review
+         </Button>
           <Typography paragraph>
-            You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I dont know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that Im breaking now. We said wed say it was the snow that killed the other two, but it wasnt. Nature is lethal but it doesnt hold a candle to man.
+            Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam ut ut ut sint.
+            Ratione illum necessitatibus quidem aut molestiae pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus. Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo architecto dolor sequi eos molestias consequuntur doloremque.
           </Typography>
-        </CardContent>
+          </CardContent>
+          
       </Collapse>
       </Card>
       </Container>
