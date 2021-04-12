@@ -25,6 +25,7 @@ const categorySeed = [
     image: 'vwR53mFaMg7oxkOe',
     description: 'Men, women and kids clothing',
     isActive: true,
+    isFeatured: true,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },
