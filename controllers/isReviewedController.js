@@ -3,7 +3,6 @@ const db = require('../models/isReviewedModel');
 
 // Defining methods for the postsController
 module.exports = {
-
   findAll: function (req, res) {
     // let query = { name: req.query.name };
     db.find()
@@ -27,21 +26,20 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
+    const { query } = requre('express-validator');
 
-    const {query} = requre('express-validator')
-
-    let query = {
-      name: req.body.name,
-      imageUrl: req.body.imageUrl,
-      imageKey: req.body.imageKey,
-      description: req.body.description,
-      totalStars: req.body.totalStars,
-      reviewBody: req.body.reviewBody,
-      isActive: req.body.isActive,
-      isReviewable: req.body.isReviewable,
-      created: req.body.created,
-      updated: req.body.updated,
-    };
+    // let query = {
+    //   name: req.body.name,
+    //   imageUrl: req.body.imageUrl,
+    //   imageKey: req.body.imageKey,
+    //   description: req.body.description,
+    //   totalStars: req.body.totalStars,
+    //   reviewBody: req.body.reviewBody,
+    //   isActive: req.body.isActive,
+    //   isReviewable: req.body.isReviewable,
+    //   created: req.body.created,
+    //   updated: req.body.updated,
+    // };
 
     db.create(query)
       .then((dbModel) => res.json(dbModel))
