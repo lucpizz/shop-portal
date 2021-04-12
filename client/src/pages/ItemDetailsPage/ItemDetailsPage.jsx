@@ -16,7 +16,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 import SimpleRating from '../../components/Rating/Rating.jsx';
+import Box from '@material-ui/core/Box';
 
 
 const ItemDetailsPage = () => {
@@ -47,7 +49,7 @@ const ItemDetailsPage = () => {
       <CardMedia
         className={classes.media}
         image="/static/images/cards/backpack.jpg"
-        title="Backpack for sale"
+        title="Orange backpack"
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -63,7 +65,18 @@ const ItemDetailsPage = () => {
         </IconButton>
         <IconButton aria-label="rating">
           <SimpleRating />
-        </IconButton>
+          </IconButton>
+        <Box component="fieldset" mb={0} borderColor="transparent">
+          <Typography component="legend">$79.99</Typography>
+        </Box>
+        <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Add to Cart
+        </Button>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

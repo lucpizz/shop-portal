@@ -4,7 +4,7 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 1200,
+    maxWidth: 1000,
     // maxHeight: '80vh',
     // maxHeight: 500,
     // marginTop: theme.spacing(8),
@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   media: {
+    margin: 'auto',
+    maxWidth: 500,
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
@@ -31,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: red[500],
+  },
+  submit: {
+    margin: theme.spacing(1, 0, 1),
+  },
+  price: {
+
   },
 }));
 

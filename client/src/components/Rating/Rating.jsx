@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 const SimpleRating = () => {
-  const [value] = React.useState(2);
+  const [value] = React.useState(5);
 
   return (
     <div>
