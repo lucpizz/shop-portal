@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
+import SimpleRating from '../../components/Rating/Rating.jsx';
 
 
 const ItemDetailsPage = () => {
@@ -32,7 +33,7 @@ const ItemDetailsPage = () => {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            D
           </Avatar>
         }
         action={
@@ -40,8 +41,8 @@ const ItemDetailsPage = () => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Deluxe Men's Hair-Shirt"
-        subheader="Suffer in Style!"
+        title="Deluxe Orange Military-Style Backpack"
+        subheader="Lots of pouches and straps and stuff!"
       />
       <CardMedia
         className={classes.media}
@@ -53,12 +54,15 @@ const ItemDetailsPage = () => {
           The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brothers keeper and the finder of lost children.
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+        <CardActions disableSpacing>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton aria-label="rating">
+          <SimpleRating />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -73,7 +77,7 @@ const ItemDetailsPage = () => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
+          <Typography paragraph>Product Info</Typography>
           <Typography paragraph>
             You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I dont know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that Im breaking now. We said wed say it was the snow that killed the other two, but it wasnt. Nature is lethal but it doesnt hold a candle to man.
           </Typography>
