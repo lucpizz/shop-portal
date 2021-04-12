@@ -8,4 +8,5 @@ module.exports = {
   Order: require('./orderModel'),
   Product: require('./productModel'),
   User: require('./userModel'),
+  Reviewed: require('./isReviewedModel'),
 };
