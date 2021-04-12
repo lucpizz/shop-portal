@@ -18,7 +18,7 @@ import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import SimpleRating from '../../components/Rating/Rating.jsx';
-// import Box from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 
 
 const ItemDetailsPage = () => {
@@ -66,9 +66,10 @@ const ItemDetailsPage = () => {
         <IconButton aria-label="rating">
           <SimpleRating />
           </IconButton>
-          
+          <Box component="fieldset" mb={0} borderColor="transparent">
         <Typography>$79.99</Typography>
-
+          </Box>
+          <Box component="fieldset" mb={0} borderColor="transparent">
           <Button
             type="submit"
             variant="contained"
@@ -77,8 +78,7 @@ const ItemDetailsPage = () => {
           >
             Add to Cart
          </Button>
-        
-          <Typography>Reviews</Typography>
+          </Box>
           
         <IconButton
           className={clsx(classes.expand, {
@@ -102,8 +102,9 @@ const ItemDetailsPage = () => {
             color="primary"
             className={classes.submit}
           >
-            Leave Your Review
+              Leave Your Review
          </Button>
+            
           <Typography paragraph>
             Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam ut ut ut sint.
             Ratione illum necessitatibus quidem aut molestiae pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus. Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo architecto dolor sequi eos molestias consequuntur doloremque.
