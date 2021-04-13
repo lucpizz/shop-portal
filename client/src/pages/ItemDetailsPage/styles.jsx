@@ -1,19 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+import { red, green } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1000,
-    // maxHeight: '80vh',
-    // maxHeight: 500,
-    // marginTop: theme.spacing(8),
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
+    },
   },
   card: {
-    // maxWidth: 1000,
-    // maxHeight: 300,
-    // height: '50vh',
-    marginTop: theme.spacing(2),
+    margin: theme.spacing(2),
   },
   media: {
     margin: 'auto',

@@ -22,7 +22,6 @@ import UserRating from '../../components/UserRating/UserRating.jsx'
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 
-
 const ItemDetailsPage = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -33,7 +32,7 @@ const ItemDetailsPage = () => {
 
   return (
     <Container className={classes.root} component="main" maxWidth="xs">
-    <Card className={classes.card}>
+    <Card className={classes.card} display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center">
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -59,26 +58,26 @@ const ItemDetailsPage = () => {
         </Typography>
         </CardContent>
 
-        <CardActions disableSpacing display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center" alignContent="flex-start">
-          <Box order={1} flexGrow={1}>
+        <CardActions display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center" flexGrow={1} flexShrink={1}>
+          <Box order={1} flexGrow={1} flexShrink={1} alignSelf="center">
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
           </Box>
-          <Box order={2} flexGrow={1}>
+          <Box order={2} flexGrow={1} flexShrink={1} alignSelf="center">
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
           </IconButton>
           </Box>
           <Box order={3}>
-        <IconButton aria-label="rating" order={2} flexGrow={1}>
+        <IconButton aria-label="rating" order={2} flexGrow={1} flexShrink={1} alignSelf="center">
           <AverageRating />
             </IconButton>
             </Box>
-          <Box component="fieldset" mb={0} borderColor="transparent" order={4} flexGrow={1}>
+          <Box component="fieldset" mb={0} borderColor="transparent" order={4} flexGrow={1} flexShrink={1} alignSelf="center">
         <Typography>$79.99</Typography>
           </Box>
-          <Box component="fieldset" mb={0} borderColor="transparent" order={5} flexGrow={1}>
+          <Box component="fieldset" mb={0} borderColor="transparent" order={5} flexGrow={1} flexShrink={1} alignSelf="center">
           <Button
             type="submit"
             variant="contained"
@@ -88,7 +87,7 @@ const ItemDetailsPage = () => {
             Add to Cart
          </Button>
           </Box>
-          <Box order={6} flexGrow={1}>
+          <Box order={6} flexGrow={1} flexShrink={1} alignSelf="center">
         <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
