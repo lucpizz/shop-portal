@@ -1,17 +1,8 @@
-//Product Schema
+//isReviewed Schema
 const Mongoose = require('mongoose');
-const slug = require('mongoose-slug-generator');
 const { Schema } = Mongoose;
 
-const options = {
-  separator: '-',
-  lang: 'en',
-  truncate: 120,
-};
-
-Mongoose.plugin(slug, options);
-
-// Product Schema
+// isReviewed Schema
 const isReviewableSchema = new Schema({
   name: {
     type: String,
@@ -56,4 +47,4 @@ const isReviewableSchema = new Schema({
     type: Date,
   },
 });
-module.exports = Mongoose.model('isReviewable', isReviewableSchema);
+module.exports = Mongoose.model('Review', isReviewableSchema);
