@@ -3,7 +3,7 @@ const db = require('../models/isReviewedModel');
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
