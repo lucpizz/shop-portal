@@ -26,22 +26,22 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    //const { create, body } = requre('express-validator');
+    const { create } = requre('express-validator');
 
-    // let query = {
-    //   name: req.body.name,
-    //   imageUrl: req.body.imageUrl,
-    //   imageKey: req.body.imageKey,
-    //   description: req.body.description,
-    //   totalStars: req.body.totalStars,
-    //   reviewBody: req.body.reviewBody,
-    //   isActive: req.body.isActive,
-    //   isReviewable: req.body.isReviewable,
-    //   created: req.body.created,
-    //   updated: req.body.updated,
-    // };
+    let query = {
+      name: req.body.name,
+      imageUrl: req.body.imageUrl,
+      imageKey: req.body.imageKey,
+      description: req.body.description,
+      totalStars: req.body.totalStars,
+      reviewBody: req.body.reviewBody,
+      isActive: req.body.isActive,
+      isReviewable: req.body.isReviewable,
+      created: req.body.created,
+      updated: req.body.updated,
+    };
 
-    db.create(req.body)
+    db.create(create, query)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
