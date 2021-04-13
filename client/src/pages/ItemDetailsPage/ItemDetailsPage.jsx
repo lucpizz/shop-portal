@@ -17,8 +17,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import SimpleRating from '../../components/Rating/Rating.jsx';
+import AverageRating from '../../components/AverageRating/AverageRating.jsx';
+import UserRating from '../../components/UserRating/UserRating.jsx'
 import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 
 
 const ItemDetailsPage = () => {
@@ -55,21 +57,22 @@ const ItemDetailsPage = () => {
           <Typography variant="body2" color="textSecondary" component="p">
           Autem voluptas qui et nostrum iusto rerum tenetur. Voluptas earum vitae quas eos ea sint. Velit placeat rem necessitatibus qui quam. Quo et ut et rerum commodi. Culpa assumenda aspernatur quam magnam nemo. Tenetur omnis minus in placeat et.
         </Typography>
-      </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="share">
+        </CardContent>
+
+        <CardActions disableSpacing className="flexContainer">
+          <IconButton aria-label="share" className="flexItem">
             <ShareIcon />
           </IconButton>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" className="flexItem">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="rating">
-          <SimpleRating />
-          </IconButton>
-          <Box component="fieldset" mb={0} borderColor="transparent">
+        <IconButton aria-label="rating" className="flexItem">
+          <AverageRating />
+        </IconButton>
+          <Box component="fieldset" mb={0} borderColor="transparent" className="flexItem">
         <Typography>$79.99</Typography>
           </Box>
-          <Box component="fieldset" mb={0} borderColor="transparent">
+          <Box component="fieldset" mb={0} borderColor="transparent" className="flexItem">
           <Button
             type="submit"
             variant="contained"
@@ -79,34 +82,49 @@ const ItemDetailsPage = () => {
             Add to Cart
          </Button>
           </Box>
-          
         <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            }), "flexItem"}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="show more"
+          aria-label="review"
           >
-            <Button
+          <Button
             type="submit"
             variant="contained"
-            color="primary"
+            color=""
             className={classes.submit}
           >
-              Leave Your Review
+              Review this item
          </Button>
           {/* <ExpandMoreIcon /> */}
-        </IconButton>
-
-        </CardActions>
+            </IconButton>
+          </CardActions>
+        
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          
+
+          <Divider variant="middle" />
+
           <CardContent>
+            <Typography>Bill H.</Typography>
+            <Typography>August 23, 2020</Typography>
+            <UserRating />
           <Typography paragraph>
-            Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam ut ut ut sint.
-            Ratione illum necessitatibus quidem aut molestiae pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus. Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo architecto dolor sequi eos molestias consequuntur doloremque.
+              Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam ut ut ut sint.
+              Ratione illum necessitatibus quidem aut molestiae pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus. Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo architecto dolor sequi eos molestias consequuntur doloremque.
           </Typography>
+            <Divider variant="middle" />
+          </CardContent>
+          <CardContent>
+            <Typography>Sally M.</Typography>
+            <Typography>April 5, 2021</Typography>
+            <UserRating />
+          <Typography paragraph>
+              Consequatur alias aut quos. Nihil occaecati mollitia sed unde magnam. Id voluptatem eius occaecati sapiente. Maiores autem sed sapiente et quas. Vel consequatur et amet sit qui quo ut. Illum qui qui et quae quidem cupiditate laboriosam.
+              Quae nihil reiciendis earum. Inventore minus laudantium possimus praesentium quibusdam nihil non. Dicta magnam maiores doloribus sint et.
+          </Typography>
+            <Divider variant="middle" />
           </CardContent>
           
       </Collapse>

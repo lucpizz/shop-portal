@@ -3,7 +3,7 @@ import { Rating } from '@material-ui/lab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-const SimpleRating = () => {
+const AverageRating = () => {
   const [value] = React.useState(5);
 
   return (
@@ -34,4 +34,4 @@ const SimpleRating = () => {
   );
 }
 
-export default SimpleRating;
+export default AverageRating;

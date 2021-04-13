@@ -37,8 +37,19 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(1, 0, 1),
   },
-  price: {
-
+  flexContainer: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'space-around',
+    // alignItems: 'center',
+  },
+  flexItem: {
+    // display: 'grid',
+    // placeItems: 'center',
+    // flex: '1 1 80',
+    width: 'auto',
+    height: 'auto',
+    margin: 20,
   },
 }));
 
