@@ -26,8 +26,6 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    //const { query } = requre('express-validator');
-
     let query = {
       name: req.body.name,
       imageUrl: req.body.imageUrl,
