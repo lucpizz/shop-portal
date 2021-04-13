@@ -37,20 +37,21 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(1, 0, 1),
   },
-  flexContainer: {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'space-around',
-    // alignItems: 'center',
-  },
-  flexItem: {
-    // display: 'grid',
-    // placeItems: 'center',
-    // flex: '1 1 80',
-    width: 'auto',
-    height: 'auto',
-    margin: 20,
-  },
+  // flexContainer: {
+  //   display: 'flex',
+  //   flexFlow: 'row wrap',
+  //   justifyContent: 'space-between',
+  //   alignContent: 'stretch',
+  //   alignItems: 'center',
+  // },
+  // flexItem: {
+  //   display: 'grid',
+  //   placeItems: 'center',
+  //   flex: '1 1 80',
+  //   width: 'auto',
+  //   height: 'auto',
+  //   margin: 20,
+  // },
 }));
 
 export default useStyles;

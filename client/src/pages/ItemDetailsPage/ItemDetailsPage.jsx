@@ -59,20 +59,26 @@ const ItemDetailsPage = () => {
         </Typography>
         </CardContent>
 
-        <CardActions disableSpacing className="flexContainer">
-          <IconButton aria-label="share" className="flexItem">
+        <CardActions disableSpacing display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center" alignContent="flex-start">
+          <Box order={1} flexGrow={1}>
+          <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
-        <IconButton aria-label="add to favorites" className="flexItem">
+          </Box>
+          <Box order={2} flexGrow={1}>
+        <IconButton aria-label="add to favorites">
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="rating" className="flexItem">
+          </IconButton>
+          </Box>
+          <Box order={3}>
+        <IconButton aria-label="rating" order={2} flexGrow={1}>
           <AverageRating />
-        </IconButton>
-          <Box component="fieldset" mb={0} borderColor="transparent" className="flexItem">
+            </IconButton>
+            </Box>
+          <Box component="fieldset" mb={0} borderColor="transparent" order={4} flexGrow={1}>
         <Typography>$79.99</Typography>
           </Box>
-          <Box component="fieldset" mb={0} borderColor="transparent" className="flexItem">
+          <Box component="fieldset" mb={0} borderColor="transparent" order={5} flexGrow={1}>
           <Button
             type="submit"
             variant="contained"
@@ -82,10 +88,11 @@ const ItemDetailsPage = () => {
             Add to Cart
          </Button>
           </Box>
+          <Box order={6} flexGrow={1}>
         <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
-            }), "flexItem"}
+            })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="review"
@@ -100,6 +107,7 @@ const ItemDetailsPage = () => {
          </Button>
           {/* <ExpandMoreIcon /> */}
             </IconButton>
+            </Box>
           </CardActions>
         
         <Collapse in={expanded} timeout="auto" unmountOnExit>
