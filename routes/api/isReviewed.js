@@ -2,10 +2,8 @@ const router = require('express').Router();
 const isReviewedController = require('../../controllers/isReviewedController.js');
 
 // Matches with "/api/isReviewable"
-router
-  .route('/')
-  .get(isReviewedController.findAll)
-  .post(isReviewedController.create);
+
+router.route('/').get(isReviewedController.findAll).post(isReviewedController.create);
 
 // Matches with "/api/isReveiewable/:id"
 router
