@@ -1,10 +1,8 @@
 const db = require('../models/isReviewedModel');
-//const { body, validateResult } = require('express-validator');
 
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    // let query = { name: req.query.name };
     db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
