@@ -26,7 +26,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    const { query } = requre('express-validator');
+    //const { create, body } = requre('express-validator');
 
     // let query = {
     //   name: req.body.name,
@@ -41,7 +41,7 @@ module.exports = {
     //   updated: req.body.updated,
     // };
 
-    db.create(query)
+    db.create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
