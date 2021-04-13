@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
   },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
+  // expandOpen: {
+  //   transform: 'rotate(360deg)',
+  // },
   avatar: {
     backgroundColor: red[500],
   },

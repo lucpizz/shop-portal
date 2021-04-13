@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
@@ -88,14 +88,6 @@ const ItemDetailsPage = () => {
           aria-expanded={expanded}
           aria-label="show more"
           >
-          <ExpandMoreIcon />
-           
-          </IconButton>
-          
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          
-          <CardContent>
             <Button
             type="submit"
             variant="contained"
@@ -104,7 +96,13 @@ const ItemDetailsPage = () => {
           >
               Leave Your Review
          </Button>
-            
+          {/* <ExpandMoreIcon /> */}
+        </IconButton>
+
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          
+          <CardContent>
           <Typography paragraph>
             Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam ut ut ut sint.
             Ratione illum necessitatibus quidem aut molestiae pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus. Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo architecto dolor sequi eos molestias consequuntur doloremque.
