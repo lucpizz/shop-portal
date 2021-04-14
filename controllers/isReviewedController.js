@@ -2,7 +2,7 @@ const db = require('../models/isReviewedModel');
 
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -23,7 +23,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    let query = {
+    let reviewData = {
       name: req.body.name,
       imageUrl: req.body.imageUrl,
       imageKey: req.body.imageKey,
@@ -36,7 +36,7 @@ module.exports = {
       updated: req.body.updated,
     };
 
-    db.create(query)
+    db.create(reviewData)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
