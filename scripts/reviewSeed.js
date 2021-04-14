@@ -22,8 +22,8 @@ const reviewSeed = [
   },
 ];
 
-db.isReviewable.deleteMany({})
-  .then(() => db.isReviewable.insertMany(reviewSeed))
+db.Review.deleteMany({})
+  .then(() => db.Review.insertMany(reviewSeed))
   .then(() => {
     process.exit(0);
   })
