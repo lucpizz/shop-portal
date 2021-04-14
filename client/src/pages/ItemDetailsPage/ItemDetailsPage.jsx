@@ -21,38 +21,27 @@ import AverageRating from '../../components/AverageRating/AverageRating.jsx';
 import UserRating from '../../components/UserRating/UserRating.jsx';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
-import axios from 'axios';
+import API from '../../utils/API.js'
 
-
-
-// export default {
-//   getItemById: function () {
-//     return axios.get('/api/products/:id');
-//   },
-//   getItemBySku: function () {
-//     return axios.get('/api/sku/:sku');
-//   },
-//   getItemByName: function () {
-//     return axios.get('api/name/:name');
-//   },
-// };
 
 const ItemDetailsPage = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
 
-  const componentDidMount = () => {
-  axios.get('api/name/:name')
-    .then(res => {
-      const title = res.data;
-      this.setState({ title });
-    })
-  };
-  componentDidMount();
+  // componentDidMount() {
+  //   API.getItemById()
+  //     .then((res) => {
+  //       this.setState({
+  //         name: res.products.name,
+          
+  //       }),
+  //     });
+  // }
+ 
 
   return (
     <Container className={classes.root} component='main' maxWidth='xs'>
@@ -79,7 +68,7 @@ const ItemDetailsPage = () => {
         <CardMedia
           className={classes.media}
           image='/static/images/cards/backpack.jpg'
-          title={title}
+          title='Deluxe Orange Military-Style Backpack'
         />
         <CardContent>
           <Typography variant='body2' color='textSecondary' component='p'>
