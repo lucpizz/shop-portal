@@ -1,23 +1,38 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { red, green } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 1000,
     padding: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   backgroundColor: theme.palette.secondary.main,
+    // },
+    // [theme.breakpoints.up('md')]: {
+    //   backgroundColor: theme.palette.primary.main,
+    // },
+    // [theme.breakpoints.up('lg')]: {
+    //   backgroundColor: green[500],
+    // },
   },
   card: {
     margin: theme.spacing(2),
+  },
+  cardActions: {
+    display:"flex",
+    flexDirection:"row",
+    flexWrap:"wrap",
+    justifyContent:"center",
+    alignItems:"center",
+    flexGrow: 1,
+    flexShrink: 1,
+  },
+  box: {
+    order: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    alignSelf: "center",
   },
   media: {
     margin: 'auto',

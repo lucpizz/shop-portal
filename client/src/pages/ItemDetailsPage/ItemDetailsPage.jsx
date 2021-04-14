@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import useStyles from './styles.jsx';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -32,7 +32,7 @@ const ItemDetailsPage = () => {
 
   return (
     <Container className={classes.root} component="main" maxWidth="xs">
-    <Card className={classes.card} display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center">
+    <Card className={classes.card}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -41,7 +41,12 @@ const ItemDetailsPage = () => {
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon />
+              <IconButton aria-label="share">
+                <ShareIcon />
+              </IconButton>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
           </IconButton>
         }
         title="Deluxe Orange Military-Style Backpack"
@@ -58,26 +63,26 @@ const ItemDetailsPage = () => {
         </Typography>
         </CardContent>
 
-        <CardActions display="flex" flexDirection="row" flexWrap="wrap" justifyContent="center" alignItems="center" flexGrow={1} flexShrink={1}>
-          <Box order={1} flexGrow={1} flexShrink={1} alignSelf="center">
+        <CardActions className={classes.cardActions}>
+          {/* <Box className={classes.box}>
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
           </Box>
-          <Box order={2} flexGrow={1} flexShrink={1} alignSelf="center">
+          <Box className={classes.box}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
           </IconButton>
-          </Box>
-          <Box order={3}>
-        <IconButton aria-label="rating" order={2} flexGrow={1} flexShrink={1} alignSelf="center">
+          </Box> */}
+          <Box className={classes.box}>
+        <IconButton aria-label="rating">
           <AverageRating />
             </IconButton>
             </Box>
-          <Box component="fieldset" mb={0} borderColor="transparent" order={4} flexGrow={1} flexShrink={1} alignSelf="center">
+          <Box className={classes.box}>
         <Typography>$79.99</Typography>
           </Box>
-          <Box component="fieldset" mb={0} borderColor="transparent" order={5} flexGrow={1} flexShrink={1} alignSelf="center">
+          <Box className={classes.box}>
           <Button
             type="submit"
             variant="contained"
@@ -87,7 +92,7 @@ const ItemDetailsPage = () => {
             Add to Cart
          </Button>
           </Box>
-          <Box order={6} flexGrow={1} flexShrink={1} alignSelf="center">
+          <Box className={classes.box}>
         <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
