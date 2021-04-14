@@ -4,7 +4,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-//import axios from 'axios';
+
 
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);
