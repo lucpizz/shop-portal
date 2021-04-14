@@ -1,5 +1,5 @@
 require('dotenv').config();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.SECRET_KEY);
 
 const calculateOrderAmount = () => {
     // Replace this constant with a calculation of the order's amount
@@ -10,17 +10,20 @@ const calculateOrderAmount = () => {
 
 // Defining methods for the postsController
 module.exports = {
-  purchase: function (req, res) {
+  purchase:  async (req, res) => {
     const { items } = req.body;
     // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = stripe.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
       currency: "usd"
     });
   res.send({
       clientSecret: paymentIntent.client_secret
-    });;
+    });
   },
+  // get: (req,res)=> {
+  //   res.json({msg:"test" });
+  }
 
 };
 

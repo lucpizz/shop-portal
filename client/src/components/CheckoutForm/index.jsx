@@ -4,7 +4,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-
+import axios from 'axios';
 
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);
@@ -14,20 +14,21 @@ export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
+  
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    window
-    .fetch("payment", {
+    axios.post("/api/payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({items: [{ id: "xl-tshirt" }]})
       })
-      .then(res => {
-        return res.json();
-      })
+      // .then(res => {
+      //  return res.data.clientSecret;
+      //  //return console.log(res)
+      // })
       .then(data => {
         setClientSecret(data.clientSecret);
       });
