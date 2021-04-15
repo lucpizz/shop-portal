@@ -80,16 +80,6 @@ const ItemDetailsPage = () => {
           </CardContent>
 
           <CardActions className={classes.cardActions}>
-            {/* <Box className={classes.box}>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          </Box>
-          <Box className={classes.box}>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-          </IconButton>
-          </Box> */}
             <Box className={classes.box}>
               <IconButton aria-label='rating'>
                 <AverageRating />
@@ -122,7 +112,6 @@ const ItemDetailsPage = () => {
                   className={classes.submit}>
                   Review this item
                 </Button>
-                {/* <ExpandMoreIcon /> */}
               </IconButton>
             </Box>
           </CardActions>
