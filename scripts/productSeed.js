@@ -15,7 +15,7 @@ const productSeed = [
     slug: 'wp-tee',
     name: "Women's Relaxed Gray and Black T-Shirt",
     imageUrl:
-      'https://www.pexels.com/photo/woman-wearing-gray-shirt-holding-head-428338/',
+      'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 'Gray and black t-shirt on a woman',
     description:
       'Heather Grey. Size M. 50% Cotton, 25% Polyester, 25% Rayon. Tumble dry. A must-have comfortable and relaxedfit, super soft blend of cotton/polyester/rayon with short sleeves. Designed and Printed in USA',
@@ -33,7 +33,7 @@ const productSeed = [
     slug: 'kp-sunglasses',
     name: '2 Heart Shaped Sunglasses for Kids',
     imageUrl:
-      'https://www.pexels.com/photo/stylish-heart-shaped-sunglasses-on-wooden-surface-6479569/',
+      'https://images.pexels.com/photos/6479569/pexels-photo-6479569.jpeg',
     imageKey: 'Pink and white sunglasses',
     description:
       '2 pairs of sunglasses for kids. One white and one pink. Vintage Cat Eye Model Style Retro. Plastic frame and lens. Non-polarized. UV protection coating up to 400UV.',
@@ -48,7 +48,7 @@ const productSeed = [
     sku: 'fk-table-567',
     slug: 'fk-table',
     name: 'Modern White Small Wooden Bed Side Table',
-    imageUrl: 'https://unsplash.com/photos/X63FTIZFbZo',
+    imageUrl: 'https://images.unsplash.com/photo-1499933374294-4584851497cc',
     imageKey: 'White wooden table by bed',
     description:
       'Minimalist design lead trend of modern simple life style, white round table top with three wooden legs is suit for theme of fast life and modern decoration. Size: 16 x 16 x 27.55 inches. Required assembly.',
@@ -63,7 +63,7 @@ const productSeed = [
     sku: 'jg-necklace-4567',
     slug: 'jg-necklace',
     name: 'Gold necklace with silver pendant for woman',
-    imageUrl: 'https://unsplash.com/photos/ZhmbakzCBtk',
+    imageUrl: 'https://images.unsplash.com/photo-1610694955371-d4a3e0ce4b52',
     imageKey: 'Gold necklace with pendant',
     description:
       '14K gold chain with sterling silver pendant. Main chain of 17 inches with Satellite chain of 14.5 inches. Pendant of 0.5 inches long.',
@@ -79,7 +79,7 @@ const productSeed = [
     sku: 'mp-red-sneaker-345',
     slug: 'mp-red-sneaker',
     name: 'Nike Mens Free Rn 2018 Running Shoe - Red',
-    imageUrl: 'https://unsplash.com/photos/164_6wVEHfI',
+    imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff',
     imageKey: 'Red nike sneaker',
     description:
       'Red/Vast Gray size 12 for men. Flywire cables work with the laces for more support as you tighten them. Rounded heel is made to roll with the ground as you stride. Textured toe and heel foam sole sections for traction.',

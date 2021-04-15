@@ -13,7 +13,7 @@ const reviewSeed = [
   {
     name: 'Great t-shirt!!',
     imageUrl:
-      'https://www.pexels.com/photo/woman-wearing-gray-shirt-holding-head-428338/',
+      'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 'My new hot t-shirt',
     description:`I love this shirt and wear it a lot. It's super soft and fits great. The shirt has a ladies cut, which is flattering.`,
     totalStars: 5,
