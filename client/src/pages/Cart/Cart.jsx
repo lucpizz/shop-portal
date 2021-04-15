@@ -126,10 +126,7 @@ const Cart = () => {
                   </FormControl>
                   <IconButton
                     aria-label='delete'
-                    onClick={() => {
-                      handleRemove(item.id);
-                      console.log(item.id);
-                    }}>
+                    onClick={() => handleRemove(item.id)}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Typography color='textSecondary' align='right' variant='h6'>
