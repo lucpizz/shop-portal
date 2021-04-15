@@ -49,10 +49,15 @@ const ProductSchema = new Schema({
   isActive: {
     type: Boolean,
     default: true,
-  }
+  },
   isFeatured: {
     type: Boolean,
     default: false,
+  },
+  isReviewed: {
+    type: Schema.Types.ObjectId,
+    ref: 'Review',
+    default: null,
   },
   brand: {
     type: Schema.Types.ObjectId,
