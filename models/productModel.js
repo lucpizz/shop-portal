@@ -1,4 +1,4 @@
-//Product Schema
+//Product Schema with isFeatured
 const Mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 const { Schema } = Mongoose;
