@@ -16,6 +16,7 @@ import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
 // data for testing
 const items = [
@@ -24,7 +25,7 @@ const items = [
     ProductName: 'Item 1',
     Description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-    Price: '$14.99',
+    price: 14.99,
     stockCount: 5,
   },
   {
@@ -32,7 +33,7 @@ const items = [
     ProductName: 'Item 2',
     Description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-    Price: '$69.69',
+    price: 69.69,
     stockCount: 12,
   },
   {
@@ -40,19 +41,18 @@ const items = [
     ProductName: 'Item 3',
     Description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-    Price: '$1,000,000.00',
+    price: 1000000.0,
     stockCount: 20,
   },
   {
     id: 44,
-    ProductName: 'Item 3',
+    ProductName: 'Item 4',
     Description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-    Price: '$1,000,000.00',
+    price: 9000.0,
     stockCount: 10,
   },
 ];
-
 
 const Cart = () => {
   const classes = useStyles();
@@ -62,6 +62,7 @@ const Cart = () => {
   });
   const [list, setList] = useState(items);
 
+  // Update quantity
   function handleChange(value, key) {
     setQuantity({
       ...quantity,
@@ -69,12 +70,13 @@ const Cart = () => {
     });
   }
 
+  // Remove item from cart
   function handleRemove(id) {
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
   }
 
-  // Populating dropdowns
+  // Populate dropdowns
   const getOptionsArray = (count) => {
     const array = [];
     for (let i = 0; i < count; i++) {
@@ -83,12 +85,11 @@ const Cart = () => {
     return array;
   };
 
-  
   return (
     <Container>
       <Grid container spacing={2}>
         <Grid item sm={8}>
-          {items.map((item, i) => (
+          {list.map((item, i) => (
             <Card className={classes.root} key={i}>
               <CardMedia
                 className={classes.image}
@@ -132,7 +133,7 @@ const Cart = () => {
                     <DeleteForeverIcon />
                   </IconButton>
                   <Typography color='textSecondary' align='right' variant='h6'>
-                    {item.Price}
+                    <AttachMoneyIcon /> {item.price}
                   </Typography>
                 </CardContent>
               </div>
