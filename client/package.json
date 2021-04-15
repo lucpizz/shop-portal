@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test /src/tests",
     "eject": "react-scripts eject",
     "format": "prettier src/**/*.{js,jsx,ts.tsx,html} --write",
     "lint": "eslint src/**/*.{js,jsx,ts.tsx,html} --quiet --resolve-plugins-relative-to .",

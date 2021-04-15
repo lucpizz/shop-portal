@@ -16,19 +16,21 @@ const Shop = () => {
     <>
       {ProductsList
         ? ProductsList.map((product, key) => {
-            <Card key={key}>
-              <CardHeader title={product.title} subheader={product.price} />
-              <CardMedia style={{ height: '200px' }} image={product.imgUrl} />
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  {product.description}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size='small'>ADD TO CART</Button>
-                <Button size='small'>DETAILS</Button>
-              </CardActions>
-            </Card>;
+            return (
+              <Card key={key}>
+                <CardHeader title={product.title} subheader={product.price} />
+                <CardMedia style={{ height: '200px' }} image={product.imgUrl} />
+                <CardContent>
+                  <Typography variant='body2' component='p'>
+                    {product.description}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size='small'>ADD TO CART</Button>
+                  <Button size='small'>DETAILS</Button>
+                </CardActions>
+              </Card>
+            );
           })
         : null}
     </>
