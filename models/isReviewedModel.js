@@ -1,31 +1,27 @@
+//isReviewed Schema
 const Mongoose = require('mongoose');
 const { Schema } = Mongoose;
-const slug = require('mongoose-slug-generator');
 
-const options = {
-  seperator: '-',
-  lang: 'en',
-  truncate: 120,
-};
-
-Mongoose.plugin(slug, options);
-
-//Category Schema
-const CategorySchema = new Schema({
+// isReviewed Schema
+const isReviewableSchema = new Schema({
   name: {
     type: String,
     trim: true,
   },
-  slug: {
+  imageUrl: {
     type: String,
-    slug: 'name',
-    unique: true,
   },
-  image: {
-    data: Buffer,
-    contentType: String,
+  imageKey: {
+    type: String,
   },
   description: {
+    type: String,
+    trim: true,
+  },
+  totalStars: {
+    type: Number,
+  },
+  reviewBody: {
     type: String,
     trim: true,
   },
@@ -33,7 +29,7 @@ const CategorySchema = new Schema({
     type: Boolean,
     default: true,
   },
-  isFeatured: {
+  isReviewable: {
     type: Boolean,
     default: false,
   },
@@ -43,12 +39,12 @@ const CategorySchema = new Schema({
       ref: 'Product',
     },
   ],
-  updated: {
-    type: Date,
-  },
   created: {
     type: Date,
     default: Date.now,
   },
+  updated: {
+    type: Date,
+  },
 });
-module.exports = Mongoose.model('Category', CategorySchema);
+module.exports = Mongoose.model('Review', isReviewableSchema);
