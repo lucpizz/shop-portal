@@ -18,9 +18,9 @@ import {
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import AverageRating from '../../components/AverageRating/AverageRating.jsx';
-import UserRating from '../../components/UserRating/UserRating.jsx';
-import useStyles from './styles.jsx';
+import AverageRating from '../../components/AverageRating/AverageRating';
+import UserRating from '../../components/UserRating/UserRating';
+import useStyles from './styles';
 
 const ItemDetailsPage = () => {
   const classes = useStyles();
