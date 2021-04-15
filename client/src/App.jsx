@@ -5,6 +5,7 @@ import Navigation from './components/Navigation/Navigation';
 import SignIn from './pages/SignIn/SignIn';
 import ContactUs from './pages/ContactUs/ContactUs';
 import SignUp from './pages/SignUp/SignUp';
+import Cart from './pages/Cart/Cart';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           render={(props) => <ContactUs {...props} />}
         />
         <Route exact from='/signup' render={(props) => <SignUp {...props} />} />
+        <Route exact from='/cart' render={(props) => <Cart {...props} />} />
       </Switch>
     </>
   );
