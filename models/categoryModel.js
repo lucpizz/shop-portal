@@ -33,6 +33,10 @@ const CategorySchema = new Schema({
     type: Boolean,
     default: true,
   },
+  isFeatured: {
+    type: Boolean,
+    default: false,
+  },
   product: [
     {
       type: Schema.Types.String,
