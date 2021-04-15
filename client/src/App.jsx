@@ -7,12 +7,12 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import SignUp from './pages/SignUp/SignUp';
 import Cart from './pages/Cart/Cart';
 
+
 function App() {
   return (
     <>
       <CssBaseline />
       <Navigation />
-
       <Switch>
         <Route exact from='/login' render={(props) => <SignIn {...props} />} />
         <Route

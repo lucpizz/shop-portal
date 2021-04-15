@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Card,
   CardContent,
@@ -12,12 +12,12 @@ import useStyles from './styles';
 import imgExample from './images/exampleimage.png';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
-
+import Quantity from '../../components/Quantity/Quantity'
 // export default function SimpleSelect() {
 
 
@@ -26,15 +26,15 @@ import IconButton from '@material-ui/core/IconButton';
  
 
 
-const Quantity = () => {
+const Cart = () => {
     const classes = useStyles();
     // const [quantity, setQuantity] = React.useState('');
-    const handleChange = (event, item) => {
-      // setQuantity(event.target.value);
-      // eslint-disable-next-line
-      console.log(event.target, item);
-    };
-  
+    // const handleChange = (event, item) => {
+    //   // setQuantity(event.target.value);
+    //   // eslint-disable-next-line
+    //   console.log(event.target, item);
+    // };
+
 
   const items = [
     {
@@ -88,7 +88,7 @@ const Quantity = () => {
                         <InputLabel id='demo-simple-select-outlined-label'>
                           Quantity
                         </InputLabel>
-                        <Select
+                        {/* <Select
                           labelId={item.i}
                           id={item.i}
                           value={item.Quantity}
@@ -99,7 +99,8 @@ const Quantity = () => {
                           <MenuItem value={1}>1</MenuItem>
                           <MenuItem value={2}>2</MenuItem>
                           <MenuItem value={3}>3</MenuItem>
-                        </Select>
+                        </Select> */}
+                        <Quantity />
                       </FormControl>
                       <IconButton aria-label='delete'>
                         <DeleteForeverIcon />
@@ -149,4 +150,4 @@ const Quantity = () => {
       </Container>
     );
 }
-export default Quantity
+export default Cart
