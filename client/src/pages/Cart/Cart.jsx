@@ -17,18 +17,61 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
 
+// data for testing
+const items = [
+  {
+    id: 11,
+    ProductName: 'Item 1',
+    Description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
+    Price: '$14.99',
+    stockCount: 5,
+  },
+  {
+    id: 22,
+    ProductName: 'Item 2',
+    Description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
+    Price: '$69.69',
+    stockCount: 12,
+  },
+  {
+    id: 33,
+    ProductName: 'Item 3',
+    Description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
+    Price: '$1,000,000.00',
+    stockCount: 20,
+  },
+  {
+    id: 44,
+    ProductName: 'Item 3',
+    Description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
+    Price: '$1,000,000.00',
+    stockCount: 10,
+  },
+];
+
+
 const Cart = () => {
   const classes = useStyles();
   const [quantity, setQuantity] = useState({
     id: '',
     qty: '',
   });
+  const [list, setList] = useState(items);
 
   function handleChange(value, key) {
     setQuantity({
       ...quantity,
       [key]: value,
     });
+  }
+
+  function handleRemove(id) {
+    const newList = list.filter((item) => item.id !== id);
+    setList(newList);
   }
 
   // Populating dropdowns
@@ -40,42 +83,7 @@ const Cart = () => {
     return array;
   };
 
-  // data for testing
-  const items = [
-    {
-      id: 11,
-      ProductName: 'Item 1',
-      Description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-      Price: '$14.99',
-      stockCount: 5,
-    },
-    {
-      id: 22,
-      ProductName: 'Item 2',
-      Description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-      Price: '$69.69',
-      stockCount: 12,
-    },
-    {
-      id: 33,
-      ProductName: 'Item 3',
-      Description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-      Price: '$1,000,000.00',
-      stockCount: 20,
-    },
-    {
-      id: 44,
-      ProductName: 'Item 3',
-      Description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-      Price: '$1,000,000.00',
-      stockCount: 10,
-    },
-  ];
-
+  
   return (
     <Container>
       <Grid container spacing={2}>
@@ -115,7 +123,12 @@ const Cart = () => {
                       ))}
                     </NativeSelect>
                   </FormControl>
-                  <IconButton aria-label='delete'>
+                  <IconButton
+                    aria-label='delete'
+                    onClick={() => {
+                      handleRemove(item.id);
+                      console.log(item.id);
+                    }}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Typography color='textSecondary' align='right' variant='h6'>
