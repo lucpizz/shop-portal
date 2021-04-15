@@ -50,6 +50,10 @@ const ProductSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  isReviewable: {
+    type: Boolean,
+    default: false,
+  },
   brand: {
     type: Schema.Types.ObjectId,
     ref: 'Brand',
