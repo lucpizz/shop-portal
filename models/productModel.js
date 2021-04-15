@@ -11,7 +11,7 @@ const options = {
 
 Mongoose.plugin(slug, options);
 
-// Product Schema
+// Product Schema with isFeatured
 const ProductSchema = new Schema({
   sku: {
     type: String,
