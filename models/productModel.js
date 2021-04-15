@@ -49,7 +49,7 @@ const ProductSchema = new Schema({
   isActive: {
     type: Boolean,
     default: true,
-  }
+  },
   isFeatured: {
     type: Boolean,
     default: false,
