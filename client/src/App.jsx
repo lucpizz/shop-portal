@@ -15,9 +15,21 @@ function App() {
 
       <Switch>
         <Route exact from='/login' render={(props) => <SignIn {...props} />} />
-        <Route exact from='/contact' render={(props) => <ContactUs {...props} />} />
-        <Route exact from='/itemdetails' render={(props) => <ItemDetailsPage {...props} />} />
-        <Route exact from='/contact' render={(props) => <ContactUs {...props} />} />
+        <Route
+          exact
+          from='/contact'
+          render={(props) => <ContactUs {...props} />}
+        />
+        <Route
+          exact
+          from='/itemdetails'
+          render={(props) => <ItemDetailsPage {...props} />}
+        />
+        <Route
+          exact
+          from='/contact'
+          render={(props) => <ContactUs {...props} />}
+        />
         <Route exact from='/signup' render={(props) => <SignUp {...props} />} />
       </Switch>
     </>
