@@ -14,12 +14,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findBySku: function (req, res) {
-    db.findByOne( {sku: req.params.sku} )
+    db.findByOne({ sku: req.params.sku })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findByOne( {name: req.params.name} )
+    db.findByOne({ name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -36,6 +36,11 @@ module.exports = {
   remove: function (req, res) {
     db.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findIsFeatured: function (req, res) {
+    db.findByOne({ isFeatured: req.params.isFeatured })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
