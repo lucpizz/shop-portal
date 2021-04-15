@@ -108,10 +108,9 @@ const Cart = () => {
           {list.map((item, i) => (
             <Card className={classes.root} key={i}>
               <CardMedia
-                className={classes.image}
+                className={classes.image}                
                 image={item.imageUrl}
-                title={item.imageKey}
-              />
+                title={item.imageKey}/>
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <Typography component='h4' variant='h4'>

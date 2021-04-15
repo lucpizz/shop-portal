@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
       flex: '1 0 auto',
     },
     image: {
-      width: 400,
+      width: "300px",
+      height: "300px",
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
