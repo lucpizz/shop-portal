@@ -20,7 +20,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findOne({ _name: req.params.name })
+    db.findOne({ name: req.params.name }, () => (err, 'name'))
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
