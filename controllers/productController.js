@@ -18,11 +18,7 @@ module.exports = {
   },
   findBySku: function (req, res) {
     let findSku = new db({
-<<<<<<< HEAD
       sku: req.parmas.sku,
-=======
-      sku: req.params.sku,
->>>>>>> 7dbfe35ba779b190a0c9ea413e3904c2aea324ab
     });
     db.findOne(findSku)
       .then((dbModel) => res.json(dbModel))
@@ -30,11 +26,7 @@ module.exports = {
   },
   findByName: function (req, res) {
     let findName = new db({
-<<<<<<< HEAD
       name: req.parmas.name,
-=======
-      name: req.params.name,
->>>>>>> 7dbfe35ba779b190a0c9ea413e3904c2aea324ab
     });
     db.findOne(findName)
       .then((dbModel) => res.json(dbModel))
