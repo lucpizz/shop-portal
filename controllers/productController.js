@@ -14,7 +14,10 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findBySku: function (req, res) {
-    db.findOne({ sku: req.params.sku })
+    let findSku = new db({
+      sku: req.params.sku,
+    });
+    db.findOne(findSku)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
