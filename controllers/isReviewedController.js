@@ -19,7 +19,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    let name = req.body.name;
+    let name = req.params.name;
 
     query = { name: name };
 
