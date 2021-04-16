@@ -21,12 +21,8 @@ export default function CheckoutForm() {
         },
         body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
       })
-      // .then(res => {
-      //  return res.data.clientSecret;
-      //  //return console.log(res)
-      // })
-      .then((data) => {
-        setClientSecret(data.clientSecret);
+      .then((res) => {
+        setClientSecret(res.data.clientSecret);
       });
   }, []);
 
