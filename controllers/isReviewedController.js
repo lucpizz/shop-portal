@@ -23,11 +23,11 @@ module.exports = {
 
     let query = { name: name };
 
-    db.findOne(query, function (err, name) {
+    db.findOne(query, function (err, obj) {
       if (err) {
         console.log(err);
       } else {
-        return name;
+        return obj;
       }
     })
       .then((dbModel) => res.json(dbModel))
