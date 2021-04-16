@@ -35,6 +35,13 @@ const Cart = () => {
   });
   const [list, setList] = useState([]);
 
+  const [choice, setChoice] = useState(
+    {
+      selection: '',
+    },
+    []
+  );
+
   // For Toast
   const [state, setState] = useState({
     open: false,
@@ -47,15 +54,15 @@ const Cart = () => {
   }, []);
 
   // For Api call
-  function getCart () {
+  function getCart() {
     // Pointing temporary to product until cart api has something for testing
     axios
       .get('/api/product/')
       .then((res) => {
         setList(res.data);
       })
-      .catch(); 
-  };
+      .catch();
+  }
 
   // Update quantity
   function handleChange(value, key) {
@@ -64,11 +71,12 @@ const Cart = () => {
       [key]: value,
     });
   }
- 
+
+  // Update Total Price
 
   // Remove item from cart
   function handleRemove(id, Transition) {
-   axios.delete('/api/product/' + id).then(() => {
+    axios.delete('/api/product/' + id).then(() => {
       getCart();
       // Update Toast State
       setState({
@@ -114,7 +122,7 @@ const Cart = () => {
                   <Typography variant='subtitle1' color='textSecondary'>
                     {item.description}
                   </Typography>
-                  <br/>
+                  <br />
                   <FormControl
                     variant='outlined'
                     className={classes.formControl}>
@@ -130,7 +138,10 @@ const Cart = () => {
                       }}>
                       {/* Stock quantity is called quantity in the product model */}
                       {getOptionsArray(item.quantity).map((num) => (
-                        <option key={num} value={num}>
+                        <option
+                          key={num}
+                          value={num}
+                          onClick={setChoice({ selection: num })}>
                           {num}
                         </option>
                       ))}
@@ -144,14 +155,14 @@ const Cart = () => {
                   <Snackbar
                     open={state.open}
                     autoHideDuration={4000}
-                    anchorOrigin={{vertical: 'top', horizontal: 'center' }}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     onClose={handleClose}
                     TransitionComponent={state.Transition}
                     message='Item removed from your cart'
                     key={state.Transition.name}
                   />
                   <Typography color='textSecondary' align='right' variant='h6'>
-                    <AttachMoneyIcon /> {item.price}
+                    <AttachMoneyIcon /> {choice.selection}
                   </Typography>
                 </CardContent>
               </div>

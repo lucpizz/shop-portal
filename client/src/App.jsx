@@ -7,6 +7,7 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import Shop from './pages/Shop/Shop';
 import SignUp from './pages/SignUp/SignUp';
 import CheckOut from './pages/CheckOut/CheckOut';
+import Cart from './pages/Cart/Cart'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           render={(props) => <ContactUs {...props} />}
         />
         <Route exact from='/signup' render={(props) => <SignUp {...props} />} />
+        <Route exact from='/Cart' render={(props) => <Cart {...props} />} />
         <Route
           exact
           from='/checkout'
