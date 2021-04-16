@@ -1,11 +1,11 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.SECRET_KEY);
 
-const calculateOrderAmount = () => {
+const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 1400;
+  return items;
 };
 
 // Defining methods for the postsController
