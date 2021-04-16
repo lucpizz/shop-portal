@@ -78,6 +78,10 @@ const Cart = () => {
     getCart();
   }, []);
 
+  function deleteItem(){
+    axios
+    .delete("/api/cart/" + id);
+  }
   // Update quantity
   function handleChange(value, key) {
     setQuantity({
@@ -89,6 +93,7 @@ const Cart = () => {
   // Remove item from cart
   function handleRemove(id) {
     const newList = list.filter((item) => item.id !== id);
+    console.log(newList);
     setList(newList);
   }
 
