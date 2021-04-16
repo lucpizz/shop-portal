@@ -14,7 +14,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByTotalStars: function (req, res) {
-    db.findOne({ sku: req.params.totalStars })
+    db.findOne({ totalStars: 'totalStars' })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
