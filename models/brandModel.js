@@ -32,6 +32,10 @@ const BrandSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  isFeatured: {
+    type: Boolean,
+    default: false,
+  },
   merchant: {
     type: Schema.Types.ObjectId,
     ref: 'Merchant',
