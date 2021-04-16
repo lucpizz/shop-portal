@@ -1,9 +1,8 @@
-const db = require('../models/merchantModel');
+const db = require('../models/isReviewedModel');
 
-// Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -13,18 +12,31 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByEmail: function (req, res) {
-    db.findOne({ email: req.params.email })
+  findByTotalStars: function (req, res) {
+    db.findOne({ sku: req.params.totalStars })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByPhoneNumber: function (req, res) {
-    db.findOne({ phoneNumber: req.params.phoneNumber })
+  findByName: function (req, res) {
+    db.findOne({ name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let reviewData = new db({
+      name: req.body.name,
+      imageUrl: req.body.imageUrl,
+      imageKey: req.body.imageKey,
+      description: req.body.description,
+      totalStars: req.body.totalStars,
+      reviewBody: req.body.reviewBody,
+      isActive: req.body.isActive,
+      isReviewable: req.body.isReviewable,
+      created: req.body.created,
+      updated: req.body.updated,
+    });
+
+    db.create(reviewData)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

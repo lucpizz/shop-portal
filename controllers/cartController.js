@@ -14,12 +14,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByProduct: function (req, res) {
-    db.findByOne({ product: req.params.product })
+    db.findOne({ product: req.params.product })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
-    db.findByOne({ status: req.params.status })
+    db.findOne({ status: req.params.status })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
