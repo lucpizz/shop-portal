@@ -21,9 +21,9 @@ module.exports = {
   findByName: function (req, res) {
     let name = req.params.name;
 
-    let query = { name: name };
+    let findName = { name: name };
 
-    db.findOne(query, function (err, db) {
+    db.findOne(findName, function (err, db) {
       if (err) {
         console.log(err);
       } else {
