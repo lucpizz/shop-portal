@@ -1,7 +1,6 @@
 const db = require('../models/isReviewedModel');
 
 // Defining methods for the postsController isReviewed
-
 module.exports = {
   findAll: function (req, res) {
     db.find()
@@ -20,7 +19,17 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findOne({ name: req.params.name }, () => (err, 'name'))
+    let name = req.body.name;
+
+    query = { name: name };
+
+    db.findOne(query, function (err, db) {
+      if (err) {
+        console.log(err);
+      } else {
+        return name;
+      }
+    })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -37,6 +46,7 @@ module.exports = {
       created: req.body.created,
       updated: req.body.updated,
     });
+
     db.create(createReview)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
