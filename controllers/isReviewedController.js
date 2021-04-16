@@ -24,11 +24,11 @@ module.exports = {
 
     let query = { name: name };
 
-    db.findOne(query, function (err, obj) {
+    db.findOne(query, function (err, isReviewed) {
       if (err) {
         console.log(err);
       } else {
-        return obj;
+        return isReviewed;
       }
     })
       .then((dbModel) => res.json(dbModel))
