@@ -3,38 +3,67 @@ const db = require('../models/userModel');
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.parmas.id,
+    });
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    db.findByOne({ email: req.params.email })
+    let findEmail = new db({
+      email: req.parmas.email,
+    });
+    db.findOne(findEmail)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUsername: function (req, res) {
-    db.findByOne( { username: req.params.username })
+    let findUsername = new db({
+      username: req.parmas.username,
+    });
+    db.findOne(findUsername)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByLastname: function (req, res) {
-    db.findByOne({ lastname: req.params.lastName })
+    let findLastname = new db({
+      lastname: req.parmas.lastname,
+    });
+    db.findOne(findLastname)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByPhoneNumber: function (req, res) {
-    db.findByOne({ phoneNumber: req.params.phoneNumber })
+    db.finOne({ phoneNumber: req.params.phoneNumber })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createUser = new db({
+      role: req.body.role,
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      password: req.body.password,
+      email: req.body.email,
+      provider: req.body.provider,
+      merchant: req.body.merchant,
+      phoneNumber: req.body.phoneNumber,
+      googleId: req.body.googleId,
+      facebookId: req.body.facebookId,
+      resetPasswordToken: req.body.resetPasswordToken,
+      resetPasswordExpires: req.body.resetPasswordExpires,
+      created: req.body.created,
+      updated: req.body.updated,
+    });
+    db.create(createUser)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
