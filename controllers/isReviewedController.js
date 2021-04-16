@@ -20,11 +20,20 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    let name = req.params.name;
+    // let name = req.params.name;
 
-    db.findOne({ name })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+    // db.findOne({ name })
+    //   .then((dbModel) => res.json(dbModel))
+    //   .catch((err) => res.status(422).json(err));
+    let name = req.query.name;
+query = { name: name }
+db.find(query, function (err, db) {
+  if (err) {
+    // Handle errors
+  } else {
+    res.render({name: 'name'});
+  }
+});
   },
   create: function (req, res) {
     let createReview = new db({
