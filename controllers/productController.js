@@ -14,12 +14,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findBySku: function (req, res) {
-    db.findByOne({ sku: req.params.sku })
+    db.findOne({ sku: req.params.sku })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findByOne({ name: req.params.name })
+    db.findOne({ name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -40,7 +40,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findIsFeatured: function (req, res) {
-    db.find({ isFeatured: { $eq: true } })
+    db.find({ isFeatured: 'true' })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
