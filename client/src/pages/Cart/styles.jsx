@@ -22,10 +22,14 @@ const useStyles = makeStyles((theme) => ({
       flex: '1 0 auto',
     },
     image: {
-      width: 400,
+      minWidth: 300,
+      height: 400,
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
+    },
+    nativeSelect: {
+      flexDirection: 'column',
     },
     formControl: {
         margin: theme.spacing(1),
