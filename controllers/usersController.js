@@ -14,26 +14,17 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    let findEmail = new db({
-      email: req.parmas.email,
-    });
-    db.findOne(findEmail)
+    db.findOne({ email: req.params.email })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUsername: function (req, res) {
-    let findUsername = new db({
-      username: req.parmas.username,
-    });
-    db.findOne(findUsername)
+    db.findOne({ username: req.params.username })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByLastname: function (req, res) {
-    let findLastname = new db({
-      lastname: req.parmas.lastname,
-    });
-    db.findOne(findLastname)
+    db.findOne({ lastName: req.params.lastName })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
