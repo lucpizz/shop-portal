@@ -20,7 +20,7 @@
     "start:dev:watch": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node scripts/productSeed.js && node scripts/userSeed.js && node scripts/categorySeed.js && node scripts/brandSeed.js"
+    "seed": "node scripts/productSeed.js && node scripts/userSeed.js && node scripts/categorySeed.js && node scripts/brandSeed.js && node scripts/reviewSeed.js"
   },
   "repository": {
     "type": "git",
