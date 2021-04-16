@@ -9,42 +9,81 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.parmas.id,
+    });
+
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUser: function (req, res) {
-    db.findOne({ user: req.params.user })
+    let findUser = new db({
+      user: req.parmas.user,
+    });
+    db.findOne(findUser)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStreetAddress: function (req, res) {
-    db.findOne({ streetAddress: req.params.streetAddress })
+    let findStreetAddress = new db({
+      streetAddress: req.parmas.streetAddress,
+    });
+
+    db.findOne(findStreetAddress)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByCity: function (req, res) {
-    db.findOne({ city: req.params.city })
+    let findCity = new db({
+      city: req.parmas.city,
+    });
+
+    db.findOne(findCity)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByState: function (req, res) {
-    db.findOne({ state: req.params.state })
+    let findState = new db({
+      state: req.parmas.state,
+    });
+    db.findOne(findState)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByCountry: function (req, res) {
-    db.findOne({ country: req.params.country })
+    let findCountry = new db({
+      country: req.parmas.country,
+    });
+
+    db.findOne(findCountry)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByZipcode: function (req, res) {
-    db.findOne({ zipCode: req.params.zipCode })
+    let findZipcode = new db({
+      zipeCode: req.parmas.zipeCode,
+    });
+    db.findOne(findZipcode)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createAddress = new db({
+      user: req.body.user,
+      streetAddress: req.body.streetAddress,
+      streetAddress2: req.body.streetAddress2,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      zipCode: req.body.zipCode,
+      isDefault: req.body.isDefault,
+      isActive: req.body.isActive,
+      updated: req.body.updated,
+      created: req.body.created,
+    });
+
+    db.create(createAddress)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
