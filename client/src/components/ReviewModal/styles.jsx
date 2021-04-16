@@ -10,11 +10,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    width: 500,
-    height: 500,
+    width: 800,
+    // height: 500,
   },
   submit: {
     margin: theme.spacing(1, 0, 1),
+  },
+  box: {
+    order: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    alignSelf: 'center',
   },
 }));
 
