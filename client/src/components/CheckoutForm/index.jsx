@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  CardElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
+import React, { useState, useEffect } from 'react';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
 export default function CheckoutForm() {
@@ -14,22 +10,22 @@ export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
-  
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    axios.post("/api/payment", {
-        method: "POST",
+    axios
+      .post('/api/payment', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({items: [{ id: "xl-tshirt" }]})
+        body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
       })
       // .then(res => {
       //  return res.data.clientSecret;
       //  //return console.log(res)
       // })
-      .then(data => {
+      .then((data) => {
         setClientSecret(data.clientSecret);
       });
   }, []);
@@ -37,36 +33,36 @@ export default function CheckoutForm() {
   const cardStyle = {
     style: {
       base: {
-        color: "#32325d",
+        color: '#32325d',
         fontFamily: 'Arial, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#32325d"
-        }
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#32325d',
+        },
       },
       invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a"
-      }
-    }
+        color: '#fa755a',
+        iconColor: '#fa755a',
+      },
+    },
   };
 
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
     setDisabled(event.empty);
-    setError(event.error ? event.error.message : "");
+    setError(event.error ? event.error.message : '');
   };
 
-  const handleSubmit = async ev => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
     setProcessing(true);
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement)
-      }
+        card: elements.getElement(CardElement),
+      },
     });
 
     if (payload.error) {
@@ -80,35 +76,35 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-      <button
-        disabled={processing || disabled || succeeded}
-        id="submit"
-      >
-        <span id="button-text">
+    <form id='payment-form' onSubmit={handleSubmit}>
+      <CardElement
+        id='card-element'
+        options={cardStyle}
+        onChange={handleChange}
+      />
+      <button disabled={processing || disabled || succeeded} id='submit'>
+        <span id='button-text'>
           {processing ? (
-            <div className="spinner" id="spinner"></div>
+            <div className='spinner' id='spinner'></div>
           ) : (
-            "Pay now"
+            'Pay now'
           )}
         </span>
       </button>
       {/* Show any error that happens when processing the payment */}
       {error && (
-        <div className="card-error" role="alert">
+        <div className='card-error' role='alert'>
           {error}
         </div>
       )}
       {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
+      <p className={succeeded ? 'result-message' : 'result-message hidden'}>
         Payment succeeded, see the result in your
-        <a
-          href={`https://dashboard.stripe.com/test/payments`}
-        >
-          {" "}
+        <a href={`https://dashboard.stripe.com/test/payments`}>
+          {' '}
           Stripe dashboard.
-        </a> Refresh the page to pay again.
+        </a>{' '}
+        Refresh the page to pay again.
       </p>
     </form>
   );

@@ -26,7 +26,6 @@ if (process.env.NODE_ENV === 'production') {
 //   return 1400;
 // };
 
-
 // server.post("/payment", async (req, res) => {
 //   const { items } = req.body;
 //   // Create a PaymentIntent with the order amount and currency
