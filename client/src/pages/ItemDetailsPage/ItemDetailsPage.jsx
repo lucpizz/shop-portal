@@ -76,9 +76,7 @@ const ItemDetailsPage = () => {
 
           <CardActions className={classes.cardActions}>
             <Box className={classes.box}>
-              <IconButton aria-label='rating'>
                 <AverageRating />
-              </IconButton>
             </Box>
             <Box className={classes.box}>
               <Typography>${item.price}</Typography>

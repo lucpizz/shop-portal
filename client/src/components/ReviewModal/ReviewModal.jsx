@@ -4,8 +4,10 @@ import {
   Box,
   Button,
   Fade,
-  Modal
+  Modal,
+  TextField,
 } from '@material-ui/core/';
+import SetRating from '../SetRating/SetRating'
 import useStyles from './styles';
 
 
@@ -47,19 +49,26 @@ const ReviewModal = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id='transition-modal-title'>Review Your Product</h2>
-            <p id='transition-modal-description'>
-              The standard Lorem Ipsum passage, used since the 1500s Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-              aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Section 1.10.32 of de Finibus Bonorum et Malorum, written by
-              Cicero in 45 BC Sed ut perspiciatis unde omnis iste natus error
-              sit voluptatem accusantium doloremque laudantium, totam rem
-            </p>
+            {/* <Box className={classes.box}> */}
+            <SetRating />
+            {/* </Box> */}
+            <TextField
+              id='message'
+              margin='normal'
+              label='Your Review'
+              multiline
+              required
+              fullWidth
+              rows={6}
+              variant='outlined'
+            />
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              className={classes.submit}>
+              Submit
+            </Button>
           </div>
         </Fade>
       </Modal>
