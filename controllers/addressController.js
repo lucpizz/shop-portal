@@ -3,7 +3,7 @@ const db = require('../models/addressModel');
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
