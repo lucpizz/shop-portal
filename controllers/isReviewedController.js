@@ -14,12 +14,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByTotalStars: function (req, res) {
-    db.findOne({ totalStars: 'totalStars' })
+    db.findOne({ total: 'totalStars' })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findOne({ name: req.params.name })
+    db.findOne({ _name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
