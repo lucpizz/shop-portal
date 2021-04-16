@@ -40,7 +40,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findIsFeatured: function (req, res) {
-    db.findByOne({ isFeatured: req.params.isFeatured })
+    db.find({ isFeatured: { $eq: true } })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

@@ -25,10 +25,6 @@ router
   .put(productController.update)
   .delete(productController.remove);
 
-router
-  .route('/feature/:isFeatured')
-  .get(productController.findIsFeatured)
-  .put(productController.update)
-  .delete(productController.remove);
+router.route('/feature/:isFeatured').get(productController.findIsFeatured);
 
 module.exports = router;
