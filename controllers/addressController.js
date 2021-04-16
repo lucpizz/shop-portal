@@ -1,6 +1,6 @@
 const db = require('../models/addressModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController address
 module.exports = {
   findAll: function (req, res) {
     db.find()

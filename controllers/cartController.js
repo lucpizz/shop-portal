@@ -1,6 +1,6 @@
 const db = require('../models/cartModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController cart
 module.exports = {
   findAll: function (req, res) {
     db.find()

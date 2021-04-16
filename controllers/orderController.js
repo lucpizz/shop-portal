@@ -1,6 +1,6 @@
 const db = require('../models/orderModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController order
 module.exports = {
   findAll: function (req, res) {
     db.find()

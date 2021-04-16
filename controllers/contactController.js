@@ -1,6 +1,6 @@
 const db = require('../models/contactModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController contact
 module.exports = {
   findAll: function (req, res) {
     db.find()

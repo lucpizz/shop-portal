@@ -1,6 +1,6 @@
 const db = require('../models/brandModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController brand
 module.exports = {
   findAll: function (req, res) {
     db.find()

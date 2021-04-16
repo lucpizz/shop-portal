@@ -1,6 +1,6 @@
 const db = require('../models/userModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController users
 module.exports = {
   findAll: function (req, res) {
     db.find()
@@ -34,7 +34,7 @@ module.exports = {
   },
   findByLastname: function (req, res) {
     let findLastname = new db({
-      lastname: req.parmas.lastname,
+      lastName: req.parmas.lastName,
     });
     db.findOne(findLastname)
       .then((dbModel) => res.json(dbModel))

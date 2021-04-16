@@ -1,6 +1,6 @@
 const db = require('../models/merchantModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController merchant
 module.exports = {
   findAll: function (req, res) {
     db.find()

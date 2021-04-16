@@ -1,5 +1,6 @@
 const db = require('../models/isReviewedModel');
 
+// Defining methods for the postsController isReviewed
 module.exports = {
   findAll: function (req, res) {
     db.find()

@@ -1,6 +1,6 @@
 const db = require('../models/categoryModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController category
 module.exports = {
   findAll: function (req, res) {
     db.find()
