@@ -19,6 +19,7 @@ module.exports = {
   findBySku: function (req, res) {
     let findSku = new db({
       sku: req.parmas.sku,
+
     });
     db.findOne(findSku)
       .then((dbModel) => res.json(dbModel))
@@ -27,6 +28,7 @@ module.exports = {
   findByName: function (req, res) {
     let findName = new db({
       name: req.parmas.name,
+
     });
     db.findOne(findName)
       .then((dbModel) => res.json(dbModel))
@@ -60,6 +62,11 @@ module.exports = {
   remove: function (req, res) {
     db.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findIsFeatured: function (req, res) {
+    db.find({ isFeatured: 'true' })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
