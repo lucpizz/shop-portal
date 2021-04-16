@@ -9,7 +9,6 @@ import {
   Typography,
 } from '@material-ui/core/';
 import useStyles from './styles';
-//import imgExample from './images/exampleimage.png';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -17,43 +16,15 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import IconButton from '@material-ui/core/IconButton';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
+import Grow from '@material-ui/core/Grow';
 import axios from 'axios';
 
-// data for testing
-// const items = [
-//   {
-//     id: 11,
-//     ProductName: 'Item 1',
-//     Description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-//     price: 14.99,
-//     stockCount: 5,
-//   },
-//   {
-//     id: 22,
-//     ProductName: 'Item 2',
-//     Description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-//     price: 69.69,
-//     stockCount: 12,
-//   },
-//   {
-//     id: 33,
-//     ProductName: 'Item 3',
-//     Description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-//     price: 1000000.0,
-//     stockCount: 20,
-//   },
-//   {
-//     id: 44,
-//     ProductName: 'Item 4',
-//     Description:
-//       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mattis auctor nisl, quis tempus purus venenatis in.',
-//     price: 9000.0,
-//     stockCount: 10,
-//   },
-// ];
+//For Toast
+function GrowTransition(props) {
+  return <Grow {...props} />;
+}
 
 const Cart = () => {
   const classes = useStyles();
@@ -64,37 +35,27 @@ const Cart = () => {
   });
   const [list, setList] = useState([]);
 
-  
-  // a starting point, but not sure how to adjust the price on each card
-  // const [cart, setCart] = useState([]);
-  // const [cartTotal, setCartTotal] = useState(0);
-  
-  // useEffect(() => {
-  //   total();
-  // }, [cart]);
+  // For Toast
+  const [state, setState] = useState({
+    open: false,
+    Transition: Fade,
+  });
 
-  // const total = () => {
-  //   let totalVal = 0;
-  //   for (let i = 0; i < cart.length; i++) {
-  //     totalVal += cart[i].price;
-  //   }
-  //   setCartTotal(totalVal)
-  // }
- 
-
-  // Call Api to update cart list
+  // Call update cart list
   useEffect(() => {
-    const getCart = () => {
-      // Pointing temporary to product until cart api has something for testing
-      axios
-        .get('/api/product/')
-        .then((res) => {
-          setList(res.data);
-        })
-        .catch((err) => console.log(err));  // FOR TESTING
-    };
     getCart();
   }, []);
+
+  // For Api call
+  function getCart () {
+    // Pointing temporary to product until cart api has something for testing
+    axios
+      .get('/api/product/')
+      .then((res) => {
+        setList(res.data);
+      })
+      .catch(); 
+  };
 
   // Update quantity
   function handleChange(value, key) {
@@ -103,12 +64,27 @@ const Cart = () => {
       [key]: value,
     });
   }
+ 
 
   // Remove item from cart
-  function handleRemove(id) {
-    const newList = list.filter((item) => item.id !== id);
-    setList(newList);
+  function handleRemove(id, Transition) {
+   axios.delete('/api/product/' + id).then(() => {
+      getCart();
+      // Update Toast State
+      setState({
+        open: true,
+        Transition,
+      });
+    });
   }
+
+  // For Toast closing
+  const handleClose = () => {
+    setState({
+      ...state,
+      open: false,
+    });
+  };
 
   // Populate dropdowns
   const getOptionsArray = (count) => {
@@ -126,9 +102,10 @@ const Cart = () => {
           {list.map((item, i) => (
             <Card className={classes.root} key={i}>
               <CardMedia
-                className={classes.image}                
+                className={classes.image}
                 image={item.imageUrl}
-                title={item.imageKey}/>
+                title={item.imageKey}
+              />
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <Typography component='h4' variant='h4'>
@@ -161,11 +138,20 @@ const Cart = () => {
                   </FormControl>
                   <IconButton
                     aria-label='delete'
-                    onClick={() => handleRemove(item.id)}>
+                    onClick={() => handleRemove(item._id, GrowTransition)}>
                     <DeleteForeverIcon />
                   </IconButton>
-                  <Typography color='textSecondary' align='right' variant='h5'>
-                    <AttachMoneyIcon fontSize='small' /> {item.price}
+                  <Snackbar
+                    open={state.open}
+                    autoHideDuration={4000}
+                    anchorOrigin={{vertical: 'top', horizontal: 'center' }}
+                    onClose={handleClose}
+                    TransitionComponent={state.Transition}
+                    message='Item removed from your cart'
+                    key={state.Transition.name}
+                  />
+                  <Typography color='textSecondary' align='right' variant='h6'>
+                    <AttachMoneyIcon /> {item.price}
                   </Typography>
                 </CardContent>
               </div>
