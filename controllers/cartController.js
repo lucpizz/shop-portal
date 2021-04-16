@@ -3,28 +3,44 @@ const db = require('../models/cartModel');
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.params.id,
+    });
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByProduct: function (req, res) {
-    db.findOne({ product: req.params.product })
+    let findProduct = new db({
+      product: req.params.product,
+    });
+    db.findOne(findProduct)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
-    db.findOne({ status: req.params.status })
+    let findStatus = new db({
+      status: req.params.status,
+    });
+    db.findOne(findStatus)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createCart = new db({
+      product: req.params.product,
+      quantity: req.params.quantity,
+      totalPrice: req.params.totalPrice,
+      priceWithTax: req.params.priceWithTax,
+      status: req.params.status,
+    });
+    db.create(createCart)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
