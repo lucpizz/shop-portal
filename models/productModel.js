@@ -54,6 +54,11 @@ const ProductSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  isReviewed: {
+    type: Schema.Types.ObjectId,
+    ref: 'Review',
+    default: null,
+  },
   brand: {
     type: Schema.Types.ObjectId,
     ref: 'Brand',
