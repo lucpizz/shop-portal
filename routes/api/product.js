@@ -18,11 +18,13 @@ router
   .put(productController.update)
   .delete(productController.remove);
 
-  // Matches with "/api/name/:name"
+// Matches with "/api/name/:name"
 router
   .route('/name/:name')
   .get(productController.findByName)
   .put(productController.update)
   .delete(productController.remove);
+
+router.route('/feature/:isFeatured').get(productController.findIsFeatured);
 
 module.exports = router;
