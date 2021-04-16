@@ -68,7 +68,6 @@ const Cart = () => {
 
   // Remove item from cart
   function handleRemove(id, Transition) {
-    console.log(id)
    axios.delete('/api/product/' + id).then(() => {
       getCart();
       // Update Toast State
@@ -138,9 +137,7 @@ const Cart = () => {
                   </FormControl>
                   <IconButton
                     aria-label='delete'
-                    onClick={() => { 
-                      console.log(item._id)
-                      handleRemove(item._id, GrowTransition)}}>
+                    onClick={() => handleRemove(item._id, GrowTransition)}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Snackbar
