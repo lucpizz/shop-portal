@@ -9,10 +9,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
-      id: req.parmas.id,
-    });
-    db.findById(findId)
+    db.findById({ id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
