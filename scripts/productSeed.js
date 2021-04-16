@@ -23,7 +23,7 @@ const productSeed = [
     price: 24.99,
     taxable: false,
     isActive: true,
-    isFeatured: true,    
+    isFeatured: true,
     isReviewable: true,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
