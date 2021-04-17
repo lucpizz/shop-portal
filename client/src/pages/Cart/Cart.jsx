@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   Card,
@@ -29,18 +30,8 @@ function GrowTransition(props) {
 const Cart = () => {
   const classes = useStyles();
   // Setting components' initial state
-  const [quantity, setQuantity] = useState({
-    id: '',
-    qty: '',
-  });
-  const [list, setList] = useState([]);
 
-  const [choice, setChoice] = useState(
-    {
-      selection: '',
-    },
-    []
-  );
+  const [list, setList] = useState([]);
 
   // For Toast
   const [state, setState] = useState({
@@ -53,26 +44,36 @@ const Cart = () => {
     getCart();
   }, []);
 
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
+
   // For Api call
   function getCart() {
     // Pointing temporary to product until cart api has something for testing
     axios
       .get('/api/product/')
       .then((res) => {
-        setList(res.data);
+        const quantifiedList = res.data.map((item) => ({
+          ...item,
+          userQuantity: 1,
+        }));
+        setList(quantifiedList);
       })
-      .catch();
+      .catch((error) => console.log(error));
   }
 
   // Update quantity
-  function handleChange(value, key) {
-    setQuantity({
-      ...quantity,
-      [key]: value,
-    });
+  function handleChange(id, event) {
+    const newList = list.slice(0);
+    const product = list.findIndex((item) => item._id === id);
+    newList[product].userQuantity = Number(event.target.value);
+    setList(newList);
+    console.log(id)
   }
 
   // Update Total Price
+  const [total, setTotal] = useState(0);
 
   // Remove item from cart
   function handleRemove(id, Transition) {
@@ -132,16 +133,14 @@ const Cart = () => {
                     <NativeSelect
                       labelId={item.id}
                       name={item.id}
-                      defaultValue={quantity}
+                      defaultValue={item.userQuantity}
                       onChange={(e) => {
-                        handleChange(e.target.value, e.target.name);
+                        handleChange(item._id, e);
                       }}>
                       {/* Stock quantity is called quantity in the product model */}
                       {getOptionsArray(item.quantity).map((num) => (
-                        <option
-                          key={num}
-                          value={num}
-                          onClick={setChoice({ selection: num })}>
+                        <option key={num} value={num}>
+                          {' '}
                           {num}
                         </option>
                       ))}
@@ -162,7 +161,7 @@ const Cart = () => {
                     key={state.Transition.name}
                   />
                   <Typography color='textSecondary' align='right' variant='h6'>
-                    <AttachMoneyIcon /> {choice.selection}
+                    <AttachMoneyIcon /> {item.price}
                   </Typography>
                 </CardContent>
               </div>
@@ -185,7 +184,11 @@ const Cart = () => {
                 Shipping: $
               </Typography>
               <Typography variant='h4' component='p'>
-                Total: $
+                Total: ${' '}
+                {parseFloat(list?.reduce((prevValue, curItem) => {
+                  console.log(prevValue, curItem.price);
+                  return prevValue + (curItem.price * curItem.userQuantity);
+                }, 0), 2)}
               </Typography>
             </CardContent>
             <CardActions>
