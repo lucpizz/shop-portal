@@ -86,6 +86,23 @@ const Cart = () => {
     });
   };
 
+  // TO DO: Total Calculation
+ function sumTotalAmount(list) {
+    let total = 0;
+    for (var i = 0; i < list.length; i++) {
+      total += list[i].price * parseInt(list[i].quantity);
+    }
+    setList({
+      totalPrice: total
+    });
+  }
+
+ // Do We need it?  Total number of item
+ function sumTotalItems(list) {
+  let total = 0;
+  ItemsNumber = list.length;
+  }
+
   // Populate dropdowns
   const getOptionsArray = (count) => {
     const array = [];
