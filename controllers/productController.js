@@ -4,6 +4,9 @@ const db = require('../models/productModel');
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
+      .populate({
+        path: 'isReviewed',
+      })
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
