@@ -1,25 +1,41 @@
 const db = require('../models/categoryModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController category
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.params.id,
+    });
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findByOne({ name: req.params.name })
+    let findName = new db({
+      name: req.params.name,
+    });
+    db.findOne(findName)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createCategory = new db({
+      name: req.body.name,
+      slug: req.body.slug,
+      image: req.body.image,
+      description: req.body.description,
+      isActive: req.body.isActive,
+      product: req.body.product,
+      created: req.body.created,
+      updated: req.body.updated,
+    });
+    db.create(createCategory)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

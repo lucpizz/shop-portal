@@ -1,5 +1,7 @@
 const db = require('../models/isReviewedModel');
 
+// Defining methods for the postsController isReviewed
+
 module.exports = {
   findAll: function (req, res) {
     db.find()
@@ -13,17 +15,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByTotalStars: function (req, res) {
-    db.findByOne({ sku: req.params.totalStars })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByName: function (req, res) {
-    db.findByOne({ name: req.params.name })
+    db.findOne({ total: 'totalStars' })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    let reviewData = new db({
+    let createReview = new db({
       name: req.body.name,
       imageUrl: req.body.imageUrl,
       imageKey: req.body.imageKey,
@@ -36,7 +33,7 @@ module.exports = {
       updated: req.body.updated,
     });
 
-    db.create(reviewData)
+    db.create(createReview)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

@@ -1,30 +1,46 @@
 const db = require('../models/contactModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController contact
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.params.id,
+    });
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findByOne({ name: req.params.name })
+    let findName = new db({
+      name: req.params.name,
+    });
+    db.findOne(findName)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    db.findByOne({ email: req.params.email })
+    let findEmail = new db({
+      email: req.params.email,
+    });
+    db.findOne(findEmail)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createContact = new db({
+      name: req.params.name,
+      email: req.params.email,
+      message: req.params.message,
+      updated: req.params.updated,
+      created: req.params.created,
+    });
+    db.create(createContact)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

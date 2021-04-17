@@ -1,25 +1,42 @@
 const db = require('../models/brandModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController brand
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.params.id,
+    });
+
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    db.findByOne({ name: req.params.name })
+    let findName = new db({
+      name: req.params.name,
+    });
+    db.findOne(findName)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createBrand = new db({
+      slug: req.params.slug,
+      name: req.params.name,
+      image: req.params.image,
+      description: req.params.description,
+      isActive: req.params.isActive,
+      merchant: req.params.merchant,
+      created: req.params.created,
+      updated: req.params.update,
+    });
+    db.create(createBrand)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
