@@ -19,7 +19,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import AverageRating from '../../components/AverageRating/AverageRating';
 // import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
-// import ReviewBody from '../../components/ReviewBody/ReviewBody';
+import ReviewBody from '../../components/ReviewBody/ReviewBody';
 import useStyles from './styles';
 
 const ItemDetailsPage = () => {
@@ -98,10 +98,12 @@ const ItemDetailsPage = () => {
           <Divider variant='middle' />
 
           <CardContent>
-            {/* <ReviewBody /> */}
+
+            <ReviewBody />
+            <ReviewBody />
+
           </CardContent>
 
-          <Divider variant='middle' />
         </Card>
       ))}
     </Container>

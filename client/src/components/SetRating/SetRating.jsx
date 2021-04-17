@@ -30,9 +30,10 @@ const SetRating = () => {
         <Rating
           name="simple-controlled"
           value={value}
-          onChange={(event, newValue) => {
-            SetRating(newValue);
-          }}
+          required
+          // onChange={(event, newValue) => {
+          //   SetRating(newValue);
+          // }}
         />
       </Box>
     </div>
