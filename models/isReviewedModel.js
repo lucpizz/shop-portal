@@ -33,12 +33,6 @@ const isReviewableSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  product: [
-    {
-      type: Schema.Types.String,
-      ref: 'Product',
-    },
-  ],
   created: {
     type: Date,
     default: Date.now,
