@@ -17,8 +17,9 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import AverageRating from '../../components/AverageRating/AverageRating';
-import UserRating from '../../components/UserRating/UserRating';
+// import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
+// import ReviewBody from '../../components/ReviewBody/ReviewBody';
 import useStyles from './styles';
 
 const ItemDetailsPage = () => {
@@ -30,7 +31,6 @@ const ItemDetailsPage = () => {
     const getProduct = () => {
       axios
         .get('/api/product/')
-        // .get('/sku/:sku')
         .then((res) => {
           setProduct(res.data);
         })
@@ -76,7 +76,7 @@ const ItemDetailsPage = () => {
 
           <CardActions className={classes.cardActions}>
             <Box className={classes.box}>
-                <AverageRating />
+              <AverageRating />
             </Box>
             <Box className={classes.box}>
               <Typography>${item.price}</Typography>
@@ -98,34 +98,10 @@ const ItemDetailsPage = () => {
           <Divider variant='middle' />
 
           <CardContent>
-            <Typography>Bill H.</Typography>
-            <Typography>August 23, 2020</Typography>
-            <UserRating />
-            <Typography paragraph>
-              Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam
-              debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam
-              ut ut ut sint. Ratione illum necessitatibus quidem aut molestiae
-              pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem
-              ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus.
-              Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo
-              architecto dolor sequi eos molestias consequuntur doloremque.
-            </Typography>
-            <Divider variant='middle' />
+            {/* <ReviewBody /> */}
           </CardContent>
-          <CardContent>
-            <Typography>Sally M.</Typography>
-            <Typography>April 5, 2021</Typography>
-            <UserRating />
-            <Typography paragraph>
-              Consequatur alias aut quos. Nihil occaecati mollitia sed unde
-              magnam. Id voluptatem eius occaecati sapiente. Maiores autem sed
-              sapiente et quas. Vel consequatur et amet sit qui quo ut. Illum
-              qui qui et quae quidem cupiditate laboriosam. Quae nihil
-              reiciendis earum. Inventore minus laudantium possimus praesentium
-              quibusdam nihil non. Dicta magnam maiores doloribus sint et.
-            </Typography>
-            <Divider variant='middle' />
-          </CardContent>
+
+          <Divider variant='middle' />
         </Card>
       ))}
     </Container>
