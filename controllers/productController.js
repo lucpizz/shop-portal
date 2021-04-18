@@ -35,10 +35,13 @@ module.exports = {
           isActive: { $first: '$isActive' },
           reviews: {
             $push: {
-              title: '$reviews.name',
+              name: '$reviews.name',
+              title: '$reviews.title',
               totalStars: '$reviews.totalStars',
-              description: '$reviews.reviewBody',
+              description: '$reviews.description',
               isActive: '$reviews.isActive',
+              created: '$reviews.created',
+
             },
           },
         },

@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
 
 const reviewSeed = [
   {
-    name: 'Great t-shirt!!',
+    title: 'Great t-shirt!!',
     imageUrl:
       'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
     imageKey: 'My new hot t-shirt',
