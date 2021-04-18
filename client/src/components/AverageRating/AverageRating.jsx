@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box';
 
 const AverageRating = (props) => {
 // const [value] = React.useState(props.rating);
-console.log(props)
   return (
     <div>
       <Box component="fieldset" mb={0} borderColor="transparent">
