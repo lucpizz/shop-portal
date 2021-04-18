@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   Card,
@@ -73,7 +72,7 @@ const Cart = () => {
   }
 
   // Update Total Price
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
   // Remove item from cart
   function handleRemove(id, Transition) {
