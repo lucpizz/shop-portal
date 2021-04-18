@@ -178,13 +178,17 @@ const Cart = () => {
                 Order Summary
               </Typography>
               <Typography variant='h6' component='p'>
-                Subtotal: $
+                Subtotal: ${''}
+                {parseFloat(list?.reduce((prevValue, curItem) => {
+                  console.log(prevValue, curItem.price);
+                  return prevValue + (curItem.price * curItem.userQuantity);
+                }, 0), 2)}
               </Typography>
               <Typography variant='h6' component='p'>
-                Shipping: $
+                Shipping: $0
               </Typography>
               <Typography variant='h4' component='p'>
-                Total: ${' '}
+                Total: ${''}
                 {parseFloat(list?.reduce((prevValue, curItem) => {
                   console.log(prevValue, curItem.price);
                   return prevValue + (curItem.price * curItem.userQuantity);
