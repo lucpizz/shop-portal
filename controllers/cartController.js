@@ -3,7 +3,10 @@ const db = require('../models/cartModel');
 // Defining methods for the postsController
 module.exports = {
   findAll: function (req, res) {
-    db.find(req.query)
+    db.find()
+    .populate(
+      'user products.product'
+      )
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -14,12 +17,19 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByProduct: function (req, res) {
-    db.findByOne({ product: req.params.product })
+    db.findOne({ product: req.params.product })    
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
-    db.findByOne({ status: req.params.status })
+    db.findOne({ status: req.params.status })
+    .populate('products.product products.product.brand')
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByUserandStatus: function (req, res) {
+    db.find({ user: req.params.user, status: req.params.status  })
+    .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

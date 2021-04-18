@@ -25,4 +25,12 @@ router
   .put(cartController.update)
   .delete(cartController.remove);
 
+  // Use for the final cart by userID and status"
+router
+.route('/:user/:status')
+.get(cartController.findByUserandStatus)
+.put(cartController.update)
+.delete(cartController.remove);
+
+
 module.exports = router;
