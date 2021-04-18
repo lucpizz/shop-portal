@@ -4,7 +4,7 @@ const addressController = require('../../controllers/addressController.js');
 // Matches with "/api/users"
 router.route('/').get(addressController.findAll).post(addressController.create);
 
-// Matches with "/api/address/:id"
+// Matches with "/api/users/:id"
 router
   .route('/:id')
   .get(addressController.findById)
