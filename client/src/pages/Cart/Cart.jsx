@@ -49,11 +49,13 @@ const Cart = () => {
   }, [list]);
 
   // For Api call
-  function getCart() {
-    // Pointing temporary to product until cart api has something for testing
+  function getCart(id) {
+    const user= '607b2ccd2185a8437004490d';  // FOR TESTING
+    const status= 'Not processed';
     axios
-      .get('/api/product/')
+      .get(`/api/cart/${user}/${status}`)
       .then((res) => {
+        console.log(res);
         const quantifiedList = res.data.map((item) => ({
           ...item,
           userQuantity: 1,
@@ -106,11 +108,11 @@ const Cart = () => {
     });
   }
 
- // Do We need it?  Total number of item
- function sumTotalItems(list) {
-  let total = 0;
-  ItemsNumber = list.length;
-  }
+//  // Do We need it?  Total number of item
+//  function sumTotalItems(list) {
+//   let total = 0;
+//   ItemsNumber = list.length;
+//   }
 
   // Populate dropdowns
   const getOptionsArray = (count) => {
