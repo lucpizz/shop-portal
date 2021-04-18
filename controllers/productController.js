@@ -3,7 +3,29 @@ const db = require('../models/productModel');
 // Defining methods for the postsController product
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
+      .sort({ created: -1 })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+    db.aggregate([
+      {
+        $lookup: {
+          from: 'Review',
+          localField: 'isReviewed',
+          foreignField: '_id',
+          as: 'reviews',
+        },
+      },
+      { $unwind: '$reviews' },
+      {
+        $group: {
+          _id: null,
+          averageStars: {
+            $avg: '$reviews.totalStars',
+          },
+        },
+      },
+    ])
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
