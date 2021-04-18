@@ -23,7 +23,7 @@ import useStyles from './styles';
 
 const ItemDetailsPage = () => {
   const classes = useStyles();
-  
+
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
@@ -76,7 +76,9 @@ const ItemDetailsPage = () => {
 
           <CardActions className={classes.cardActions}>
             <Box className={classes.box}>
-                <AverageRating />
+              <AverageRating
+                rating={item.averageStars ? item.averageStars : 0}
+              />
             </Box>
             <Box className={classes.box}>
               <Typography>${item.price}</Typography>
