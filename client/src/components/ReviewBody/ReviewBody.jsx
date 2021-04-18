@@ -3,7 +3,7 @@ import React from 'react';
 import {
   Card,
   Container,
-  Divider,
+  // Divider,
 } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import UserRating from '../../components/UserRating/UserRating';
@@ -38,7 +38,6 @@ const ReviewBody = () => {
           <UserRating />
 
           <Typography paragraph>Test Test</Typography>
-          <Divider variant='middle' />
         </Card>
       {/* ))} */}
     </Container>

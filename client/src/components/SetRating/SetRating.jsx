@@ -24,7 +24,7 @@ const SetRating = () => {
 
   return (
     <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
+      <Box mb={3} borderColor="transparent">
         <Typography component="legend">Set Rating</Typography>
         {/* <Typography component="name">{item.name}</Typography> */}
         <Rating

@@ -51,14 +51,14 @@ const ItemDetailsPage = () => {
               </Avatar>
             }
             action={
-              <IconButton aria-label='settings'>
+              <>
                 <IconButton aria-label='share'>
                   <ShareIcon />
                 </IconButton>
                 <IconButton aria-label='add to favorites'>
                   <FavoriteIcon />
                 </IconButton>
-              </IconButton>
+              </>
             }
             title={item.name}
             subheader='Exactly What You Are Looking For!'
@@ -74,36 +74,33 @@ const ItemDetailsPage = () => {
             </Typography>
           </CardContent>
 
-          <CardActions className={classes.cardActions}>
-            <Box className={classes.box}>
-              <AverageRating />
-            </Box>
-            <Box className={classes.box}>
-              <Typography>${item.price}</Typography>
-            </Box>
-            <Box className={classes.box}>
-              <Button
-                type='submit'
-                variant='contained'
-                color='primary'
-                className={classes.submit}>
-                Add to Cart
-              </Button>
-            </Box>
-            <Box className={classes.box}>
-              <ReviewModal />
-            </Box>
+          <CardActions disableSpacing={true} className={classes.flexContainer}>
+              <Box className={classes.box}>
+                <AverageRating />
+              </Box>
+              <Box className={classes.box}>
+                <Typography variant='h6'>${item.price}</Typography>
+              </Box>
+              <Box className={classes.box}>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  color='primary'
+                  className={classes.submit}>
+                  Add to Cart
+                </Button>
+              </Box>
+              <Box className={classes.box}>
+                <ReviewModal />
+              </Box>
           </CardActions>
 
           <Divider variant='middle' />
 
           <CardContent>
-
             <ReviewBody />
             <ReviewBody />
-
           </CardContent>
-
         </Card>
       ))}
     </Container>
