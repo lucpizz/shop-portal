@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
+    nativeSelect: {
+      flexDirection: 'column',
+    },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,        
