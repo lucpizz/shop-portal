@@ -98,36 +98,19 @@ const ItemDetailsPage = () => {
           </CardActions>
 
           <Divider variant='middle' />
-
-          <CardContent>
+          {item.reviews.map((review, j) => (
+          <CardContent key={j} >
             <Typography>Bill H.</Typography>
-            <Typography>August 23, 2020</Typography>
-            <UserRating />
+            <Typography>{review.created}</Typography>
+            <UserRating rating={review.totalStars}/>
+            <Typography>{review.title}</Typography>
             <Typography paragraph>
-              Sit enim perferendis et. Veritatis libero rem odio ipsum ut ullam
-              debitis omnis. Ipsam qui cumque occaecati in. Illo ut dolorem nam
-              ut ut ut sint. Ratione illum necessitatibus quidem aut molestiae
-              pariatur nam rem. Quod recusandae aut qui. Explicabo nulla autem
-              ipsum corrupti. Qui voluptatem laboriosam saepe dolorem accusamus.
-              Dolorem totam rerum nobis soluta ab pariatur sint. Ea explicabo
-              architecto dolor sequi eos molestias consequuntur doloremque.
+            {review.description}
             </Typography>
             <Divider variant='middle' />
           </CardContent>
-          <CardContent>
-            <Typography>Sally M.</Typography>
-            <Typography>April 5, 2021</Typography>
-            <UserRating />
-            <Typography paragraph>
-              Consequatur alias aut quos. Nihil occaecati mollitia sed unde
-              magnam. Id voluptatem eius occaecati sapiente. Maiores autem sed
-              sapiente et quas. Vel consequatur et amet sit qui quo ut. Illum
-              qui qui et quae quidem cupiditate laboriosam. Quae nihil
-              reiciendis earum. Inventore minus laudantium possimus praesentium
-              quibusdam nihil non. Dicta magnam maiores doloribus sint et.
-            </Typography>
-            <Divider variant='middle' />
-          </CardContent>
+          ))}
+          
         </Card>
       ))}
     </Container>
