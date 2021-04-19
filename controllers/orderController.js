@@ -3,24 +3,18 @@ const db = require('../models/orderModel');
 // Defining methods for the postsController order
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
-      id: req.parmas.id,
-    });
-    db.findById(findId)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByCart: function (req, res) {
-    let findCart = new db({
-      cart: req.parmas.cart,
-    });
-    db.findByOne(findCart)
+    db.findByOne({ cart: req.parmas.cart })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
