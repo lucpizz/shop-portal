@@ -1,6 +1,6 @@
 const db = require('../models/cartModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController cart
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
@@ -9,22 +9,29 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByProduct: function (req, res) {
-    db.findByOne({ product: req.params.product })
+    db.findOne({ product: req.params.product })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
-    db.findByOne({ status: req.params.status })
+    db.findOne({ status: req.params.status })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createCart = new db({
+      product: req.params.product,
+      quantity: req.params.quantity,
+      totalPrice: req.params.totalPrice,
+      priceWithTax: req.params.priceWithTax,
+      status: req.params.status,
+    });
+    db.create(createCart)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

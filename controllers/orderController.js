@@ -1,6 +1,6 @@
 const db = require('../models/orderModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController order
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
@@ -9,17 +9,24 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByCart: function (req, res) {
-    db.findByOne({ cart: req.params.cart })
+    db.findByOne({ cart: req.parmas.cart })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createOrder = new db({
+      cart: req.parmas.cart,
+      user: req.parmas.user,
+      total: req.parmas.total,
+      created: req.parmas.created,
+      updated: req.parmas.updated,
+    });
+    db.create(createOrder)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
