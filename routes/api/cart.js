@@ -8,36 +8,35 @@ router.route('/').get(cartController.findAll).post(cartController.create);
 router
   .route('/:id')
   .get(cartController.findById)
-  .put(cartController.update)
+  .put(cartController.update) // used in the cart page
   .delete(cartController.remove);
 
-  // Matches with cart id and product id
-router
-.route('/id/:id/:product')
-.get(cartController.findByIdandProduct)
-.put(cartController.updateAProduct)
-.delete(cartController.removeAProduct);
+// Matches with cart id and product id
+// router
+//   .route('/id/:id/:product')
+//   .get(cartController.findByIdandProduct)
+//   .put(cartController.updateAProduct)
+//   .delete(cartController.removeAProduct);
 
 // Matches with product id only
-router
-  .route('/product/:product')
-  .get(cartController.findByProduct)
-  .put(cartController.update)
-  .delete(cartController.remove);
+// router
+//   .route('/product/:product')
+//   .get(cartController.findByProduct)
+//   .put(cartController.update)
+//   .delete(cartController.remove);
 
 // Matches with "/status/:status"
+// router
+//   .route('/status/:status')
+//   .get(cartController.findByStatus)
+//   .put(cartController.update)
+//   .delete(cartController.remove);
+
+// Matches with user id and status
 router
-  .route('/status/:status')
-  .get(cartController.findByStatus)
+  .route('/:user/:status')
+  .get(cartController.findByUserandStatus) // used in the cart page
   .put(cartController.update)
   .delete(cartController.remove);
-
-  // Matches with user id and status
-router
-.route('/:user/:status')
-.get(cartController.findByUserandStatus)
-.put(cartController.update)
-.delete(cartController.remove);
-
 
 module.exports = router;
