@@ -25,4 +25,12 @@ router
   .put(cartController.update)
   .delete(cartController.remove);
 
+  // Matches with "/user/:user"
+router
+.route('/:user/:status')
+.get(cartController.findByUserandStatus)
+.put(cartController.update)
+.delete(cartController.remove);
+
+
 module.exports = router;

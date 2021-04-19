@@ -31,6 +31,7 @@ const Cart = () => {
   // Setting components' initial state
 
   const [list, setList] = useState([]);
+  const [total, setTotal] = useState(0);
 
   // For Toast
   const [state, setState] = useState({
@@ -44,15 +45,25 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    console.log(list);
+    setTotal(
+      parseFloat(
+        list?.reduce((prevValue, curItem) => {
+          console.log(prevValue, curItem.price);
+          return prevValue + curItem.price * curItem.userQuantity;
+        }, 0),
+        2
+      )
+    );
   }, [list]);
 
   // For Api call
   function getCart() {
-    // Pointing temporary to product until cart api has something for testing
+    const user = '607b2ccd2185a8437004490d'; // FOR TESTING
+    const status = 'Not processed';
     axios
-      .get('/api/product/')
+      .get(`/api/cart/${user}/${status}`)
       .then((res) => {
+        console.log(res);
         const quantifiedList = res.data.map((item) => ({
           ...item,
           userQuantity: 1,
@@ -68,11 +79,8 @@ const Cart = () => {
     const product = list.findIndex((item) => item._id === id);
     newList[product].userQuantity = Number(event.target.value);
     setList(newList);
-    console.log(id)
+    console.log(id);
   }
-
-  // Update Total Price
-  // const [total, setTotal] = useState(0);
 
   // Remove item from cart
   function handleRemove(id, Transition) {
@@ -92,6 +100,32 @@ const Cart = () => {
       ...state,
       open: false,
     });
+  };
+
+  // // TO DO: Total Calculation
+  // function sumTotalAmount(list) {
+  //   let total = 0;
+  //   for (var i = 0; i < list.length; i++) {
+  //     total += list[i].price * parseInt(list[i].quantity);
+  //   }
+  //   setList({
+  //     totalPrice: total,
+  //   });
+  // }
+
+
+  const submitOrder = async () => {
+    try {
+      // const results = await axios.post('/api/order', {
+      //   list,
+      // });
+      await axios.post('/api/order', {
+        user: '6078dff1e918cb13968c65c9',
+        total,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Populate dropdowns
@@ -178,20 +212,14 @@ const Cart = () => {
               </Typography>
               <Typography variant='h6' component='p'>
                 Subtotal: ${''}
-                {parseFloat(list?.reduce((prevValue, curItem) => {
-                  console.log(prevValue, curItem.price);
-                  return prevValue + (curItem.price * curItem.userQuantity);
-                }, 0), 2)}
+                {total}
               </Typography>
               <Typography variant='h6' component='p'>
                 Shipping: $0
               </Typography>
               <Typography variant='h4' component='p'>
                 Total: ${''}
-                {parseFloat(list?.reduce((prevValue, curItem) => {
-                  console.log(prevValue, curItem.price);
-                  return prevValue + (curItem.price * curItem.userQuantity);
-                }, 0), 2)}
+                {total}
               </Typography>
             </CardContent>
             <CardActions>
@@ -199,6 +227,7 @@ const Cart = () => {
                 size='large'
                 color='primary'
                 variant='contained'
+                onClick={submitOrder}
                 fullWidth>
                 Checkout
               </Button>
