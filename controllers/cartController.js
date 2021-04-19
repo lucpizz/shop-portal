@@ -3,32 +3,23 @@ const db = require('../models/cartModel');
 // Defining methods for the postsController cart
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
-      id: req.params.id,
-    });
-    db.findById(findId)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByProduct: function (req, res) {
-    let findProduct = new db({
-      product: req.params.product,
-    });
-    db.findOne(findProduct)
+    db.findOne({ product: req.params.product })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
-    let findStatus = new db({
-      status: req.params.status,
-    });
-    db.findOne(findStatus)
+    db.findOne({ status: req.params.status })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
