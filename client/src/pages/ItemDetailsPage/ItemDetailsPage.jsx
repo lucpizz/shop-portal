@@ -24,7 +24,7 @@ import useStyles from './styles';
 
 const ItemDetailsPage = () => {
   const classes = useStyles();
-  
+
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
