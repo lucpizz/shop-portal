@@ -32,6 +32,7 @@ const Cart = () => {
   // Setting components' initial state
 
   const [list, setList] = useState([]);
+  const [cart, setCart] = useState({})
 
   // For Toast
   const [state, setState] = useState({
@@ -55,7 +56,10 @@ const Cart = () => {
     axios
       .get(`/api/cart/${user}/${status}`)
       .then((res) => {
-        setList(res.data[0].products); // Push each product in an array       
+        setCart(res.data[0])
+        setList(res.data[0].products); // Push each product in an array 
+        console.log("old", res.data[0].products); 
+        console.log("cart", res.data[0]);     
       })
       .catch((error) => console.log(error));
   }
@@ -66,8 +70,26 @@ const Cart = () => {
     const product = list.findIndex((item) => item._id === id);
     newList[product].quantity = Number(event.target.value);
     setList(newList); 
-    console.log(newList);   
+    const cartId= cart._id
+    console.log("my newlist", newList); 
+    console.log(cartId);  
   }
+
+// Api call to get the cart
+function updateCart(list, cardID) {
+  const user= '607b2ccd2185a8437004490d';  // FOR TESTING
+  const status= 'Not processed';
+  axios
+    .put(`/api/cart/${user}/${status}`)
+    .then((res) => {
+      setCart(res.data[0])
+      setList(res.data[0].products); // Push each product in an array 
+      console.log("old", res.data[0].products); 
+      console.log("cart", res.data[0]);     
+    })
+    .catch((error) => console.log(error));
+}
+
 
   // Update Total Price
   const [total, setTotal] = useState(0);

@@ -43,7 +43,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.findOneAndUpdate({ _id: req.params.id }, req.body)
+    db.findOneAndUpdate({ _id: req.params.id}, req.body)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  updateAProduct: function (req, res) {
+    db.findOneAndUpdate({ _id: req.params.id, 'products._id': req.params.product }, req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -54,9 +59,11 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   removeAProduct: function (req, res) {
-    db.find({ _id: req.params.id, 'products._id': req.params.product })
-      .then((dbModel) => dbModel.remove())
-      .then((dbModel) => res.json(dbModel))
+    db.findOneAndRemove({ _id: req.params.id, 'products._id': req.params.product })
+     // .then((dbModel) => dbModel.remove())
+      .then((dbModel) => {
+        console.log(res.json(dbModel));
+          res.json(dbModel)})
       .catch((err) => res.status(422).json(err));
   },
 };

@@ -15,7 +15,7 @@ router
 router
 .route('/id/:id/:product')
 .get(cartController.findByIdandProduct)
-.put(cartController.update)
+.put(cartController.updateAProduct)
 .delete(cartController.removeAProduct);
 
 // Matches with product id only
