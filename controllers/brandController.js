@@ -3,10 +3,7 @@ const db = require('../models/brandModel');
 // Defining methods for the postsController brand
 module.exports = {
   findAll: function (req, res) {
-    db.find()
-      .sort({ created: -1 })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+ 
   },
   findById: function (req, res) {
     let findId = new db({

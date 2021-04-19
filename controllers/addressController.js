@@ -1,6 +1,6 @@
 const db = require('../models/addressModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController for addressModel
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
@@ -10,6 +10,11 @@ module.exports = {
   },
   findById: function (req, res) {
     db.findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByUser: function (req, res) {
+    db.find(req.params.user)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

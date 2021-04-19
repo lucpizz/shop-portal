@@ -18,39 +18,39 @@ router
   .put(addressController.update)
   .delete(addressController.remove);
 
-// Matches with "/streetAddress/:streetAddress"
-router
-  .route('/streetAddress/:streetAddress')
-  .get(addressController.findByStreetAddress)
-  .put(addressController.update)
-  .delete(addressController.remove);
+// // Matches with "/streetAddress/:streetAddress"
+// router
+//   .route('/streetAddress/:streetAddress')
+//   .get(addressController.findByStreetAddress)
+//   .put(addressController.update)
+//   .delete(addressController.remove);
 
-// Matches with "/city/:city"
-router
-  .route('/city/:city')
-  .get(addressController.findByCity)
-  .put(addressController.update)
-  .delete(addressController.remove);
+// // Matches with "/city/:city"
+// router
+//   .route('/city/:city')
+//   .get(addressController.findByCity)
+//   .put(addressController.update)
+//   .delete(addressController.remove);
 
-// Matches with "state/:state"
-router
-  .route('/state/:state')
-  .get(addressController.findByState)
-  .put(addressController.update)
-  .delete(addressController.remove);
+// // Matches with "state/:state"
+// router
+//   .route('/state/:state')
+//   .get(addressController.findByState)
+//   .put(addressController.update)
+//   .delete(addressController.remove);
 
-// Matches with "country/:country"
-router
-  .route('/country/:country')
-  .get(addressController.findByCountry)
-  .put(addressController.update)
-  .delete(addressController.remove);
+// // Matches with "country/:country"
+// router
+//   .route('/country/:country')
+//   .get(addressController.findByCountry)
+//   .put(addressController.update)
+//   .delete(addressController.remove);
 
-// Matches with "zipcode/:zipcode"
-router
-  .route('/zipcode/:zipCode')
-  .get(addressController.findByZipcode)
-  .put(addressController.update)
-  .delete(addressController.remove);
+// // Matches with "zipcode/:zipcode"
+// router
+//   .route('/zipcode/:zipCode')
+//   .get(addressController.findByZipcode)
+//   .put(addressController.update)
+//   .delete(addressController.remove);
 
 module.exports = router;
