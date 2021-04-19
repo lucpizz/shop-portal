@@ -4,9 +4,7 @@ const db = require('../models/cartModel');
 module.exports = {
   findAll: function (req, res) {
     db.find()
-    .populate(
-      'user products.product'
-      )
+      .populate('user products.product')
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -16,20 +14,26 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findByIdandProduct: function (req, res) {
+    db.find({ _id: req.params.id, 'products._id': req.params.product })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   findByProduct: function (req, res) {
-    db.findOne({ product: req.params.product })    
+    db.findOne({ 'products._id': req.params.product })
+      .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
     db.findOne({ status: req.params.status })
-    .populate('products.product products.product.brand')
+      .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUserandStatus: function (req, res) {
-    db.find({ user: req.params.user, status: req.params.status  })
-    .populate('products.product products.product.brand')
+    db.find({ user: req.params.user, status: req.params.status })
+      .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -45,6 +49,12 @@ module.exports = {
   },
   remove: function (req, res) {
     db.findById({ _id: req.params.id })
+      .then((dbModel) => dbModel.remove())
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  removeAProduct: function (req, res) {
+    db.find({ _id: req.params.id, 'products._id': req.params.product })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

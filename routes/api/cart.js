@@ -11,7 +11,14 @@ router
   .put(cartController.update)
   .delete(cartController.remove);
 
-// Matches with "/product/:product"
+  // Matches with cart id and product id
+router
+.route('/id/:id/:product')
+.get(cartController.findByIdandProduct)
+.put(cartController.update)
+.delete(cartController.removeAProduct);
+
+// Matches with product id only
 router
   .route('/product/:product')
   .get(cartController.findByProduct)
@@ -25,7 +32,7 @@ router
   .put(cartController.update)
   .delete(cartController.remove);
 
-  // Matches with "/user/:user"
+  // Matches with user id and status
 router
 .route('/:user/:status')
 .get(cartController.findByUserandStatus)
