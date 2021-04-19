@@ -3,32 +3,23 @@ const db = require('../models/merchantModel');
 // Defining methods for the postsController merchant
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
-      id: req.parmas.id,
-    });
-    db.findById(findId)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    let findEmail = new db({
-      email: req.parmas.email,
-    });
-    db.findOne(findEmail)
+    db.findOne({ email: req.parmas.email })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByPhoneNumber: function (req, res) {
-    let findPhoneNumber = new db({
-      phoneNumber: req.parmas.phoneNumber,
-    });
-    db.findOne(findPhoneNumber)
+    db.findOne({ phoneNumber: req.parmas.phoneNumber })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
