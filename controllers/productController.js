@@ -3,7 +3,7 @@ const db = require('../models/productModel');
 // Defining methods for the postsController product
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .populate('isReviewed brand')
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
