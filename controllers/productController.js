@@ -4,9 +4,7 @@ const db = require('../models/productModel');
 module.exports = {
   findAll: function (req, res) {
     db.find()
-      .populate(
-      'isReviewed brand'
-      )
+      .populate('isReviewed brand')
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -33,12 +31,11 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findById: function (req, res) {    
-    const id=req.params.id;
+  findById: function (req, res) {
+    const id = req.params.id;
     console.log(id);
     db.aggregate([
-      { $match: { _id: '$id'} 
-      },
+      { $match: { _id: '$id' } },
       {
         $lookup: {
           from: 'reviews',
@@ -85,18 +82,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findBySku: function (req, res) {
-    let findSku = new db({
-      sku: req.parmas.sku,
-    });
-    db.findOne(findSku)
+    db.findOne({ sku: req.parmas.sku })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    let findName = new db({
-      name: req.parmas.name,
-    });
-    db.findOne(findName)
+    db.findOne({ name: req.parmas.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
