@@ -10,10 +10,10 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
+    let findId = new db({   // EXTRA LINES because of SONAR errors
       id: req.params.id,
     });
-    db.findById(findId)
+    db.findById({_id: findId.id})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -41,30 +41,35 @@ module.exports = {
   //     .catch((err) => res.status(422).json(err));
   // },
   findByUserandStatus: function (req, res) {
-    let findUserStatus = new db({
+    let findUserStatus = new db({  // EXTRA LINES because of SONAR errors
       user: req.params.user,
       status: req.params.status,
-    });
-    db.find(findUserStatus)
+    }); 
+    db.find({user: findUserStatus.user, status: findUserStatus.status})
       .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  create: function (req, res) {
-    let createCart = new db({
+  create: function (req, res) { 
+    let createCart = new db({   // EXTRA LINES because of SONAR errors
       product: req.params.product,
       quantity: req.params.quantity,
       totalPrice: req.params.totalPrice,
       priceWithTax: req.params.priceWithTax,
       status: req.params.status,
     });
-    db.create(createCart)
+    db.create({
+      product: createCart.product,
+      quantity: createCart.quantity,
+      totalPrice: createCart.totalPrice,
+      priceWithTax: createCart.priceWithTax,
+      status: createCart.status
+    })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
-    let updateCart = new db({ _id: req.params.id }, req.body);
-    db.findOneAndUpdate(updateCart)
+    db.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -78,8 +83,9 @@ module.exports = {
   //     .catch((err) => res.status(422).json(err));
   // },
   remove: function (req, res) {
-    let removeProduct = new db({ _id: req.params.id });
-    db.findById(removeProduct)
+    let removeProduct = new db({ id: req.params.id });
+    console.log(removeProduct);
+    db.findById({_id: removeProduct.id})
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

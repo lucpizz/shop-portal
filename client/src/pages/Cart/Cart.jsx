@@ -30,9 +30,8 @@ function GrowTransition(props) {
 const Cart = () => {
   const classes = useStyles();
   // Setting components' initial state
-
   const [list, setList] = useState([]);
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState({});
 
   // For Toast
   const [state, setState] = useState({
@@ -45,56 +44,51 @@ const Cart = () => {
     getCart();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(list);
-  // }, [list]);
-
   // Api call to get the cart
-  function getCart(id) {
-    const user= '607b2ccd2185a8437004490d';  // FOR TESTING
-    const status= 'Not processed';
+  function getCart() {
+    const user = '607b2ccd2185a8437004490d'; // FOR TESTING
+    const status = 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
       .then((res) => {
-        setCart(res.data[0])
-        setList(res.data[0].products); // Push each product in an array 
-        console.log("old", res.data[0].products); 
-        console.log("cart", res.data[0]);     
+        setCart(res.data[0]);
+        setList(res.data[0].products); // Push each product in an array
+        console.log('old', res.data[0].products);
+        console.log('cart', res.data[0]);
       })
       .catch((error) => console.log(error));
   }
 
   // Update quantity
-  function handleChange(id, event) {    
+  function handleChange(id, event) {
     const newList = list.slice(0);
-    const product = list.findIndex((item) => item._id === id);
-    newList[product].quantity = Number(event.target.value);
-    setList(newList); 
-    const cartId= cart._id
-    console.log("my newlist", newList); 
-    console.log(cartId);  
+    let newCart = cart;
+    const productIndex = list.findIndex((item) => item._id === id);
+    let unitPrice = newList[productIndex].product.price; // Price by unit
+    let totalUnits = Number(event.target.value); // New number of item
+    let newTotal = (Math.round(totalUnits * unitPrice * 100) / 100).toFixed(2); // Calculation with rounding up to 2 decimals
+    // Polpulate arrays with new numbers
+    newList[productIndex].quantity = totalUnits;
+    newList[productIndex].totalPrice = newTotal;
+    newCart.products[productIndex].quantity = totalUnits;
+    newCart.products[productIndex].totalPrice = newTotal;
+    setList(newList);
+    setCart(newCart);
+    //Calling function to update db
+    updateCart(newCart, cart._id);
   }
 
-// Api call to get the cart
-function updateCart(list, cardID) {
-  const user= '607b2ccd2185a8437004490d';  // FOR TESTING
-  const status= 'Not processed';
-  axios
-    .put(`/api/cart/${user}/${status}`)
-    .then((res) => {
-      setCart(res.data[0])
-      setList(res.data[0].products); // Push each product in an array 
-      console.log("old", res.data[0].products); 
-      console.log("cart", res.data[0]);     
-    })
-    .catch((error) => console.log(error));
-}
+  // Api call to update the cart after new quantity
+  function updateCart(cart, cartId) {
+    axios
+      .put(`/api/cart/${cartId}`, cart)
+      .then((res) => {
+        getCart();
+      })
+      .catch((error) => console.log(error));
+  }
 
-
-  // Update Total Price
-  const [total, setTotal] = useState(0);
-
-  // Remove item from cart
+  // TO DO: Remove item from cart
   function handleRemove(id, cartId, Transition) {
     axios.delete(`/api/cart/${cartId}/${id}`).then(() => {
       getCart();
@@ -115,21 +109,17 @@ function updateCart(list, cardID) {
   };
 
   // TO DO: Total Calculation
- function sumTotalAmount(list) {
-    let total = 0;
-    for (var i = 0; i < list.length; i++) {
-      total += list[i].price * parseInt(list[i].quantity);
-    }
-    setList({
-      totalPrice: total
-    });
-  }
-
-//  // Do We need it?  Total number of item
-//  function sumTotalItems(list) {
-//   let total = 0;
-//   ItemsNumber = list.length;
-//   }
+  // Update Final Price
+  // const [total, setTotal] = useState(0);
+  // function sumTotalAmount(list) {
+  //   let total = 0;
+  //   for (var i = 0; i < list.length; i++) {
+  //     total += list[i].price * parseInt(list[i].quantity);
+  //   }
+  //   setList({
+  //     totalPrice: total,
+  //   });
+  // }
 
   // Populate dropdowns
   const getOptionsArray = (count) => {
@@ -185,8 +175,9 @@ function updateCart(list, cardID) {
                   <IconButton
                     aria-label='delete'
                     onClick={() => {
-                      handleRemove(item._id, GrowTransition);
-                      console.log("remove",item._id)}}>
+                      handleRemove(item._id, cart._id, GrowTransition);
+                      console.log('remove', item._id);
+                    }}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Snackbar
@@ -223,9 +214,12 @@ function updateCart(list, cardID) {
               </Typography>
               <Typography variant='h4' component='p'>
                 Total: ${' '}
-                {parseFloat(list?.reduce((prevValue, curItem) => {
-                  return prevValue + (curItem.price * curItem.userQuantity);
-                }, 0), 2)}
+                {parseFloat(
+                  list?.reduce((prevValue, curItem) => {
+                    return prevValue + curItem.price * curItem.userQuantity;
+                  }, 0),
+                  2
+                )}
               </Typography>
             </CardContent>
             <CardActions>
