@@ -47,7 +47,7 @@ const Cart = () => {
   
   // For Api call
   function getCart() {
-    const user = '607b2ccd2185a8437004490d'; // FOR TESTING
+    const user = '2185a8607b2ccd437004490d'; // FOR TESTING
     const status = 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
@@ -124,7 +124,7 @@ const Cart = () => {
       //   list,
       // });
       await axios.post('/api/order', {
-        user: '6078dff1e918cb13968c65c9',
+        user: '2185a8607b2ccd437004490d',
         total,
       });
     } catch (err) {
