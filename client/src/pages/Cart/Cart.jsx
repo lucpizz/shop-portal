@@ -39,14 +39,8 @@ const Cart = () => {
     Transition: Fade,
   });
 
-  // Call update cart list
-  useEffect(() => {
-    getCart();
-  }, []);
-
-  
   // For Api call
-  function getCart() {
+  const getCart = () => {
     const user = '607b2ccd2185a8437004490d'; // FOR TESTING
     const status = 'Not processed';
     axios
@@ -57,15 +51,22 @@ const Cart = () => {
         setList(res.data[0].products); // Push each product in an array
         newTotal = grandTotal(res.data[0].products);
         setTotal(newTotal);
+        console.log('cart', cart);
+        console.log('list', list);
       })
       .catch((error) => console.log(error));
-  }
+  };
+
+  // Call update cart list
+  useEffect(() => {
+        getCart();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update quantity
   function handleChange(id, event) {
     const newList = list.slice(0);
     let newCart = cart;
-    const productIndex = list.findIndex((item) => item._id === id);
+    let productIndex = list.findIndex((item) => item._id === id);
     let unitPrice = newList[productIndex].product.price; // Price by unit
     let totalUnits = Number(event.target.value); // New number of item
     let newTotal = (Math.round(totalUnits * unitPrice * 100) / 100).toFixed(2); // Calculation with rounding up to 2 decimals
@@ -74,6 +75,7 @@ const Cart = () => {
     newList[productIndex].totalPrice = newTotal;
     newCart.products[productIndex].quantity = totalUnits;
     newCart.products[productIndex].totalPrice = newTotal;
+    // Update Cart and List states
     setList(newList);
     setCart(newCart);
     //Calling function to update db
@@ -82,6 +84,7 @@ const Cart = () => {
 
   // Api call to update the cart after new quantity
   function updateCart(cart, cartId) {
+    console.log('in update', cart);
     axios
       .put(`/api/cart/${cartId}`, cart)
       .then(() => {
@@ -90,15 +93,31 @@ const Cart = () => {
       .catch((error) => console.log(error));
   }
 
-  // TO DO: Remove item from cart
-  function handleRemove(id, cartId, Transition) {
-    axios.delete(`/api/cart/${cartId}/${id}`).then(() => {
-      getCart();
-      // Update Toast State
-      setState({
-        open: true,
-        Transition,
-      });
+  //// function removeProduct(cartId, id) {
+  //   console.log("in update", cart)
+  //   axios
+  //     .delete(`/api/cart/${cartId}`, id)
+  //     .then(() => {
+  //      getCart();
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
+
+  // Remove item from cart for update api
+  function handleRemove(id, Transition) {
+    let newList = list.filter((item) => item._id !== id);
+    let newCart = cart.products.filter((item) => item._id !== id);
+    // Update Cart and List states
+    setList(newList);
+    setCart(newCart);
+    console.log('in remove', cart);
+    console.log(newList);
+    // Update db cart collection
+    updateCart(newCart, cart._id);
+    // Update Toast State
+    setState({
+      open: true,
+      Transition,
     });
   }
 
@@ -115,6 +134,7 @@ const Cart = () => {
     for (let i = 0; i < list.length; i++) {
       sum = sum + list[i].totalPrice;
     }
+    sum = (Math.round(sum * 100) / 100).toFixed(2);
     return sum;
   }
 
@@ -168,7 +188,6 @@ const Cart = () => {
                       Quantity
                     </InputLabel>
                     <NativeSelect
-                      labelId={item.id}
                       name={item.id}
                       defaultValue={item.quantity}
                       onChange={(e) => {
@@ -186,14 +205,14 @@ const Cart = () => {
                   <IconButton
                     aria-label='delete'
                     onClick={() => {
-                      handleRemove(item._id, cart._id, GrowTransition);
-                      console.log('remove', item._id);  // FOR TESTING
+                      handleRemove(item._id, GrowTransition);
+                      console.log('remove', item._id); // FOR TESTING
                     }}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Snackbar
                     open={state.open}
-                    autoHideDuration={4000}
+                    autoHideDuration={3000}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     onClose={handleClose}
                     TransitionComponent={state.Transition}
