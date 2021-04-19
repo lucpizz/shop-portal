@@ -51,8 +51,55 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findById: function (req, res) {
-    db.findById(req.params.id)
+  findById: function (req, res) {    
+    const id = req.params.id;
+    // eslint-disable-next-line no-console
+    console.log(id);
+    db.aggregate([
+      { $match: { _id: '$id'} 
+      },
+      {
+        $lookup: {
+          from: 'reviews',
+          localField: 'isReviewed',
+          foreignField: '_id',
+          as: 'reviews',
+        },
+      },
+      {
+        $unwind: {
+          path: '$reviews',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $group: {
+          _id: '$_id',
+          averageStars: {
+            $avg: '$reviews.totalStars',
+          },
+          sku: { $first: '$sku' },
+          slug: { $first: '$slug' },
+          name: { $first: '$name' },
+          imageUrl: { $first: '$imageUrl' },
+          imageKey: { $first: '$imageKey' },
+          description: { $first: '$description' },
+          price: { $first: '$price' },
+          brand: { $first: '$brand' },
+          isActive: { $first: '$isActive' },
+          reviews: {
+            $push: {
+              name: '$reviews.name',
+              title: '$reviews.title',
+              totalStars: '$reviews.totalStars',
+              description: '$reviews.description',
+              isActive: '$reviews.isActive',
+              created: '$reviews.created',
+            },
+          },
+        },
+      },
+    ])
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

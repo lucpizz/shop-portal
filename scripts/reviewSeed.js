@@ -20,6 +20,16 @@ const reviewSeed = [
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },
+  {
+    title: 't-shirt too big',
+    imageUrl:
+      'https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg',
+    imageKey: 't-shirt too big',
+    description:`The shirt is not true to size. I ordered a size S but this is as big as a size XL.`,
+    totalStars: 2,
+    created: new Date(Date.now()),
+    updated: new Date(Date.now()),
+  },
 ];
 
 db.Review.deleteMany({})
