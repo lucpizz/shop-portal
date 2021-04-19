@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   Card,
@@ -32,6 +31,7 @@ const Cart = () => {
   // Setting components' initial state
   const [list, setList] = useState([]);
   const [cart, setCart] = useState({});
+  const [total, setTotal] = useState(0);
 
   // For Toast
   const [state, setState] = useState({
@@ -44,17 +44,19 @@ const Cart = () => {
     getCart();
   }, []);
 
-  // Api call to get the cart
+  
+  // For Api call
   function getCart() {
     const user = '607b2ccd2185a8437004490d'; // FOR TESTING
     const status = 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
       .then((res) => {
+        let newTotal = 0;
         setCart(res.data[0]);
         setList(res.data[0].products); // Push each product in an array
-        console.log('old', res.data[0].products);
-        console.log('cart', res.data[0]);
+        newTotal = grandTotal(res.data[0].products);
+        setTotal(newTotal);
       })
       .catch((error) => console.log(error));
   }
@@ -67,7 +69,7 @@ const Cart = () => {
     let unitPrice = newList[productIndex].product.price; // Price by unit
     let totalUnits = Number(event.target.value); // New number of item
     let newTotal = (Math.round(totalUnits * unitPrice * 100) / 100).toFixed(2); // Calculation with rounding up to 2 decimals
-    // Polpulate arrays with new numbers
+    // Populate arrays with new numbers
     newList[productIndex].quantity = totalUnits;
     newList[productIndex].totalPrice = newTotal;
     newCart.products[productIndex].quantity = totalUnits;
@@ -82,7 +84,7 @@ const Cart = () => {
   function updateCart(cart, cartId) {
     axios
       .put(`/api/cart/${cartId}`, cart)
-      .then((res) => {
+      .then(() => {
         getCart();
       })
       .catch((error) => console.log(error));
@@ -108,18 +110,27 @@ const Cart = () => {
     });
   };
 
-  // TO DO: Total Calculation
-  // Update Final Price
-  // const [total, setTotal] = useState(0);
-  // function sumTotalAmount(list) {
-  //   let total = 0;
-  //   for (var i = 0; i < list.length; i++) {
-  //     total += list[i].price * parseInt(list[i].quantity);
-  //   }
-  //   setList({
-  //     totalPrice: total,
-  //   });
-  // }
+  function grandTotal(list) {
+    let sum = 0;
+    for (let i = 0; i < list.length; i++) {
+      sum = sum + list[i].totalPrice;
+    }
+    return sum;
+  }
+
+  const submitOrder = async () => {
+    try {
+      // const results = await axios.post('/api/order', {
+      //   list,
+      // });
+      await axios.post('/api/order', {
+        user: '6078dff1e918cb13968c65c9',
+        total,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Populate dropdowns
   const getOptionsArray = (count) => {
@@ -176,7 +187,7 @@ const Cart = () => {
                     aria-label='delete'
                     onClick={() => {
                       handleRemove(item._id, cart._id, GrowTransition);
-                      console.log('remove', item._id);
+                      console.log('remove', item._id);  // FOR TESTING
                     }}>
                     <DeleteForeverIcon />
                   </IconButton>
@@ -207,19 +218,15 @@ const Cart = () => {
                 Order Summary
               </Typography>
               <Typography variant='h6' component='p'>
-                Subtotal: $
+                Subtotal: ${''}
+                {total}
               </Typography>
               <Typography variant='h6' component='p'>
-                Shipping: $
+                Shipping: $0
               </Typography>
               <Typography variant='h4' component='p'>
-                Total: ${' '}
-                {parseFloat(
-                  list?.reduce((prevValue, curItem) => {
-                    return prevValue + curItem.price * curItem.userQuantity;
-                  }, 0),
-                  2
-                )}
+                Total: ${''}
+                {total}
               </Typography>
             </CardContent>
             <CardActions>
@@ -227,6 +234,7 @@ const Cart = () => {
                 size='large'
                 color='primary'
                 variant='contained'
+                onClick={submitOrder}
                 fullWidth>
                 Checkout
               </Button>
