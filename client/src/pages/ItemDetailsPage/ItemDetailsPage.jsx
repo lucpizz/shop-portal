@@ -99,7 +99,6 @@ const ItemDetailsPage = () => {
 
           <CardContent>
             <ReviewBody />
-            <ReviewBody />
           </CardContent>
         </Card>
       ))}
