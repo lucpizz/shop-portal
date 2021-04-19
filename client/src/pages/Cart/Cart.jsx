@@ -29,8 +29,8 @@ function GrowTransition(props) {
 const Cart = () => {
   const classes = useStyles();
   // Setting components' initial state
-
   const [list, setList] = useState([]);
+  const [cart, setCart] = useState({});
   const [total, setTotal] = useState(0);
 
   // For Toast
@@ -44,18 +44,7 @@ const Cart = () => {
     getCart();
   }, []);
 
-  useEffect(() => {
-    setTotal(
-      parseFloat(
-        list?.reduce((prevValue, curItem) => {
-          console.log(prevValue, curItem.price);
-          return prevValue + curItem.price * curItem.userQuantity;
-        }, 0),
-        2
-      )
-    );
-  }, [list]);
-
+  
   // For Api call
   function getCart() {
     const user = '607b2ccd2185a8437004490d'; // FOR TESTING
@@ -63,12 +52,11 @@ const Cart = () => {
     axios
       .get(`/api/cart/${user}/${status}`)
       .then((res) => {
-        console.log(res);
-        const quantifiedList = res.data.map((item) => ({
-          ...item,
-          userQuantity: 1,
-        }));
-        setList(quantifiedList);
+        let newTotal = 0;
+        setCart(res.data[0]);
+        setList(res.data[0].products); // Push each product in an array
+        newTotal = grandTotal(res.data[0].products);
+        setTotal(newTotal);
       })
       .catch((error) => console.log(error));
   }
@@ -76,15 +64,35 @@ const Cart = () => {
   // Update quantity
   function handleChange(id, event) {
     const newList = list.slice(0);
-    const product = list.findIndex((item) => item._id === id);
-    newList[product].userQuantity = Number(event.target.value);
+    let newCart = cart;
+    const productIndex = list.findIndex((item) => item._id === id);
+    let unitPrice = newList[productIndex].product.price; // Price by unit
+    let totalUnits = Number(event.target.value); // New number of item
+    let newTotal = (Math.round(totalUnits * unitPrice * 100) / 100).toFixed(2); // Calculation with rounding up to 2 decimals
+    // Populate arrays with new numbers
+    newList[productIndex].quantity = totalUnits;
+    newList[productIndex].totalPrice = newTotal;
+    newCart.products[productIndex].quantity = totalUnits;
+    newCart.products[productIndex].totalPrice = newTotal;
     setList(newList);
-    console.log(id);
+    setCart(newCart);
+    //Calling function to update db
+    updateCart(newCart, cart._id);
   }
 
-  // Remove item from cart
-  function handleRemove(id, Transition) {
-    axios.delete('/api/product/' + id).then(() => {
+  // Api call to update the cart after new quantity
+  function updateCart(cart, cartId) {
+    axios
+      .put(`/api/cart/${cartId}`, cart)
+      .then(() => {
+        getCart();
+      })
+      .catch((error) => console.log(error));
+  }
+
+  // TO DO: Remove item from cart
+  function handleRemove(id, cartId, Transition) {
+    axios.delete(`/api/cart/${cartId}/${id}`).then(() => {
       getCart();
       // Update Toast State
       setState({
@@ -102,17 +110,13 @@ const Cart = () => {
     });
   };
 
-  // // TO DO: Total Calculation
-  // function sumTotalAmount(list) {
-  //   let total = 0;
-  //   for (var i = 0; i < list.length; i++) {
-  //     total += list[i].price * parseInt(list[i].quantity);
-  //   }
-  //   setList({
-  //     totalPrice: total,
-  //   });
-  // }
-
+  function grandTotal(list) {
+    let sum = 0;
+    for (let i = 0; i < list.length; i++) {
+      sum = sum + list[i].totalPrice;
+    }
+    return sum;
+  }
 
   const submitOrder = async () => {
     try {
@@ -145,16 +149,16 @@ const Cart = () => {
             <Card className={classes.root} key={i}>
               <CardMedia
                 className={classes.image}
-                image={item.imageUrl}
-                title={item.imageKey}
+                image={item.product.imageUrl}
+                title={item.product.imageKey}
               />
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <Typography component='h4' variant='h4'>
-                    {item.name}
+                    {item.product.name}
                   </Typography>
                   <Typography variant='subtitle1' color='textSecondary'>
-                    {item.description}
+                    {item.product.description}
                   </Typography>
                   <br />
                   <FormControl
@@ -166,12 +170,12 @@ const Cart = () => {
                     <NativeSelect
                       labelId={item.id}
                       name={item.id}
-                      defaultValue={item.userQuantity}
+                      defaultValue={item.quantity}
                       onChange={(e) => {
                         handleChange(item._id, e);
                       }}>
                       {/* Stock quantity is called quantity in the product model */}
-                      {getOptionsArray(item.quantity).map((num) => (
+                      {getOptionsArray(item.product.quantity).map((num) => (
                         <option key={num} value={num}>
                           {' '}
                           {num}
@@ -181,7 +185,10 @@ const Cart = () => {
                   </FormControl>
                   <IconButton
                     aria-label='delete'
-                    onClick={() => handleRemove(item._id, GrowTransition)}>
+                    onClick={() => {
+                      handleRemove(item._id, cart._id, GrowTransition);
+                      console.log('remove', item._id);  // FOR TESTING
+                    }}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Snackbar
@@ -194,7 +201,7 @@ const Cart = () => {
                     key={state.Transition.name}
                   />
                   <Typography color='textSecondary' align='right' variant='h6'>
-                    <AttachMoneyIcon /> {item.price}
+                    <AttachMoneyIcon /> {item.totalPrice}
                   </Typography>
                 </CardContent>
               </div>
