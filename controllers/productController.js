@@ -51,13 +51,8 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findById: function (req, res) {    
-    const id = req.params.id;
-    // eslint-disable-next-line no-console
-    console.log(id);
-    db.aggregate([
-      { $match: { _id: '$id'} 
-      },
+  findAllWithRating: function (req, res) {    
+      db.aggregate([
       {
         $lookup: {
           from: 'reviews',
@@ -100,6 +95,11 @@ module.exports = {
         },
       },
     ])
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findById: function (req, res) {
+    db.findById(req.params.id)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
