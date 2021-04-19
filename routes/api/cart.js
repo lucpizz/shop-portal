@@ -1,28 +1,43 @@
 const router = require('express').Router();
 const cartController = require('../../controllers/cartController.js');
 
-// Matches with "/api/users"
+// url "/api/cart"
 router.route('/').get(cartController.findAll).post(cartController.create);
 
-// Matches with "/api/cart/:id"
+// Matches with a cart id
 router
   .route('/:id')
   .get(cartController.findById)
-  .put(cartController.update)
+  .put(cartController.update) // used in the cart page
   .delete(cartController.remove);
 
-// Matches with "/product/:product"
+// Matches with user id and status
 router
-  .route('/product/:product')
-  .get(cartController.findByProduct)
+  .route('/:user/:status')
+  .get(cartController.findByUserandStatus) // used in the cart page
   .put(cartController.update)
   .delete(cartController.remove);
+ 
+//  *****UNUSED*****  
+// Matches with cart id and product id
+// router
+//   .route('/id/:id/:product')
+//   .get(cartController.findByIdandProduct)
+//   .put(cartController.updateAProduct)
+//   .delete(cartController.removeAProduct);
+
+// Matches with product id only
+// router
+//   .route('/product/:product')
+//   .get(cartController.findByProduct)
+//   .put(cartController.update)
+//   .delete(cartController.remove);
 
 // Matches with "/status/:status"
-router
-  .route('/status/:status')
-  .get(cartController.findByStatus)
-  .put(cartController.update)
-  .delete(cartController.remove);
-
+// router
+//   .route('/status/:status')
+//   .get(cartController.findByStatus)
+//   .put(cartController.update)
+//   .delete(cartController.remove);
+ //  *****END OF UNUSED*****
 module.exports = router;
