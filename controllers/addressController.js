@@ -9,12 +9,12 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    db.findById({ _id: req.params.id})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUser: function (req, res) {
-    db.find(req.params.user)
+    db.find({ user: req.params.user})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
