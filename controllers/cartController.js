@@ -4,47 +4,67 @@ const db = require('../models/cartModel');
 module.exports = {
   findAll: function (req, res) {
     db.find()
-    .populate(
-      'user products.product'
-      )
+      .populate('user products.product')
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    let findId = new db({
+      id: req.params.id,
+    });
+    db.findById(findId)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByProduct: function (req, res) {
-    db.findOne({ product: req.params.product })    
+    let findProduct = new db({
+      product: req.params.product,
+    });
+    db.findOne(findProduct)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByStatus: function (req, res) {
-    db.findOne({ status: req.params.status })
-    .populate('products.product products.product.brand')
+    let findStatus = new db({
+      status: req.params.status,
+    });
+    db.findOne(findStatus)
+      .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUserandStatus: function (req, res) {
-    db.find({ user: req.params.user, status: req.params.status  })
-    .populate('products.product products.product.brand')
+    let findUserStatus = new db({
+      user: req.params.user,
+      status: req.params.status,
+    });
+    db.find(findUserStatus)
+      .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createCart = new db({
+      product: req.params.product,
+      quantity: req.params.quantity,
+      totalPrice: req.params.totalPrice,
+      priceWithTax: req.params.priceWithTax,
+      status: req.params.status,
+    });
+    db.create(createCart)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.findOneAndUpdate({ _id: req.params.id }, req.body)
+    let updateProduct = new db({ _id: req.params.id }, req.body);
+    db.findOneAndUpdate(updateProduct)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   remove: function (req, res) {
-    db.findById({ _id: req.params.id })
+    let removeProduct = new db({ _id: req.params.id });
+    db.findById(removeProduct)
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
