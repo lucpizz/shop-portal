@@ -44,42 +44,37 @@ const Cart = () => {
     getCart();
   }, []);
 
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
+  // useEffect(() => {
+  //   console.log(list);
+  // }, [list]);
 
-  // For Api call
+  // Api call to get the cart
   function getCart(id) {
     const user= '607b2ccd2185a8437004490d';  // FOR TESTING
     const status= 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
       .then((res) => {
-        console.log(res);
-        const quantifiedList = res.data.map((item) => ({
-          ...item,
-          userQuantity: 1,
-        }));
-        setList(quantifiedList);
+        setList(res.data[0].products); // Push each product in an array       
       })
       .catch((error) => console.log(error));
   }
 
   // Update quantity
-  function handleChange(id, event) {
+  function handleChange(id, event) {    
     const newList = list.slice(0);
     const product = list.findIndex((item) => item._id === id);
-    newList[product].userQuantity = Number(event.target.value);
-    setList(newList);
-    console.log(id)
+    newList[product].quantity = Number(event.target.value);
+    setList(newList); 
+    console.log(newList);   
   }
 
   // Update Total Price
   const [total, setTotal] = useState(0);
 
   // Remove item from cart
-  function handleRemove(id, Transition) {
-    axios.delete('/api/product/' + id).then(() => {
+  function handleRemove(id, cartId, Transition) {
+    axios.delete(`/api/cart/${cartId}/${id}`).then(() => {
       getCart();
       // Update Toast State
       setState({
@@ -131,16 +126,16 @@ const Cart = () => {
             <Card className={classes.root} key={i}>
               <CardMedia
                 className={classes.image}
-                image={item.imageUrl}
-                title={item.imageKey}
+                image={item.product.imageUrl}
+                title={item.product.imageKey}
               />
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <Typography component='h4' variant='h4'>
-                    {item.name}
+                    {item.product.name}
                   </Typography>
                   <Typography variant='subtitle1' color='textSecondary'>
-                    {item.description}
+                    {item.product.description}
                   </Typography>
                   <br />
                   <FormControl
@@ -152,12 +147,12 @@ const Cart = () => {
                     <NativeSelect
                       labelId={item.id}
                       name={item.id}
-                      defaultValue={item.userQuantity}
+                      defaultValue={item.quantity}
                       onChange={(e) => {
                         handleChange(item._id, e);
                       }}>
                       {/* Stock quantity is called quantity in the product model */}
-                      {getOptionsArray(item.quantity).map((num) => (
+                      {getOptionsArray(item.product.quantity).map((num) => (
                         <option key={num} value={num}>
                           {' '}
                           {num}
@@ -167,7 +162,9 @@ const Cart = () => {
                   </FormControl>
                   <IconButton
                     aria-label='delete'
-                    onClick={() => handleRemove(item._id, GrowTransition)}>
+                    onClick={() => {
+                      handleRemove(item._id, GrowTransition);
+                      console.log("remove",item._id)}}>
                     <DeleteForeverIcon />
                   </IconButton>
                   <Snackbar
@@ -180,7 +177,7 @@ const Cart = () => {
                     key={state.Transition.name}
                   />
                   <Typography color='textSecondary' align='right' variant='h6'>
-                    <AttachMoneyIcon /> {item.price}
+                    <AttachMoneyIcon /> {item.totalPrice}
                   </Typography>
                 </CardContent>
               </div>
@@ -205,7 +202,6 @@ const Cart = () => {
               <Typography variant='h4' component='p'>
                 Total: ${' '}
                 {parseFloat(list?.reduce((prevValue, curItem) => {
-                  console.log(prevValue, curItem.price);
                   return prevValue + (curItem.price * curItem.userQuantity);
                 }, 0), 2)}
               </Typography>
