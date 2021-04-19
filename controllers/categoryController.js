@@ -3,24 +3,18 @@ const db = require('../models/categoryModel');
 // Defining methods for the postsController category
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
-      id: req.params.id,
-    });
-    db.findById(findId)
+    db.findById({ _id: req.parms.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByName: function (req, res) {
-    let findName = new db({
-      name: req.params.name,
-    });
-    db.findOne(findName)
+    db.findOne({ name: req.params.name })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
