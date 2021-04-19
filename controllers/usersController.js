@@ -3,40 +3,28 @@ const db = require('../models/userModel');
 // Defining methods for the postsController users
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    let findId = new db({
-      id: req.parmas.id,
-    });
-    db.findById(findId)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    let findEmail = new db({
-      email: req.parmas.email,
-    });
-    db.findOne(findEmail)
+    db.findOne({ email: req.parmas.email })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUsername: function (req, res) {
-    let findUsername = new db({
-      username: req.parmas.username,
-    });
-    db.findOne(findUsername)
+    db.findOne({ username: req.parmas.username })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByLastname: function (req, res) {
-    let findLastname = new db({
-      lastName: req.parmas.lastName,
-    });
-    db.findOne(findLastname)
+    db.findOne({ lastName: req.parmas.lastName })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
