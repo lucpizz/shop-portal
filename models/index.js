@@ -1,11 +1,12 @@
 module.exports = {
-  User: require('./userModel'),
-  Product: require('./productModel'),
-  Contact: require('./contactModel'),
-  Merchant: require('./merchantModel'),
-  Category: require('./categoryModel'),
+  Address: require('./addressModel'),
   Brand: require('./brandModel'),
   Cart: require('./cartModel'),
+  Category: require('./categoryModel'),
+  Contact: require('./contactModel'),
+  Merchant: require('./merchantModel'),
   Order: require('./orderModel'),
-  Address: require('./addressModel'),
+  Product: require('./productModel'),
+  User: require('./userModel'),
+  Review: require('./isReviewedModel'),
 };

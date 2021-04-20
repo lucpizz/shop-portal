@@ -19,6 +19,7 @@ import {
   Info as InfoIcon,
   LocalMall as ShoppingBagIcon,
   Menu as MenuIcon,
+  VpnKey as LoginIcon,
 } from '@material-ui/icons';
 import {
   useHistory,
@@ -40,6 +41,7 @@ const NavigationDrawer = () => {
     { linkTitle: 'Shop', pageURL: '/shop', icon: <ShoppingBagIcon /> },
     { linkTitle: 'About', pageURL: '/about', icon: <InfoIcon /> },
     { linkTitle: 'Contact', pageURL: '/contact', icon: <ContactIcon /> },
+    { linkTitle: 'Login', pageURL: '/login', icon: <LoginIcon /> },
   ];
 
   const extLinks = [
@@ -103,7 +105,7 @@ const NavigationDrawer = () => {
       </List>
       <Divider />
       <Typography varient='p' align='center'>
-        &copy; 2021, Shop Portal Group
+        &copy; 2021, ShopPortal Group
       </Typography>
     </div>
   );

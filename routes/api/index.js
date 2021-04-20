@@ -1,13 +1,15 @@
 const router = require('express').Router();
-const userRoutes = require('./userModel');
-const addressRoutes = require('./addressModel');
-const productRoutes = require('./productModel');
-const categoryRoutes = require('./categoryModel');
-const cartRoutes = require('./cartModel');
-const brandRoutes = require('./brandModel');
-const contactRoutes = require('./contactModel');
-const merchantRoutes = require('./merchantModel');
-const orderRoutes = require('./orderModel');
+const userRoutes = require('./users');
+const addressRoutes = require('./address');
+const productRoutes = require('./product');
+const categoryRoutes = require('./category');
+const cartRoutes = require('./cart');
+const brandRoutes = require('./brand');
+const contactRoutes = require('./contact');
+const merchantRoutes = require('./merchant');
+const orderRoutes = require('./order');
+const paymentRoutes = require('./payment');
+const reviews = require('./isReviewed');
 
 // Post Routes
 router.use('/user', userRoutes);
@@ -19,5 +21,7 @@ router.use('/brand', brandRoutes);
 router.use('/contact', contactRoutes);
 router.use('/merchant', merchantRoutes);
 router.use('/order', orderRoutes);
+router.use('/payment', paymentRoutes);
+router.use('/reviews', reviews);
 
 module.exports = router;

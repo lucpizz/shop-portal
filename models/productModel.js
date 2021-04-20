@@ -1,4 +1,4 @@
-//Product Schema
+//Product Schema with isFeatured
 const Mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 const { Schema } = Mongoose;
@@ -11,7 +11,7 @@ const options = {
 
 Mongoose.plugin(slug, options);
 
-// Product Schema
+// Product Schema with isFeatured
 const ProductSchema = new Schema({
   sku: {
     type: String,
@@ -50,6 +50,17 @@ const ProductSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  isFeatured: {
+    type: Boolean,
+    default: false,
+  },
+  isReviewed: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Review',
+      default: null,
+    },
+  ],
   brand: {
     type: Schema.Types.ObjectId,
     ref: 'Brand',

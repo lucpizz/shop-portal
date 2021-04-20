@@ -1,7 +1,7 @@
 const Mongoose = require('mongoose');
 const { Schema } = Mongoose;
 
-// Cart Item Schema
+// Cart Item Schema for cart
 const CartItemSchema = new Schema({
   product: {
     type: Schema.Types.ObjectId,
@@ -15,11 +15,6 @@ const CartItemSchema = new Schema({
     type: Number,
     default: 0,
   },
-  status: {
-    type: String,
-    default: 'Not processed',
-    enum: ['Not processed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
-  },
 });
 
 module.exports = Mongoose.model('CartItem', CartItemSchema);
@@ -30,6 +25,11 @@ const CartSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+  },  
+  status: {
+    type: String,
+    default: 'Not processed',
+    enum: ['Not processed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
   },
   updated: Date,
   created: {

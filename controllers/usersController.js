@@ -1,6 +1,6 @@
 const db = require('../models/userModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController users
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
@@ -9,32 +9,49 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByEmail: function (req, res) {
-    db.findByEmail(req.params.email)
+    db.findOne({ email: req.parmas.email })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUsername: function (req, res) {
-    db.findByUsername(req.params.username)
+    db.findOne({ username: req.parmas.username })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByLastname: function (req, res) {
-    db.findByLastname(req.params.lastName)
+    db.findOne({ lastName: req.parmas.lastName })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByPhoneNumber: function (req, res) {
-    db.findByPhoneNumber(req.params.phoneNumber)
+    db.finOne({ phoneNumber: req.params.phoneNumber })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createUser = new db({
+      role: req.body.role,
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      password: req.body.password,
+      email: req.body.email,
+      provider: req.body.provider,
+      merchant: req.body.merchant,
+      phoneNumber: req.body.phoneNumber,
+      googleId: req.body.googleId,
+      facebookId: req.body.facebookId,
+      resetPasswordToken: req.body.resetPasswordToken,
+      resetPasswordExpires: req.body.resetPasswordExpires,
+      created: req.body.created,
+      updated: req.body.updated,
+    });
+    db.create(createUser)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
