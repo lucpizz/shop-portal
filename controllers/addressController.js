@@ -1,6 +1,6 @@
 const db = require('../models/addressModel');
 
-// Defining methods for the postsController
+// Defining methods for the postsController for addressModel
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
@@ -9,42 +9,31 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findById: function (req, res) {
-    db.findById(req.params.id)
+    db.findById({ _id: req.params.id})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   findByUser: function (req, res) {
-    db.findByOne({ user: req.params.user })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByStreetAddress: function (req, res) {
-    db.findByOne({ streetAddress: req.params.streetAddress })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByCity: function (req, res) {
-    db.findByOne({ city: req.params.city })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByState: function (req, res) {
-    db.findByOne({ state: req.params.state })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByCountry: function (req, res) {
-    db.findByOne({ country: req.params.country })
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-  findByZipcode: function (req, res) {
-    db.findByOne({ zipCode: req.params.zipCode })
+    db.find({ user: req.params.user})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.create(req.body)
+    let createAddress = new db({
+      user: req.body.user,
+      streetAddress: req.body.streetAddress,
+      streetAddress2: req.body.streetAddress2,
+      city: req.body.city,
+      state: req.body.state,
+      country: req.body.country,
+      zipCode: req.body.zipCode,
+      isDefault: req.body.isDefault,
+      isActive: req.body.isActive,
+      updated: req.body.updated,
+      created: req.body.created,
+    });
+
+    db.create(createAddress)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

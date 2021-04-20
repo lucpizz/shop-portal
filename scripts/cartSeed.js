@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const db = require('../models');
 
-// This file empties the Brand collection and inserts the brands below
+// This file empties the Brand collection and inserts the brands below.
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopportal', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
