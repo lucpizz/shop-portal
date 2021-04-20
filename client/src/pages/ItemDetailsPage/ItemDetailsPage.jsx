@@ -75,30 +75,33 @@ const ItemDetailsPage = () => {
           </CardContent>
 
           <CardActions disableSpacing={true} className={classes.flexContainer}>
-              <Box className={classes.box}>
-                <AverageRating />
-              </Box>
-              <Box className={classes.box}>
-                <Typography variant='h6'>${item.price}</Typography>
-              </Box>
-              <Box className={classes.box}>
-                <Button
-                  type='submit'
-                  variant='contained'
-                  color='primary'
-                  className={classes.submit}>
-                  Add to Cart
-                </Button>
-              </Box>
-              <Box className={classes.box}>
-                <ReviewModal />
-              </Box>
+            <Box className={classes.box}>
+              <AverageRating />
+            </Box>
+            <Box className={classes.box}>
+              <Typography variant='h6'>${item.price}</Typography>
+            </Box>
+            <Box className={classes.box}>
+              <Button
+                type='submit'
+                variant='contained'
+                color='primary'
+                className={classes.submit}>
+                Add to Cart
+              </Button>
+            </Box>
+            <Box className={classes.box}>
+              <ReviewModal />
+            </Box>
           </CardActions>
 
           <Divider variant='middle' />
 
           <CardContent>
             <ReviewBody />
+            
+            {/* <Typography paragraph>{item.reviews}</Typography> */}
+
           </CardContent>
         </Card>
       ))}
