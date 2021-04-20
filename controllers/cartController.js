@@ -25,15 +25,8 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  create: function (req, res) {
-    let createCart = new db({
-      product: req.params.product,
-      quantity: req.params.quantity,
-      totalPrice: req.params.totalPrice,
-      priceWithTax: req.params.priceWithTax,
-      status: req.params.status,
-    });
-    db.create(createCart)
+  create: function (req, res) {    
+    db.create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
