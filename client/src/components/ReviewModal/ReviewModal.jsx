@@ -11,7 +11,7 @@ import SetRating from '../SetRating/SetRating'
 import useStyles from './styles';
 
 
-const ReviewModal = (props) => {
+const ReviewModal = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -23,19 +23,19 @@ const ReviewModal = (props) => {
     setOpen(false);
   };
 
-  const postReview = async (rating, title, description) => {
-    try {
-      await axios.post('/api/reviews', {
-        name = props.userId,
-        product = props.productId,
-        totalStars = rating,
-        title = title,
-        description = description
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const postReview = async (rating, title, description) => {
+  //   try {
+  //     await axios.post('/api/reviews', {
+  //       name = props.userId,
+  //       product = props.productId,
+  //       totalStars = rating,
+  //       title = title,
+  //       description = description
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <div>
@@ -77,7 +77,7 @@ const ReviewModal = (props) => {
               variant='outlined'
             />
             <Button
-              onClick={postReview()}
+              // onClick={postReview()}
               type='submit'
               variant='contained'
               color='primary'
