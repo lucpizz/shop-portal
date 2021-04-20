@@ -17,7 +17,6 @@ module.exports = {
   },
   findByUserandStatus: function (req, res) {
     let findUserStatus = new db({
-      // EXTRA LINES because of SONAR errors
       user: req.params.user,
       status: req.params.status,
     });
