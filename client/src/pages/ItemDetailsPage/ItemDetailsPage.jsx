@@ -15,21 +15,22 @@ import {
   Typography,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import Rating from '@material-ui/lab/Rating';
+// import Rating from '@material-ui/lab/Rating';
 import ShareIcon from '@material-ui/icons/Share';
-// import AverageRating from '../../components/AverageRating/AverageRating';
-// import UserRating from '../../components/UserRating/UserRating';
+import AverageRating from '../../components/AverageRating/AverageRating';
+import UserRating from '../../components/UserRating/UserRating';
 import ReviewModal from '../../components/ReviewModal/ReviewModal';
 // import ReviewBody from '../../components/ReviewBody/ReviewBody';
 import useStyles from './styles';
 const productID = '607dd307a8105c71a0c27959';
+const userName = 'Hugo Boss';
+const userId = '607dd3077201dc5008c7f8ae';
 
 const ItemDetailsPage = () => {
   const classes = useStyles();
 
   const [product, setProduct] = useState([]);
-
-  // const review = useState([]);
+  const [review, setReview] = useState([]);
 
   useEffect(() => {
     const getProduct = () => {
@@ -39,9 +40,10 @@ const ItemDetailsPage = () => {
           const productArray = res.data;
           for (let i = 0; i < productArray.length; i++) {
             if (productArray[i]._id === productID) {
-              setProduct(productArray[i])
+              setProduct(productArray[i]);
+              setReview(productArray[i].reviews);
               // eslint-disable-next-line
-              console.log(productArray[i])
+              console.log(productArray[i]);
             }
           }
         })
@@ -85,10 +87,9 @@ const ItemDetailsPage = () => {
         </CardContent>
 
         <CardActions disableSpacing={true} className={classes.flexContainer}>
-          <Box className={classes.box}>
-            <Typography component='legend'>Average Rating</Typography>
-            <Rating name='read-only' value={product.averageRating} readOnly />
-          </Box>
+  
+          <AverageRating value={product.averageStars ? product.averageStars : 0} />
+        
           <Box className={classes.box}>
             <Typography variant='h6'>${product.price}</Typography>
           </Box>
@@ -102,17 +103,30 @@ const ItemDetailsPage = () => {
             </Button>
           </Box>
           <Box className={classes.box}>
-            <ReviewModal />
+            <ReviewModal
+              userName={userName}
+              userId={userId}
+              productId={product._id}
+            />
           </Box>
         </CardActions>
 
         <Divider variant='middle' />
-
-        {/* <CardContent>
-          {review.map((item, i) => (
-            <Typography paragraph key={i}>{product.reviews}</Typography>
-           ))}
-        </CardContent> */}
+        {review.map((item, i) => (
+          <CardContent key={i}>
+            <Typography>Bill H.</Typography>
+            <Typography>{item.created}</Typography>
+            <UserRating rating={item.totalStars} />
+            <Typography>{item.title}</Typography>
+            <Typography paragraph>{item.description}</Typography>
+            <Divider variant='middle' />
+          </CardContent>
+        ))}
+        {/* {review.map((item, i) => (
+          <CardContent key={i}>
+            <Typography paragraph>{item.description}</Typography>
+          </CardContent>
+        ))} */}
       </Card>
     </Container>
   );

@@ -11,7 +11,7 @@ import SetRating from '../SetRating/SetRating'
 import useStyles from './styles';
 
 
-const ReviewModal = () => {
+const ReviewModal = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -21,6 +21,20 @@ const ReviewModal = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const postReview = async (rating, title, description) => {
+    try {
+      await axios.post('/api/reviews', {
+        name = props.userId,
+        product = props.productId,
+        totalStars = rating,
+        title = title,
+        description = description
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -63,6 +77,7 @@ const ReviewModal = () => {
               variant='outlined'
             />
             <Button
+              onClick={postReview()}
               type='submit'
               variant='contained'
               color='primary'
