@@ -1,40 +1,39 @@
 const db = require('../models/cartModel');
 
-
 // Defining methods for the cartController
 
 module.exports = {
   findAll: function (req, res) {
-    db.find()
+    db.find(req.query)
       .populate('user products.product')
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
- findById: function (req, res) {
+  findById: function (req, res) {
     db.findById({ _id: req.params.id })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
- },
+  },
   findByUserandStatus: function (req, res) {
-    let findUserStatus = new db({  // EXTRA LINES because of SONAR errors
+    let findUserStatus = new db({
       user: req.params.user,
       status: req.params.status,
-    }); 
-    db.find({user: findUserStatus.user, status: findUserStatus.status})
+    });
+    db.find({ user: findUserStatus.user, status: findUserStatus.status })
       .populate('products.product products.product.brand')
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  create: function (req, res) { 
-    let createCart = new db({  
+  create: function (req, res) {
+    let createCart = new db({
       product: req.params.product,
       quantity: req.params.quantity,
       totalPrice: req.params.totalPrice,
       priceWithTax: req.params.priceWithTax,
       status: req.params.status,
     });
-    db.create(createCart
+    db.create(createCart)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
@@ -43,13 +42,13 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  
-   remove: function (req, res) {
+
+  remove: function (req, res) {
     db.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
-    },
+  },
   //  *****UNUSED*****
   // findByIdandProduct: function (req, res) {
   //   db.find({ _id: req.params.id, 'products._id': req.params.product })
@@ -82,7 +81,7 @@ module.exports = {
   //   db.findOneAndUpdate(updateProduct)
   //     .then((dbModel) => res.json(dbModel))
   //     .catch((err) => res.status(422).json(err));
-  // },  
+  // },
   // removeAProduct: function (req, res) {
   //   let removeProduct = new db({
   //     _id: req.params.id,
