@@ -5,6 +5,7 @@ const routes = require('./routes');
 const PORT = process.env.PORT || 3001;
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const path = require('path');
 
 server.use(helmet());
 server.use(
@@ -15,7 +16,7 @@ server.use(
 server.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
-  server.use(express.static('client/build'));
+  server.use(express.static(path.join(__dirname, 'client/build')));
 }
 
 // Add routes, both API and view
