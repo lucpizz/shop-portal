@@ -4,81 +4,60 @@ const db = require('../models/productModel');
 module.exports = {
   findAll: function (req, res) {
     db.find(req.query)
-      //   .populate('isReviewed brand')
-      //   .sort({ created: -1 })
-      //   .then((dbModel) => res.json(dbModel))
-      //   .catch((err) => res.status(422).json(err));
-      // db.aggregate([
-      //   {
-      //     $lookup: {
-      //       from: 'Review',
-      //       localField: 'isReviewed',
-      //       foreignField: '_id',
-      //       as: 'reviews',
-      //     },
-      //   },
-      //   { $unwind: '$reviews' },
-      //   {
-      //     $group: {
-      //       _id: null,
-      //       averageStars: {
-      //         $avg: '$reviews.totalStars',
-      //       },
-      //     },
-      //   },
-      // ])
+      .populate('isReviewed brand')
       .sort({ created: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+  findAllWithRating: function (req, res) {
+    db.aggregate([
+      {
+        $lookup: {
+          from: 'reviews',
+          localField: 'isReviewed',
+          foreignField: '_id',
+          as: 'reviews',
+        },
+      },
+      {
+        $unwind: {
+          path: '$reviews',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $group: {
+          _id: '$_id',
+          averageStars: {
+            $avg: '$reviews.totalStars',
+          },
+          sku: { $first: '$sku' },
+          slug: { $first: '$slug' },
+          name: { $first: '$name' },
+          imageUrl: { $first: '$imageUrl' },
+          imageKey: { $first: '$imageKey' },
+          description: { $first: '$description' },
+          price: { $first: '$price' },
+          brand: { $first: '$brand' },
+          isActive: { $first: '$isActive' },
+          reviews: {
+            $push: {
+              name: '$reviews.name',
+              title: '$reviews.title',
+              totalStars: '$reviews.totalStars',
+              description: '$reviews.description',
+              isActive: '$reviews.isActive',
+              created: '$reviews.created',
+            },
+          },
+        },
+      },
+    ])
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   findById: function (req, res) {
-    db.findById({ _id: req.params.id })
-      // const _id = req.params.id;
-      // console.log(_id);
-      // db.aggregate([
-      //   { $match: { _id: 'id' } },
-      //   {
-      //     $lookup: {
-      //       from: 'reviews',
-      //       localField: 'isReviewed',
-      //       foreignField: '_id',
-      //       as: 'reviews',
-      //     },
-      //   },
-      //   {
-      //     $unwind: {
-      //       path: '$reviews',
-      //       preserveNullAndEmptyArrays: true,
-      //     },
-      //   },
-      //   {
-      //     $group: {
-      //       _id: '$_id',
-      //       averageStars: {
-      //         $avg: '$reviews.totalStars',
-      //       },
-      //       sku: { $first: '$sku' },
-      //       slug: { $first: '$slug' },
-      //       name: { $first: '$name' },
-      //       imageUrl: { $first: '$imageUrl' },
-      //       imageKey: { $first: '$imageKey' },
-      //       description: { $first: '$description' },
-      //       price: { $first: '$price' },
-      //       brand: { $first: '$brand' },
-      //       isActive: { $first: '$isActive' },
-      //       reviews: {
-      //         $push: {
-      //           name: '$reviews.name',
-      //           title: '$reviews.title',
-      //           totalStars: '$reviews.totalStars',
-      //           description: '$reviews.description',
-      //           isActive: '$reviews.isActive',
-      //           created: '$reviews.created',
-      //         },
-      //       },
-      //     },
-      //   },
-      // ])
+    db.findById(req.params.id)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

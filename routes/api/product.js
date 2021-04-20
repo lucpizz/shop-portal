@@ -4,6 +4,11 @@ const productController = require('../../controllers/productController.js');
 // Matches with "/api/product"
 router.route('/').get(productController.findAll).post(productController.create);
 
+// Matches with "/api/product/details"
+router
+  .route('/details')
+  .get(productController.findAllWithRating)  // For the itemdetails page only  
+
 // Matches with "/api/product/:id"
 router
   .route('/:id')
