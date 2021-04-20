@@ -43,8 +43,6 @@ const ItemDetailsPage = () => {
             if (productArray[i]._id === productID) {
               setProduct(productArray[i]);
               setReview(productArray[i].reviews);
-              // eslint-disable-next-line
-              console.log(productArray[i]);
             }
           }
         })
