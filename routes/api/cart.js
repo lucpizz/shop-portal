@@ -7,7 +7,7 @@ router.route('/').get(cartController.findAll).post(cartController.create);
 router
   .route('/:id')
   .get(cartController.findById)
-  .put(cartController.update)
+  .put(cartController.update) // used in the cart page
   .delete(cartController.remove);
 
 // Matches with user id and status
