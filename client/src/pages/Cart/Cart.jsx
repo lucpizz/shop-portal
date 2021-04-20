@@ -21,7 +21,6 @@ import Fade from '@material-ui/core/Fade';
 import Grow from '@material-ui/core/Grow';
 import axios from 'axios';
 
-
 //For Toast
 function GrowTransition(props) {
   return <Grow {...props} />;
@@ -148,8 +147,6 @@ const Cart = () => {
         user: '607b2ccd2185a8437004490dd',
         total,
       });
-      this.props.history.push(`./checkout`);
-      
     } catch (err) {
       console.log(err);
     }

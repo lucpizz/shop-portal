@@ -24,7 +24,7 @@ const productSeed = [
     taxable: false,
     isActive: true,
     isFeatured: true,
-    isReviewable: true,
+    isReviewed: ['607b11344d6de74ff8b9d44f','607b11344d6de74ff8b9d44f'],
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
   },

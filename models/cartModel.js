@@ -1,7 +1,7 @@
 const Mongoose = require('mongoose');
 const { Schema } = Mongoose;
 
-// Cart Item Schema
+// Cart Item Schema for cart
 const CartItemSchema = new Schema({
   product: {
     type: Schema.Types.ObjectId,
@@ -26,6 +26,11 @@ const CartSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },  
+  status: {
+    type: String,
+    default: 'Not processed',
+    enum: ['Not processed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
+  },
   status: {
     type: String,
     default: 'Not processed',
