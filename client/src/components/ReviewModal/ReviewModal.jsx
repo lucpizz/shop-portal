@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Backdrop,
   Box,
@@ -7,13 +8,15 @@ import {
   Modal,
   TextField,
 } from '@material-ui/core/';
-import SetRating from '../SetRating/SetRating'
+import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles';
 
-
-const ReviewModal = () => {
+const ReviewModal = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [rating, setRating] = useState(0);
 
   const handleOpen = () => {
     setOpen(true);
@@ -21,21 +24,33 @@ const ReviewModal = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setRating(0);
+    setTitle('');
+    setDescription('');
   };
 
-  // const postReview = async (rating, title, description) => {
-  //   try {
-  //     await axios.post('/api/reviews', {
-  //       name = props.userId,
-  //       product = props.productId,
-  //       totalStars = rating,
-  //       title = title,
-  //       description = description
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  // Post new review
+  const PostReview = () => {
+    console.log(props.userId);
+    console.log(props.productId);
+    setOpen(false);
+    if (title !== '' || description !== '') {  // Prevent empty reviews to be processed
+      const review = {
+        name: props.userId,
+        product: props.productId,
+        title: title,
+        totalStars: rating,
+        description: description,
+      };
+      axios
+        .post('/api/reviews', review)
+        .then(() => {
+          setRating(0);
+          setTitle('');
+          setDescription('');
+        })
+        .catch((error) => console.log(error)); }
+  };
 
   return (
     <div>
@@ -64,20 +79,47 @@ const ReviewModal = () => {
           <div className={classes.paper}>
             <h2 id='transition-modal-title'>Review Your Product</h2>
             {/* <Box className={classes.box}> */}
-            <SetRating />
+            <Rating
+              name='rating'
+              value={rating}
+              onChange={(event) => {
+                setRating(event.target.value);
+              }}
+            />
             {/* </Box> */}
+            <TextField
+              margin='normal'
+              label='Title'
+              required
+              fullWidth
+              variant='outlined'
+              name='title'
+              value={title}
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+              error={title === ''}
+              helperText={title === '' ? 'Required field!' : ' '}
+            />
             <TextField
               id='message'
               margin='normal'
-              label='Your Review'
+              label='Description'
               multiline
               required
               fullWidth
               rows={6}
               variant='outlined'
+              name='description'
+              value={description}
+              onChange={(event) => {
+                setDescription(event.target.value);
+              }}
+              error={description === ''}
+              helperText={description === '' ? 'Required field!' : ' '}
             />
             <Button
-              // onClick={postReview()}
+              onClick={PostReview}
               type='submit'
               variant='contained'
               color='primary'
@@ -89,6 +131,6 @@ const ReviewModal = () => {
       </Modal>
     </div>
   );
-}
+};
 
 export default ReviewModal;

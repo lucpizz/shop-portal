@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -250,6 +251,7 @@ const Cart = () => {
               </Typography>
             </CardContent>
             <CardActions>
+            <Link to='/Checkout'>
               <Button
                 size='large'
                 color='primary'
@@ -258,6 +260,7 @@ const Cart = () => {
                 fullWidth>
                 Checkout
               </Button>
+              </Link>
             </CardActions>
           </Card>
         </Grid>

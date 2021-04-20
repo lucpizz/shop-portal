@@ -52,7 +52,8 @@ module.exports = {
             $push: '$reviews'
           },
         },
-      },{
+      },
+      {
         $project: {
           _id: 1,
           averageStars: 1,
@@ -66,7 +67,7 @@ module.exports = {
           brand:1,
           isActive: 1,
           reviews: {
-             $filter: { input: "$reviews", as: "a", cond: { $ifNull: ["$$a._id", false] } }
+             $filter: { input: "$reviews", as: "a", cond: { $ifNull: ["$$a._id", false] } },
            } 
         }
       },
