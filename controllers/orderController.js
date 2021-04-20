@@ -19,14 +19,16 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
-    let createOrder = new db({
+    // let createOrder = new db({
+      
+      // created: req.parmas.created,
+      // updated: req.parmas.updated,
+    // });
+    db.create({
       cart: req.parmas.cart,
       user: req.parmas.user,
       total: req.parmas.total,
-      created: req.parmas.created,
-      updated: req.parmas.updated,
-    });
-    db.create(createOrder)
+    })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

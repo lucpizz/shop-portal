@@ -59,7 +59,7 @@ const Cart = () => {
 
   // Call update cart list
   useEffect(() => {
-        getCart();
+    getCart();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Update quantity
@@ -144,8 +144,9 @@ const Cart = () => {
       //   list,
       // });
       await axios.post('/api/order', {
-        user: '607b2ccd2185a8437004490dd',
-        total,
+        cart: cart._id,
+        user: '607b2ccd2185a8437004490d',
+        total: total
       });
     } catch (err) {
       console.log(err);
