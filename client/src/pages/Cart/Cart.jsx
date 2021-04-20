@@ -42,7 +42,7 @@ const Cart = () => {
 
   // For Api call
   const getCart = () => {
-    const user = '607b2ccd2185a8437004490d'; // FOR TESTING
+    const user = '607f092b7624a358d481c973'; // FOR TESTING
     const status = 'Not processed';
     axios
       .get(`/api/cart/${user}/${status}`)
