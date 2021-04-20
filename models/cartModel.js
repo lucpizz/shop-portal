@@ -25,6 +25,11 @@ const CartSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+  },  
+  status: {
+    type: String,
+    default: 'Not processed',
+    enum: ['Not processed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
   },
   status: {
     type: String,
