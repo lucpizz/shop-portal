@@ -20,10 +20,10 @@ router
   .delete(isReviewedController.remove);
 
 // Matches with "/api/name/:name"
-router
-  .route('/name/:name')
-  .get(isReviewedController.findByName)
-  .put(isReviewedController.update)
-  .delete(isReviewedController.remove);
+// router
+//   .route('/name/:name')
+//   .get(isReviewedController.findByName)
+//   .put(isReviewedController.update)
+//   .delete(isReviewedController.remove);
 
 module.exports = router;

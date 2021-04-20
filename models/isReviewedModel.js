@@ -5,8 +5,8 @@ const { Schema } = Mongoose;
 // isReviewed Schema
 const isReviewableSchema = new Schema({
   name: {
-    type: String,
-    trim: true,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
   imageUrl: {
     type: String,
@@ -14,14 +14,14 @@ const isReviewableSchema = new Schema({
   imageKey: {
     type: String,
   },
-  description: {
+  title: {
     type: String,
     trim: true,
   },
   totalStars: {
     type: Number,
   },
-  reviewBody: {
+  description: {
     type: String,
     trim: true,
   },
@@ -33,12 +33,6 @@ const isReviewableSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  product: [
-    {
-      type: Schema.Types.String,
-      ref: 'Product',
-    },
-  ],
   created: {
     type: Date,
     default: Date.now,
