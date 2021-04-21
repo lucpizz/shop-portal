@@ -7,7 +7,11 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const path = require('path');
 
-server.use(helmet());
+server.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 server.use(
   express.urlencoded({
     extended: true,
